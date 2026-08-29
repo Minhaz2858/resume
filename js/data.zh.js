@@ -353,7 +353,7 @@ window.PORTFOLIO_ZH = {
         },
       ],
       links: [
-        { label: "[私有仓库]", url: "#", external: false },
+        { label: "GitHub 仓库", url: "https://github.com/Minhaz2858/EDIA", external: true },
       ],
     },
     {
@@ -567,7 +567,7 @@ def recommend_candidates(req):
         },
       ],
       links: [
-        { label: "GitHub 仓库", url: "https://github.com/Minhazul249602/Bepsbot-Comment-Analysis", external: true },
+        { label: "GitHub 仓库", url: "https://github.com/Minhaz2858/Bepsbot", external: true },
         { label: "HHME 2026 PCC 论文", url: "https://hhme.ccf.org.cn/PCC_paper.html", external: true },
         { label: "交互式演示文稿", url: "bepsbot/Bepsbot_Portfolio_Presentation.html", external: false },
       ],

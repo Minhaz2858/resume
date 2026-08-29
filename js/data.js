@@ -653,7 +653,7 @@ window.PORTFOLIO = {
         },
       ],
       links: [
-        { label: "[Private Repository]", url: "#", external: false },
+        { label: "GitHub Repository", url: "https://github.com/Minhaz2858/EDIA", external: true },
       ],
     },
     {
@@ -867,7 +867,7 @@ def recommend_candidates(req):
         },
       ],
       links: [
-        { label: "GitHub", url: "https://github.com/Minhazul249602/Bepsbot-Comment-Analysis", external: true },
+        { label: "GitHub", url: "https://github.com/Minhaz2858/Bepsbot", external: true },
         { label: "HHME 2026 PCC Paper", url: "https://hhme.ccf.org.cn/PCC_paper.html", external: true },
         { label: "Interactive Presentation", url: "bepsbot/Bepsbot_Portfolio_Presentation.html", external: false },
       ],
