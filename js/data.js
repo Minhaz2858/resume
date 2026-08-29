@@ -24,101 +24,133 @@ window.PORTFOLIO = {
       "My work spans multi-agent LLM orchestration for production decision-intelligence platforms, retrieval-augmented generation systems for mental-health support, Transformer fine-tuning for domain-specific scoring, and embedded AI prototypes for accessibility.",
       "I enjoy solving problems where the answer requires both deep technical work and a clear view of the user: grounding LLMs in evidence, making AI output verifiable, and shipping systems that perform under real load.",
     ],
-    pillars: [
-      { title: "Multi-Agent Orchestration & Harness Runtime", desc: "State-machine execution (17-node LangGraph FSMs), plan-first turn planning, sub-agent delegation, and custom Harness Agent runtimes with Model Context Protocol (MCP) bridges." },
-      { title: "Context Engineering & Grounded RAG", desc: "Hybrid retrieval (ChromaDB vector search + structured SQL data grounding), SafeContextGate budget enforcement, payload spilling, and long-term semantic memory." },
-      { title: "Governance-First System Safety", desc: "Deterministic Python validation layers that pre-compute and lock business-critical data, enforcing a 0% hallucination rate before LLM narration." },
-      { title: "Sandboxed Execution & LLMOps", desc: "Docker-isolated skill execution (sandbox-python, sandbox-pptx), LLM-as-a-judge blocking quality gates, multi-provider model routing, and SSE streaming APIs." },
-      { title: "Human-AI Co-Decision & HCI", desc: "Applied NLP for affective computing, biofeedback interventions, and peer-support tools in mental health (ICEC 2025, HHME 2026)." },
+    interests: [
+      "Large language models and AI agents",
+      "Retrieval-augmented generation (RAG) and grounded LLM systems",
+      "Multi-agent orchestration and LLM infrastructure",
+      "Human-AI interaction and affective computing",
+      "Applied NLP for healthcare and social good",
+      "Edge AI and embedded intelligence",
     ],
-    rsToolkit: [
-      { domain: "Orchestration & Runtimes", tools: "LangGraph, Custom Synexia FSM, Harness Agent Runtimes, Model Context Protocol (MCP), ReAct / CoT Planning" },
-      { domain: "Context & Retrieval Infra", tools: "Hybrid Vector + SQL RAG, ChromaDB, BAAI/bge-m3, SafeContextGate Budgeting, Context Compaction" },
-      { domain: "Validation & Evaluation", tools: "Deterministic Python Guardrails, Pre-rendering, LLM-as-a-Judge Audit Gates, Walk-Forward MAPE Backtesting" },
-      { domain: "Production LLMOps & Infra", tools: "Docker Microservices (14-service stacks), FastAPI, Redis, MinIO, SSE Streaming, Prometheus/Grafana" },
-      { domain: "Machine Learning & NLP", tools: "PyTorch, Hugging Face Transformers, PEFT/LoRA, STL + Time-Series Ensembles, RoBERTa / BERT Fine-Tuning" },
-      { domain: "Edge AI & Embedded HCI", tools: "Arduino, C/C++, ESP32-CAM, Sensor Fusion, Edge AI Prototyping" },
+    goals: [
+      "Build AI systems that are accurate, verifiable, and production-grade",
+      "Bridge research and engineering — turning model ideas into deployed services",
+      "Contribute to AI applications that have measurable human and business impact",
     ],
     stats: [
-      { num: "0", label: "hallucinated numbers reaching users (EDIA)" },
-      { num: "17", label: "node LangGraph FSM orchestrator" },
-      { num: "5m→30s", label: "query latency reduction (EDIA)" },
-      { num: "4", label: "peer-reviewed publications (ICEC 2025, HHME 2026)" },
+      { num: "4", label: "Publications (2 ICEC 2025, 2 PCC 2026)" },
+      { num: "7", label: "Projects shipped, web to embedded" },
+      { num: "15", label: "AI agents orchestrated in production" },
+      { num: "40%", label: "Process time saved via automation" },
     ],
   },
 
   skills: [
     {
-      category: "Multi-Agent Systems & Agent Runtimes",
+      category: "Generative AI & NLP",
       items: [
-        "LangGraph (17-Node FSM)", "Agent Harness", "Model Context Protocol (MCP)",
-        "Plan-First Turn Planning", "Sub-Agent Workflows", "Goal Contracts & Self-Correction",
-        "Hermes Control Layer", "LLM-as-a-Judge Eval", "Tool/Skill/MCP Gateway",
+        "LLMs (GPT, DeepSeek)", "RAG", "LangChain", "LlamaIndex",
+        "Transformers (BERT, RoBERTa)", "Fine-tuning (PEFT, LoRA, QLoRA)",
+        "Prompt Engineering", "Hugging Face", "Gradio", "NER",
       ],
     },
     {
-      category: "Context Engineering & Retrieval Infrastructure",
+      category: "Machine Learning & Ops",
       items: [
-        "SafeContextGate / Spilling", "Hybrid Vector + SQL RAG", "ChromaDB / BAAI/bge-m3 Embeddings",
-        "Deterministic Guardrails", "Output Validation", "Context Trimming & Isolation",
+        "PyTorch", "TensorFlow", "Scikit-learn", "XGBoost",
+        "Model Quantization", "Model Evaluation", "Docker", "Kubernetes",
+        "ONNX Runtime", "CI/CD", "Git", "Pytest",
       ],
     },
     {
-      category: "AI Infrastructure & LLMOps",
+      category: "Data Science & Databases",
       items: [
-        "Docker Stack (14 Services)", "FastAPI / SSE Streaming", "Local vLLM (Qwen3-27B) / Ollama",
-        "Redis Queues / Lock / SSE", "PostgreSQL / MinIO Storage", "Prometheus & Grafana Observability",
-        "Multi-Provider Routing", "Dual-LLM Security Gates", "Systemd / Nginx / Auto-Recovery",
+        "Elasticsearch", "MongoDB", "ChromaDB", "Pinecone", "PostgreSQL",
+        "NumPy", "Pandas", "Matplotlib", "Seaborn",
+        "ETL Pipelines (Apache Airflow)", "Feature Engineering",
       ],
     },
     {
-      category: "Languages & AI Development Tools",
+      category: "Languages & Performance",
       items: [
-        "Python (Asyncio)", "C / C++", "SQL / JavaScript",
-        "PyTorch / Transformers", "Cursor / Claude Code", "Git / GitHub Actions CI/CD",
+        "Python (Asyncio)", "C/C++", "JavaScript", "CUDA",
+        "REST API Integration", "ThreadPoolExecutor (Concurrency)", "Win32com", "Static Code Analysis",
+      ],
+    },
+    {
+      category: "Full-Stack Development",
+      items: [
+        "FastAPI", "Flask", "Node.js", "React.js", "Tailwind CSS",
+        "D3.js", "HTML5/CSS3", "IBM Watson Integration",
+      ],
+    },
+    {
+      category: "Embedded & Automation",
+      items: [
+        "IoT (ESP32, Arduino)", "Edge AI", "Sensor Fusion", "Fusion 360",
+        "Autodesk Inventor API", "Parametric Design", "Python-CAD Integration",
+      ],
+    },
+    {
+      category: "AI Infrastructure & LLM Ops",
+      items: [
+        "LLM Orchestration (LangGraph)", "ChromaDB RAG", "LLM Guardrails / Output Validation",
+        "Model Routing", "SSE / Real-time Streaming", "Evaluation & Backtesting",
+        "Chroma/SQL Data Grounding", "systemd", "nginx", "MySQL",
       ],
     },
   ],
 
   experience: [
     {
-      role: "AI Infrastructure & Systems Engineer (Internship)",
+      role: "AI Engineer Intern — Zhanlu Platform (Solo)",
       company: "Synexia AI",
       period: "2025 – 2026",
       location: "Zhejiang, China",
-      projects: [
-        {
-          name: "Project 1: EDIA — Enterprise Decision Intelligence Platform",
-          points: [
-            "Multi-Agent Orchestration: Architected a 17-node LangGraph state machine coordinating 15 specialized agents and 57 atomic skills across 5 execution tiers, incorporating parallel branching, sequential quality gates, and multi-turn session state.",
-            "Deterministic Guardrail Pipeline: Designed a pre-rendering pipeline that locks all business-critical numerical forecasts before LLM narration, coupled with a Python validation engine that enforces exact-value compliance, language consistency, and strict source attribution.",
-            "Hybrid Retrieval Architecture: Integrated ChromaDB vector search with structured SQL views to fuse unstructured market intelligence with ERP historical data, driving 5-minute decision workflows down to under 30 seconds.",
-            "Production Operations: Deployed high-concurrency SSE streaming endpoints using FastAPI, Nginx, systemd, and multi-horizon time-series forecasting models (Ensemble + STL) with automated MAPE backtesting.",
-          ],
-        },
-        {
-          name: "Project 2: Zhanlu — Enterprise Multi-Agent AI Platform",
-          points: [
-            "Platform Architecture: Solo-designed and deployed an 11-service containerized architecture (FastAPI, PostgreSQL, Redis, MinIO) with multi-tenant workspace isolation and OAuth2/JWT security.",
-            "Sandboxed Execution & Agent Harness Core: Built 4 dedicated sandbox execution runtimes (Python / PPTX / WebApp / Office) that isolate dynamic code execution from the core, plus a custom Harness Agent runtime (plan → act → verify FSM) with a 100+ tool registry, per-agent allow/deny filtering, and 8 agent archetypes (general-purpose, explore, plan, worker, verification, data_agent, forecast_agent, report_agent).",
-            "Dynamic Model & Tool Gateway: Enterprise Model/Tool/MCP Gateway with hierarchical per-task model routing, provider circuit-breaker/failover, Fernet-encrypted API-key storage, native MCP client + OAuth, and complete access audit trails.",
-          ],
-        },
+      points: [
+        "Designed and built Zhanlu, a 7-layer enterprise AI agent platform, entirely solo — Planner cognitive core, Harness Agent Runtime, Tool/Skill/MCP Gateway, multi-tenant Org/App/Workspace isolation, sandbox-worker with dedicated sandbox-python / sandbox-pptx / sandbox-office / sandbox-webapp containers.",
+        "Shipped data-driven PPT artifact generation: Report Agent invokes the pptx-generation skill in sandbox-pptx with DataSnapshots as input, producing versioned business presentations.",
+        "Implemented per-agent model routing with per-org model provider keys (expensive routes trigger confirmation gates, restricted data requires approved routes) and a Tool/Skill/MCP Gateway with permission filter, schema validation, policy evaluation, and full audit logging.",
+        "Built the 14-service Docker stack (backend, worker, sandbox-worker, postgres, redis, minio + minio-init, sandbox containers, prometheus, grafana) and JWT auth with access + refresh tokens + OTP registration.",
       ],
       tech: [
-        "LangGraph", "Agent Harness", "ChromaDB", "FastAPI", "SSE Streaming",
-        "LLM Guardrails", "Multi-Horizon Forecasting", "MAPE / Backtest",
-        "MCP Gateway", "Model Routing", "Docker", "systemd", "nginx",
+        "Planner (Custom)", "Harness Agents", "Sandbox Worker",
+        "FastAPI", "PostgreSQL", "Redis", "MinIO",
+        "Tool / Skill / MCP Gateway", "Model Routing", "Docker",
       ],
     },
     {
-      role: "Software Automation Engineer",
+      role: "AI Infrastructure / Forecasting Intern — EDIA",
+      company: "Synexia AI · Ecisco Collaboration",
+      period: "2025 – 2026",
+      location: "Zhejiang, China · Petrochemical Industry (C5/C9)",
+      points: [
+        "Designed the LLM orchestration layer: a LangGraph state machine coordinating 15 specialized agents and 57 atomic skills across 5 tiers — conditional routing, parallel execution of independent branches, sequential quality gates, retry/timeout isolation, and multi-turn session persistence.",
+        "Built a planner/router architecture (planner, routing, NLU): intent classification and schema-registry-driven skill selection that turns ad-hoc prompting into a governed, auditable execution plan.",
+        "Engineered a deterministic pre-rendering pipeline — all business-critical numbers are computed and locked before LLM narration — so the model acts as an interpreter of evidence, not a generator of facts. This eliminated forecast hallucination in production.",
+        "Implemented a guardrail/validation layer in deterministic Python: numeric-exactness checks against pre-rendered values, mandatory data-source attribution, and language-consistency enforcement. Non-compliant outputs are blocked and logged for audit.",
+        "Built the multi-horizon price-forecasting system: ensemble + 4-layer STL forecaster producing 3-day / 7-day / 30-day horizons × bear / base / bull scenarios, with adaptive forecast policy, trust-tier badges, and snapshots for reproducibility and MAPE backtests.",
+        "Shipped real-time serving: an SSE streaming channel with query-string JWT auth, a DB-fingerprint watcher (sub-second polling across 10+ market/ERP tables) triggering hot runtime reloads and client push, and multi-tier caching (server snapshot caches + browser localStorage tiers with 2–10 min TTLs).",
+        "Created evaluation infrastructure: a 7-metric forecast-accuracy framework (MAPE, MAE, bias, direction accuracy, hit rate, skill-vs-naive, range coverage) computed live, used for automatic bias correction, and enforced via walk-forward backtests with locked regression baselines.",
+      ],
+      tech: [
+        "LangGraph", "FastAPI", "ChromaDB", "MySQL", "SSE Streaming",
+        "LLM Guardrails", "Multi-Horizon Forecasting (Ensemble + STL)",
+        "Adaptive Forecast Policy", "MAPE / Backtest Validation",
+        "systemd", "nginx", "Model Routing",
+      ],
+    },
+    {
+      role: "Software Engineer",
       company: "ProFabx",
       period: "Jun 2024 – Sep 2024",
       location: "Ningbo, China",
       points: [
-        "Parametric Pipeline Automation: Programmed custom Python drivers using the Autodesk Inventor API (win32com.client) to automate dynamic 3D CAD modeling, cutting engineering iteration time for custom fabrications.",
-        "Interactive Configuration Interface: Built a lightweight web interface (JavaScript, Python) enabling real-time parametric model updates directly driven by client specification changes.",
+        "Developed advanced 3D models with Autodesk Fusion 360 and Inventor, moving from manual design to automated workflows.",
+        "Created robust Python scripts to automate complex 3D modeling through the Autodesk Inventor API (win32com.client).",
+        "Designed an intuitive web interface using JavaScript that dynamically updates 3D models based on real-time parameter changes.",
+        "Implemented a sophisticated parametric modeling system so dimension modifications propagate automatically through entire designs.",
+        "Streamlined design processes by 40% through strategic automation of repetitive modeling tasks.",
       ],
       tech: ["Python", "Autodesk Inventor API", "win32com.client", "JavaScript", "Fusion 360"],
     },
@@ -155,6 +187,9 @@ window.PORTFOLIO = {
       impact: "",
       evaluation: "",
       stack: [],
+      links: [
+        { label: "Case Study", url: "#", external: true },
+      ],
       sections: [
         {
           title: "The Problem",
@@ -514,19 +549,14 @@ window.PORTFOLIO = {
       highlights: [
         { num: "7", label: "layer enterprise architecture (Identity → Planner → Harness → Memory → Execution → Platform → Infra)" },
         { num: "14", label: "container services in the Docker stack" },
-        { num: "Harness", label: "Agent runtime — plan-execute loop, sandboxed tool calling, per-agent model routing" },
         { num: "8+", label: "starter Harness Agents (Finance, Report, Dashboard, Data Analyst, Document, Compliance, Mini App, Review)" },
         { num: "15+", label: "starter skills across PPT, DOCX, HTML, Dashboard, Markdown, Mini-App, governed NL2SQL, and DataSnapshot" },
+        { num: "6", label: "department projects with company/personal isolation — Marketing, R&D, Data Analysis, C5/C9, Global" },
       ],
       problem:
         "Enterprises want AI agents they can actually deploy: users need to create their own projects (Apps) and assemble their own agents from real capabilities, but every step must stay governed. Raw tool pickers leak implementation details, agents holding raw credentials create security and audit gaps, multi-agent systems need consistent orchestration, generated files should be versioned business artifacts (Markdown, dashboards, data-driven PowerPoints) — not chat attachments — and code execution must be safely isolated. A sandbox runtime is required to host code skills and data-driven artifact generation without exposing the host or any enterprise credentials.",
       roleDetail:
-        `<p>Solo-designed and deployed an <strong>11-service containerized platform</strong>: FastAPI backend, PostgreSQL + Redis + MinIO state, and <strong>4 dedicated sandbox execution runtimes</strong> (Python / PPTX / WebApp / Office) that isolate dynamic code execution from the core.</p>
-        <p><strong>Agent Harness & Orchestration:</strong> Built a custom FSM agent runtime (plan → act → verify phases) with a 100+ tool registry, per-agent allow/deny tool filtering, iteration budgets, and tool-loop guardrails. Implemented a swarm tier — 8 agent archetypes (general-purpose, explore, plan, worker, verification, data_agent, forecast_agent, report_agent) with team creation, parallel spawn, message-passing, and retry/escalation orchestration.</p>
-        <p><strong>Dynamic Model & Tool Gateway:</strong> Enterprise gateway with hierarchical per-task model routing, provider circuit-breaker/failover, Fernet-encrypted API-key storage, native MCP client + OAuth, and full access audit trails.</p>
-        <p><strong>Data Execution:</strong> NL2SQL data agents with automatic schema discovery, a ChromaDB semantic catalog for retrieval, and multi-source (MySQL/PostgreSQL) bindings.</p>
-        <p><strong>Artifact Pipeline:</strong> Institutional-grade PPTX generation (auto-plan → render → audit → polish), full-stack live dashboards (SSE streaming, 4 design languages), and multi-horizon sales forecasting with MAPE scoring and backtest validation.</p>
-        <p><strong>Security & Reliability:</strong> LLM guardrails, path/URL safety, OSV + Tirith dependency scanning, SSE-streamed run observability, and per-app multi-tenant isolation (own memory, DB bindings, state).</p>`,
+        "Built entirely solo, end-to-end: 7-layer architecture; Planner plan-act-observe FSM with seven capability engines; multi-tenant Org/App/Workspace isolation with per-conversation privacy; users can create projects (Apps), create Harness Agents, and bind datasources + skills + MCP tools per agent; per-agent model_route with per-org model provider keys; Tool/Skill/MCP Gateway with permission filter, schema validation, and policy evaluation; sandbox-worker with isolated Docker execution and dedicated sandbox containers for Python, PPT, Office, and web apps; PPT-with-data generation via pptx-generation skill + Report Agent; DataSnapshots as the only data path agents see; artifact pipeline for Markdown, HTML, PPT, DOCX, dashboards, and mini-apps; permission-checked inline preview APIs; JWT auth with access + refresh tokens; full 14-service Docker stack with PostgreSQL, Redis, MinIO, Prometheus, and Grafana.",
       architecture:
         "Seven layers wired into a single governance pipeline: (1) Enterprise Interaction & Identity producing a sealed RequestEnvelope; (2) Planner Cognitive Core — one governed plan-act-observe FSM with seven capability engines (Goal, Context, Planning, Reasoning, Decision, Reflection, Learning) around a swappable LLM, exposing Plan DAGs to the rest of the system; (3) Harness Agent Runtime — every agent is a Harness Agent with required-confirmations, risk tier, model route, sandbox requirement, missing-permission schema, dangerous-side-effect list, and a ready/warning/blocked status; (4) Memory & Knowledge (DataSnapshots and curated stores); (5) Execution Layer — sandboxed workflow / automation / artifact / notification / approval execution, with the sandbox-worker as the only service allowed to create temporary Docker sandboxes; (6) Platform Services — model routing policy, prompt versioning, policy evaluation, confirmation risk levels, budget limits, traces, and AI governance registries; (7) Docker / PostgreSQL / Redis / MinIO infrastructure. All tool calling goes through the Tool / Skill / MCP Gateway — agents do not call MCP directly, skills do not call MCP without the gateway, and the model never sees the complete tool catalog.",
       algorithm:
@@ -664,7 +694,7 @@ window.PORTFOLIO = {
       period: "2024 – 2025",
       org: "Zhejiang University · Master's Thesis Research · HHME 2026 PCC Oral · Springer LNCS",
       role: "Master's Thesis Researcher / AI Engineer",
-      image: "assets/bepsbot_hero.png",
+      image: "assets/bepsbot_ui_assessment.png",
       video: "assets/bepsbot_demo.mp4",
       summary:
         "My master's thesis research at Zhejiang University: a production-grade dual-mode AI writing assistant for online peer support in bipolar-disorder communities. AS (Assessment) mode provides real-time ES/IS scoring with a fine-tuned RoBERTa regressor grounded in LIWC-2015 features. RE (Recommendation) mode performs a 2-stage retrieval over a 48K-comment r/bipolar pool and returns 3 linguistically transformed drafts. Validated through a 24-participant within-subjects study (SUS 88.0, κ=.78, IS F1=.62 / ES F1=.68) and presented as a PCC Oral at HHME 2026.",
@@ -716,6 +746,10 @@ window.PORTFOLIO = {
           title: "System Architecture",
           body: `
             <p class="pd-lead">A decoupled, dual-mode inference stack — RoBERTa + LIWC scorer and Elasticsearch + BERT retrieval — coordinated through a Flask orchestration layer. The same safety gate wraps both modes so the LLM never surfaces un-moderated text.</p>
+            <figure class="pd-fig">
+              <img src="assets/bepsbot_architecture.png" alt="BepsBot system architecture" />
+              <figcaption>Figure 1 — System architecture: Flask frontend, FastAPI inference, RoBERTa + LIWC-2015 scorer, Elasticsearch + BERT retrieval, DeepSeek LLM, parallel safety filter.</figcaption>
+            </figure>
           `,
         },
         {
@@ -791,6 +825,7 @@ def recommend_candidates(req):
           body: `
             <p class="pd-lead">Real screenshots from the running application — the dual-mode writing assistant embedded in a mental-health forum task flow.</p>
             <div class="pd-gallery">
+              <figure class="pd-screenshot"><img src="assets/bepsbot_ui_assessment.png" alt="BepsBot AS mode live UI" /><figcaption>Assessment (AS) mode — live IS/ES score report with a targeted, LIWC-grounded improvement suggestion.</figcaption></figure>
               <figure class="pd-screenshot"><img src="assets/bepsbot_ui_forum.png" alt="BepsBot forum post and reply flow" /><figcaption>Forum post context — the reply composer the assistant sits inside, with the preview-then-hide interaction.</figcaption></figure>
             </div>
           `,

@@ -26,107 +26,139 @@ window.PORTFOLIO_ZH = {
       "我的工作涵盖：面向生产级决策智能平台的多智能体 LLM 编排、面向心理健康支持的检索增强生成系统、面向领域打分的 Transformer 微调，以及面向无障碍场景的嵌入式 AI 原型。",
       "我乐于解决那些既需要深厚技术、又需要清晰用户视角的问题：让 LLM 扎根于证据、让 AI 输出可验证，并交付在真实负载下稳定运行的系统。",
     ],
-    pillars: [
-      { title: "多智能体编排与 Harness 运行时", desc: "状态机执行（17 节点 LangGraph FSM）、规划优先回合规划、子智能体委派，以及带 Model Context Protocol (MCP) 桥接的自研 Harness Agent 运行时。" },
-      { title: "上下文工程与落地式 RAG", desc: "混合检索（ChromaDB 向量搜索 + 结构化 SQL 数据落地）、SafeContextGate 预算强制、负载溢出与长期语义记忆。" },
-      { title: "治理优先的系统安全", desc: "确定性 Python 校验层——预计算并锁定业务关键数据，在 LLM 叙述前强制执行 0% 幻觉率。" },
-      { title: "沙箱执行与 LLMOps", desc: "Docker 隔离的技能执行（sandbox-python、sandbox-pptx）、LLM-as-judge 阻断式质量门禁、多供应商模型路由，以及 SSE 流式 API。" },
-      { title: "人机协同决策与 HCI", desc: "面向情感计算、生物反馈干预和心理健康新型支持工具的应用 NLP（ICEC 2025、HHME 2026）。" },
+    interests: [
+      "大语言模型与 AI 智能体",
+      "检索增强生成（RAG）与扎根式 LLM 系统",
+      "多智能体编排与 LLM 基础设施",
+      "人机交互与情感计算",
+      "面向医疗与社会公益的应用 NLP",
+      "边缘 AI 与嵌入式智能",
     ],
-    rsToolkit: [
-      { domain: "编排与运行时", tools: "LangGraph、自研 Synexia FSM、Harness Agent 运行时、Model Context Protocol (MCP)、ReAct / CoT 规划" },
-      { domain: "上下文与检索基础设施", tools: "混合向量 + SQL RAG、ChromaDB、BAAI/bge-m3、SafeContextGate 预算管理、上下文压缩" },
-      { domain: "校验与评估", tools: "确定性 Python 护栏、预渲染、LLM-as-Judge 审计门禁、前推 MAPE 回测" },
-      { domain: "生产 LLMOps 与基础设施", tools: "Docker 微服务（14 服务栈）、FastAPI、Redis、MinIO、SSE 流式、Prometheus/Grafana" },
-      { domain: "机器学习与 NLP", tools: "PyTorch、Hugging Face Transformers、PEFT/LoRA、STL + 时间序列集成、RoBERTa / BERT 微调" },
-      { domain: "边缘 AI 与嵌入式 HCI", tools: "Arduino、C/C++、ESP32-CAM、传感器融合、边缘 AI 原型" },
+    goals: [
+      "构建准确、可验证、生产级水准的 AI 系统",
+      "连接研究与应用工程——把模型想法变成已部署的服务",
+      "为具有可量化人类价值与商业价值的 AI 应用做出贡献",
     ],
     stats: [
-      { num: "0", label: "幻觉数字触达用户（EDIA）" },
-      { num: "17", label: "节点 LangGraph FSM 编排器" },
-      { num: "5m→30s", label: "查询延迟缩短（EDIA）" },
-      { num: "4", label: "篇同行评审论文（ICEC 2025, HHME 2026）" },
+      { num: "4", label: "论文（2 篇 ICEC 2025，2 篇 PCC 2026）" },
+      { num: "7", label: "已交付项目，覆盖 Web 到嵌入式" },
+      { num: "15", label: "生产环境中编排的 AI 智能体" },
+      { num: "40%", label: "通过自动化节省的流程时间" },
     ],
   },
 
   skills: [
     {
-      category: "多智能体系统与智能体运行时",
+      category: "生成式 AI 与自然语言处理",
       items: [
-        "LangGraph（17 节点 FSM）", "Agent Harness", "Model Context Protocol (MCP)",
-        "规划优先回合规划", "子智能体工作流", "目标契约与自纠错",
-        "Hermes 控制层", "LLM-as-Judge 评估", "Tool/Skill/MCP 网关",
+        "LLMs (GPT, DeepSeek)", "RAG", "LangChain", "LlamaIndex",
+        "Transformers (BERT, RoBERTa)", "Fine-tuning (PEFT, LoRA, QLoRA)",
+        "Prompt Engineering", "Hugging Face", "Gradio", "NER",
       ],
     },
     {
-      category: "上下文工程与检索基础设施",
+      category: "机器学习与运维",
       items: [
-        "SafeContextGate / Spilling", "混合向量 + SQL RAG", "ChromaDB / BAAI/bge-m3 嵌入",
-        "确定性护栏", "输出校验", "上下文裁剪与隔离",
+        "PyTorch", "TensorFlow", "Scikit-learn", "XGBoost",
+        "Model Quantization", "Model Evaluation", "Docker", "Kubernetes",
+        "ONNX Runtime", "CI/CD", "Git", "Pytest",
       ],
     },
     {
-      category: "AI 基础设施与 LLMOps",
+      category: "数据科学与数据库",
       items: [
-        "Docker 技术栈（14 服务）", "FastAPI / SSE 流式", "本地 vLLM (Qwen3-27B) / Ollama",
-        "Redis 队列/锁/SSE", "PostgreSQL / MinIO 存储", "Prometheus & Grafana 可观测性",
-        "多供应商路由", "双 LLM 安全门禁", "Systemd / Nginx / 自动恢复",
+        "Elasticsearch", "MongoDB", "ChromaDB", "Pinecone", "PostgreSQL",
+        "NumPy", "Pandas", "Matplotlib", "Seaborn",
+        "ETL Pipelines (Apache Airflow)", "Feature Engineering",
       ],
     },
     {
-      category: "语言与 AI 开发工具",
+      category: "语言与性能",
       items: [
-        "Python (Asyncio)", "C / C++", "SQL / JavaScript",
-        "PyTorch / Transformers", "Cursor / Claude Code", "Git / GitHub Actions CI/CD",
+        "Python (Asyncio)", "C/C++", "JavaScript", "CUDA",
+        "REST API Integration", "ThreadPoolExecutor (Concurrency)", "Win32com", "Static Code Analysis",
+      ],
+    },
+    {
+      category: "全栈开发",
+      items: [
+        "FastAPI", "Flask", "Node.js", "React.js", "Tailwind CSS",
+        "D3.js", "HTML5/CSS3", "IBM Watson Integration",
+      ],
+    },
+    {
+      category: "嵌入式与自动化",
+      items: [
+        "IoT (ESP32, Arduino)", "Edge AI", "Sensor Fusion", "Fusion 360",
+        "Autodesk Inventor API", "Parametric Design", "Python-CAD Integration",
+      ],
+    },
+    {
+      category: "AI 基础设施与 LLM 运维",
+      items: [
+        "LLM Orchestration (LangGraph)", "ChromaDB RAG", "LLM Guardrails / Output Validation",
+        "Model Routing", "SSE / Real-time Streaming", "Evaluation & Backtesting",
+        "Chroma/SQL Data Grounding", "systemd", "nginx", "MySQL",
       ],
     },
   ],
 
   experience: [
     {
-      role: "AI 基础设施与系统工程师（实习）",
+      role: "AI 工程师实习生 — Zhanlu 平台（独立开发）",
       company: "Synexia AI",
       period: "2025 – 2026",
       location: "中国浙江",
-      projects: [
-        {
-          name: "项目 1：EDIA — 企业决策智能平台",
-          points: [
-            "多智能体编排：架构了 17 节点 LangGraph 状态机，在 5 个执行层级中协调 15 个专业智能体和 57 项原子技能，支持并行分支、顺序质量门禁和多轮会话状态。",
-            "确定性护栏流水线：设计了预渲染流水线，在 LLM 叙述前锁定所有业务关键数值预测，配合 Python 校验引擎强制执行精确值合规、语言一致性和严格来源归属。",
-            "混合检索架构：将 ChromaDB 向量搜索与结构化 SQL 视图集成，融合非结构化市场情报与 ERP 历史数据，将 5 分钟决策流程缩短至 30 秒以内。",
-            "生产运维：部署了高并发 SSE 流式端点（FastAPI、Nginx、systemd）及多时间尺度时间序列预测模型（集成 + STL），配合自动化 MAPE 回测。",
-          ],
-        },
-        {
-          name: "项目 2：Zhanlu — 企业级多智能体 AI 平台",
-          points: [
-            "平台架构：独立设计并部署了 11 服务容器化架构（FastAPI、PostgreSQL、Redis、MinIO），支持多租户工作空间隔离和 OAuth2/JWT 安全认证。",
-            "沙箱执行与 Agent Harness 核心：构建了 4 个专用沙箱执行运行时（Python / PPTX / WebApp / Office），将动态代码执行与核心系统隔离；并配备自研 Harness Agent 运行时（plan → act → verify FSM），拥有 100+ 工具注册表、按智能体允许/拒绝过滤，以及 8 种智能体原型（general-purpose、explore、plan、worker、verification、data_agent、forecast_agent、report_agent）。",
-            "动态模型与工具网关：企业级模型/工具/MCP 网关，配备分层按任务模型路由、供应商熔断/故障转移、Fernet 加密 API 密钥存储、原生 MCP 客户端 + OAuth，以及完整访问审计日志。",
-          ],
-        },
+      points: [
+        "完全独立地设计并构建了 Zhanlu——一个七层企业级 AI 智能体平台：规划器认知核心、Harness 智能体运行时、工具/技能/MCP 网关、多租户 Org/App/Workspace 隔离，以及配备专用 sandbox-python / sandbox-pptx / sandbox-office / sandbox-webapp 容器的沙箱工作节点。",
+        "交付了数据驱动的 PPT 产物生成：报告智能体以 DataSnapshot 为输入，在 sandbox-pptx 中调用 pptx 生成技能，产出带版本管理的商务演示文稿。",
+        "实现了按智能体的模型路由与按组织的模型供应商密钥（昂贵路由触发确认门禁，受限数据需要已批准的路径），并构建了带权限过滤、模式校验、策略评估与完整审计日志的工具/技能/MCP 网关。",
+        "构建了由 14 个服务组成的 Docker 技术栈（后端、worker、sandbox-worker、postgres、redis、minio + minio-init、沙箱容器、prometheus、grafana），以及带访问令牌 + 刷新令牌 + OTP 注册的 JWT 认证。",
       ],
       tech: [
-        "LangGraph", "Agent Harness", "ChromaDB", "FastAPI", "SSE Streaming",
-        "LLM 护栏", "多时间尺度预测", "MAPE / 回测",
-        "MCP 网关", "模型路由", "Docker", "systemd", "nginx",
+        "规划器 (Custom)", "Harness Agents", "Sandbox Worker",
+        "FastAPI", "PostgreSQL", "Redis", "MinIO",
+        "Tool / Skill / MCP Gateway", "Model Routing", "Docker",
       ],
     },
     {
-      role: "软件自动化工程师",
+      role: "AI 基础设施 / 预测实习生 — EDIA",
+      company: "Synexia AI · Ecisco Collaboration",
+      period: "2025 – 2026",
+      location: "中国浙江 · 石化行业（C5/C9）",
+      points: [
+        "设计了 LLM 编排层：一个 LangGraph 状态机，在 5 个层级中协调 15 个专业智能体与 57 项原子技能——条件路由、独立分支并行执行、顺序质量门禁、重试/超时隔离，以及多轮会话持久化。",
+        "构建了 planner/router 架构（规划、路由、NLU）：意图分类与基于模式注册表的技能选择，将即兴提示转变为受治理、可审计的执行计划。",
+        "工程化了一条确定性预渲染流水线——所有业务关键数字在 LLM 叙述之前计算并锁定——因此模型充当证据的转述者，而非事实的生成者。这消除了生产中的预测幻觉。",
+        "用确定性 Python 实现了护栏/校验层：对预渲染数值做数字精确性校验、强制数据来源归属，以及语言一致性约束。不合规输出被拦截并记录审计。",
+        "构建了多时间尺度价格预测系统：集成 + 4 层 STL 预测器，产出 3 天 / 7 天 / 30 天时间尺度 × 看跌 / 基准 / 看涨情景，并配备自适应预测策略、信任层级徽章，以及用于可复现性和 MAPE 回测的快照。",
+        "交付了实时服务：带查询字符串 JWT 认证的 SSE 流式通道、DB 指纹监听器（跨 10+ 市场/ERP 表的亚秒级轮询）触发热运行时重载与客户端推送，以及多级缓存（服务端快照缓存 + 浏览器 localStorage 层，2–10 分钟 TTL）。",
+        "创建了评估基础设施：一个 7 指标预测精度框架（MAPE、MAE、偏差、方向准确率、命中率、相对朴素模型能力、区间覆盖率），实时计算、用于自动偏差校正，并通过带锁定回归基线的前推回测强制执行。",
+      ],
+      tech: [
+        "LangGraph", "FastAPI", "ChromaDB", "MySQL", "SSE Streaming",
+        "LLM Guardrails", "Multi-Horizon Forecasting (Ensemble + STL)",
+        "Adaptive Forecast Policy", "MAPE / Backtest Validation",
+        "systemd", "nginx", "Model Routing",
+      ],
+    },
+    {
+      role: "软件工程师",
       company: "ProFabx",
       period: "2024 年 6 月 – 2024 年 9 月",
       location: "中国宁波",
       points: [
-        "参数化流水线自动化：使用 Autodesk Inventor API（win32com.client）编写 Python 驱动程序，实现动态 3D CAD 建模自动化，缩短定制加工的工程迭代时间。",
-        "交互式配置界面：构建轻量 Web 界面（JavaScript、Python），支持由客户规格变更直接驱动的实时参数化模型更新。",
+        "使用 Autodesk Fusion 360 与 Inventor 开发高级 3D 模型，从手动设计转向自动化工作流。",
+        "通过 Autodesk Inventor API（win32com.client）编写稳健的 Python 脚本，实现复杂 3D 建模的自动化。",
+        "设计了一个直观的 JavaScript Web 界面，可根据实时参数变化动态更新 3D 模型。",
+        "实现了一套成熟的参数化建模系统，使尺寸修改能自动传播到整个设计中。",
+        "通过策略性地自动化重复建模任务，将设计流程精简了 40%。",
       ],
       tech: ["Python", "Autodesk Inventor API", "win32com.client", "JavaScript", "Fusion 360"],
     },
   ],
 
-  projectFilters: ["全部", "AI 基础设施", "生成式 AI", "机器学习", "嵌入式与物联网", "自动化"],
+  projectFilters: ["全部", "AI 基础设施「, 」生成式 AI", "机器学习「, 」嵌入式与物联网「, 」自动化"],
 
   projects: [
     {
@@ -198,6 +230,9 @@ window.PORTFOLIO_ZH = {
         "Python Validation Layer", "systemd", "nginx",
         "Model Routing", "Intent-Driven Query Planner",
       ],
+      links: [
+        { label: "案例研究", url: "#", external: true },
+      ],
     },
     {
       id: "zhanlu",
@@ -214,19 +249,14 @@ window.PORTFOLIO_ZH = {
       highlights: [
         { num: "7", label: "层企业架构（身份 → Planner → Harness → 记忆 → 执行 → 平台 → 基础设施）" },
         { num: "14", label: "个 Docker 技术栈容器服务" },
-        { num: "Harness", label: "智能体运行时——规划-执行循环、沙箱化工具调用、按智能体配置的模型路由" },
         { num: "8+", label: "个入门 Harness 智能体（财务、报告、仪表盘、数据分析、文档、合规、小程序、评审）" },
         { num: "15+", label: "项入门技能，覆盖 PPT、DOCX、HTML、仪表盘、Markdown、小程序、受治理 NL2SQL 与 DataSnapshot" },
+        { num: "6", label: "个部门项目，含公司/个人隔离——市场部、研发、数据分析、C5/C9、Global" },
       ],
       problem:
         "企业需要真正可以部署的 AI 智能体：用户需要能创建自己的项目（App），从真实能力中组装自己的智能体，但每一步都必须保持受治理。原始工具选择器会泄露实现细节；持有原始凭证的智能体会造成安全与审计缺口；多智能体系统需要一致的编排；生成的文件应是有版本管理的商务产物（Markdown、仪表盘、数据驱动的 PowerPoint），而非聊天附件；代码执行必须被安全隔离。需要一套沙箱运行时来承载代码技能与数据驱动的产物生成，同时不暴露宿主或任何企业凭证。",
       roleDetail:
-        `<p>独立设计并部署了<strong>11 服务容器化平台</strong>：FastAPI 后端、PostgreSQL + Redis + MinIO 状态存储，以及<strong>4 个专用沙箱执行运行时</strong>（Python / PPTX / WebApp / Office），将动态代码执行与核心系统隔离。</p>
-        <p><strong>Agent Harness 与编排：</strong>构建自研 FSM 智能体运行时（plan → act → verify 阶段），配备 100+ 工具注册表、按智能体允许/拒绝工具过滤、迭代预算与工具循环护栏。实现了 swarm 层级——8 种智能体原型（general-purpose、explore、plan、worker、verification、data_agent、forecast_agent、report_agent），支持团队创建、并行生成、消息传递与重试/升级编排。</p>
-        <p><strong>动态模型与工具网关：</strong>企业级网关，配备分层按任务模型路由、供应商熔断/故障转移、Fernet 加密 API 密钥存储、原生 MCP 客户端 + OAuth，以及完整访问审计日志。</p>
-        <p><strong>数据执行：</strong>NL2SQL 数据智能体，配备自动模式发现、ChromaDB 语义检索目录，以及多数据源（MySQL/PostgreSQL）绑定。</p>
-        <p><strong>产物流水线：</strong>机构级 PPTX 生成（auto-plan → render → audit → polish）、全栈实时仪表盘（SSE 流式，4 种设计语言）、多时间尺度销售预测与 MAPE 评分和回测校验。</p>
-        <p><strong>安全与可靠性：</strong>LLM 护栏、路径/URL 安全、OSV + Tirith 依赖扫描、SSE 流式运行可观测性，以及按应用多租户隔离（独立内存、数据库绑定、状态）。</p>`,
+        "完全独立、端到端构建：七层架构；带七个能力引擎的规划器 plan-act-observe 状态机；多租户 Org/App/Workspace 隔离与按会话隐私；用户可创建项目（App）、创建 Harness 智能体，并为每个智能体绑定数据源 + 技能 + MCP 工具；按智能体配置的 model_route 与按组织的模型供应商密钥；带权限过滤、模式校验与策略评估的工具/技能/MCP 网关；带隔离 Docker 执行与专用 Python、PPT、Office、Web 应用沙箱容器的 sandbox-worker；通过 pptx 生成技能 + 报告智能体实现带数据的 PPT 生成；DataSnapshot 作为智能体唯一可见的数据路径；Markdown、HTML、PPT、DOCX、仪表盘与小程序的产物流水线；带权限校验的内联预览 API；带访问 + 刷新令牌的 JWT 认证；由 PostgreSQL、Redis、MinIO、Prometheus 与 Grafana 组成的完整 14 服务 Docker 技术栈。",
       architecture:
         "七层结构，接入统一治理流水线：(1) 企业交互与身份层，产出密封的 RequestEnvelope；(2) 规划器认知核心——一个带七个能力引擎（目标、上下文、规划、推理、决策、反思、学习）的受治理 plan-act-observe 状态机，围绕可替换 LLM 构建，向系统其余部分暴露 Plan DAG；(3) Harness 智能体运行时——每个智能体都是 Harness 智能体，具备必需确认、风险层级、模型路由、沙箱要求、缺失权限模式、危险副作用清单，以及 ready/warning/blocked 状态；(4) 记忆与知识（DataSnapshot 与精选存储）；(5) 执行层——沙箱化的工作流 / 自动化 / 产物 / 通知 / 审批执行，sandbox-worker 是唯一允许创建临时 Docker 沙箱的服务；(6) 平台服务——模型路由策略、提示词版本管理、策略评估、确认风险等级、预算限制、追踪与 AI 治理注册表；(7) Docker / PostgreSQL / Redis / MinIO 基础设施。所有工具调用都经过工具/技能/MCP 网关——智能体不直接调用 MCP，技能不经网关不调用 MCP，模型永远看不到完整工具目录。",
       algorithm:
@@ -364,7 +394,7 @@ window.PORTFOLIO_ZH = {
       period: "2024 – 2025",
       org: "浙江大学 · 硕士论文研究 · HHME 2026 PCC 口头报告 · Springer LNCS",
       role: "硕士论文研究者 / AI 工程师",
-      image: "assets/bepsbot_hero.png",
+      image: "assets/bepsbot_ui_assessment.png",
       video: "assets/bepsbot_demo.mp4",
       summary:
         "我在浙江大学的硕士论文研究：面向双相障碍在线同伴支持社区的高质量回复双模式 AI 写作助手。AS（评估）模式基于 LIWC-2015 特征微调的 RoBERTa 回归模型实时给出 ES/IS 评分；RE（建议）模式在 48K 帖 r/bipolar 语料上做两阶段检索，返回 3 份语言学改写草稿。经 24 人被试内研究验证（SUS 88.0、κ=.78、IS F1=.62 / ES F1=.68），并以 PCC 口头报告形式发表于 HHME 2026。",
@@ -416,6 +446,10 @@ window.PORTFOLIO_ZH = {
           title: "系统架构",
           body: `
             <p class="pd-lead">解耦的双模式推理栈——RoBERTa + LIWC 评分器与 Elasticsearch + BERT 检索器——通过 Flask 编排层协调。同一道安全闸口同时包裹两种模式，LLM 永远不会返回未审核的文本。</p>
+            <figure class="pd-fig">
+              <img src="assets/bepsbot_architecture.png" alt="BepsBot 系统架构" />
+              <figcaption>图 1 — 系统架构：Flask 前端、FastAPI 推理、RoBERTa + LIWC-2015 评分器、Elasticsearch + BERT 检索、DeepSeek LLM、并行安全过滤器。</figcaption>
+            </figure>
           `,
         },
         {
@@ -491,7 +525,8 @@ def recommend_candidates(req):
           body: `
             <p class="pd-lead">运行中应用的真实截图 —— 嵌入心理健康论坛任务流程的双模式写作助手。</p>
             <div class="pd-gallery">
-              <figure class="pd-screenshot"><img src="assets/bepsbot_ui_forum.png" alt="BepsBot 论坛帖子与回复流程" /><figcaption>论坛帖子上下文 —— 助手所在的回复编辑器，以及"先预览后隐藏"的交互方式。</figcaption></figure>
+              <figure class="pd-screenshot"><img src="assets/bepsbot_ui_assessment.png" alt="BepsBot 评估模式界面" /><figcaption>评估（AS）模式 —— 实时 IS/ES 评分报告与基于 LIWC 的针对性改进建议。</figcaption></figure>
+              <figure class="pd-screenshot"><img src="assets/bepsbot_ui_forum.png" alt="BepsBot 论坛帖子与回复流程「 /><figcaption>论坛帖子上下文 —— 助手所在的回复编辑器，以及」先预览后隐藏"的交互方式。</figcaption></figure>
             </div>
           `,
         },
@@ -626,7 +661,7 @@ def recommend_candidates(req):
         "Arduino Mega 2560 (ATmega2560)", "C/C++ (Arduino IDE)",
         "RFID-RC522 (13.56 MHz, SPI)", "HC-SR04 超声波传感器",
         "步进电机 + 直线滑台 (200 步/转, 60 RPM)",
-        "DFPlayer Mini MP3 模块", "8 颗 LED + 220Ω 电阻", "按键（复位）",
+        "DFPlayer Mini MP3 模块", "8 颗 LED + 220Ω 电阻「, 」按键（复位）",
         "SPI (RFID)", "SoftwareSerial (DFPlayer)", "数字 I/O（LED + 步进 + 音频 + 按键）",
         "Fusion 360 (3D)", "Adobe Illustrator (2D)",
         "3D 打印 (PLA)", "激光切割 (80 GSM 纸, 400 单位/分钟, 10% 功率)",
@@ -792,7 +827,7 @@ def recommend_candidates(req):
         { num: "50cm", label: "实时障碍物检测" },
         { num: "5", label: "个集成传感器" },
         { num: "3D", label: "打印优化镜架" },
-        { num: "即时", label: "语音反馈" },
+        { num: "即时「, label: 」语音反馈" },
       ],
       problem:
         "视障人士需要一种安全、舒适且负担得起的方式在移动中检测障碍物——传统手杖与导盲犬在覆盖范围与可得性上存在局限。",
@@ -837,9 +872,9 @@ def recommend_candidates(req):
       summary:
         "使用矩阵分解为 goodbooks-10k 数据集开发了协同过滤推荐策略，并借助 Python 数据分析与可视化，生成准确、个性化的图书推荐。",
       highlights: [
-        { num: "1 万本", label: "数据集中的图书" },
+        { num: "1 万「, label: 」本数据集中的图书" },
         { num: "MF", label: "矩阵分解模型" },
-        { num: "欧氏", label: "相似度分析" },
+        { num: "欧氏「, label: 」相似度分析" },
         { num: "4", label: "个库：NumPy · Pandas · Matplotlib · Flask" },
       ],
       problem:
