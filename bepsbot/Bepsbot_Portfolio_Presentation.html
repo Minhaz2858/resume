@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BepsBot — AI Engineering Case Study | Minhazul Islam · AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070b16; --bg2:#0a101f; --surface:#0e1628; --surface2:#131d33; --line:#1e2a46;
+    --ink:#e8eef8; --ink2:#b7c5dc; --muted:#7e90b2;
+    --orange:#ff7849; --orange2:#ff4500; --sky:#38bdf8; --emerald:#34d399;
+    --amber:#fbbf24; --red:#f87171; --violet:#a78bfa;
+    --radius:14px; --shadow:0 12px 44px rgba(0,0,0,.5);
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.64;font-size:15.5px;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(56,189,248,.3)}
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;
+    background:linear-gradient(90deg,var(--orange2),var(--orange),var(--sky));transition:width .1s linear}
+
+  .topnav{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:16px;
+    padding:11px 34px;background:rgba(7,11,22,.84);backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(56,189,248,.12)}
+  .topnav .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px;color:#fff;flex:none}
+  .topnav .brand .logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--orange2),var(--sky));
+    display:flex;align-items:center;justify-content:center;font:700 12px var(--mono)}
+  .topnav .brand small{display:block;font:600 10px var(--mono);color:var(--muted);letter-spacing:1px}
+  .topnav .links{display:flex;gap:3px;flex-wrap:wrap;margin-left:auto}
+  .topnav .links a{color:var(--muted);text-decoration:none;font-size:12.6px;font-weight:500;
+    padding:6px 10px;border-radius:8px;transition:.15s}
+  .topnav .links a:hover{color:#fff;background:rgba(56,189,248,.12)}
+  .topnav .links a.active{color:#fff;background:rgba(255,120,73,.15);box-shadow:inset 0 0 0 1px rgba(255,120,73,.35)}
+  .topnav .cta{margin-left:4px;flex:none}
+  .btn{display:inline-flex;align-items:center;gap:8px;font:600 13px 'Inter',sans-serif;text-decoration:none;
+    padding:9px 17px;border-radius:10px;border:1px solid transparent;cursor:pointer;transition:.18s;white-space:nowrap}
+  .btn.primary{background:linear-gradient(90deg,var(--orange2),var(--orange));color:#fff;box-shadow:0 4px 20px rgba(255,69,0,.35)}
+  .btn.primary:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(255,69,0,.45)}
+  .btn.ghost{border-color:#2a3a5e;color:var(--ink2);background:rgba(255,255,255,.03)}
+  .btn.ghost:hover{border-color:var(--sky);color:#fff}
+
+  .wrap{max-width:1140px;margin:0 auto;padding:0 40px}
+
+  .hero{position:relative;overflow:hidden;padding:84px 0 64px;border-bottom:1px solid rgba(56,189,248,.14)}
+  .hero::before{content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(900px 420px at 10% -10%, rgba(255,120,73,.18), transparent 60%),
+      radial-gradient(820px 440px at 92% 0%, rgba(56,189,248,.15), transparent 60%),
+      radial-gradient(700px 520px at 55% 130%, rgba(52,211,153,.07), transparent 60%);
+    pointer-events:none}
+  .hero::after{content:"";position:absolute;inset:0;opacity:.45;pointer-events:none;
+    background-image:linear-gradient(rgba(56,189,248,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,.05) 1px,transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image:radial-gradient(760px 360px at 50% 0%,#000 30%,transparent 75%);mask-image:radial-gradient(760px 360px at 50% 0%,#000 30%,transparent 75%)}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+  .eyebrow{font:600 12px var(--mono);letter-spacing:3px;color:var(--sky);text-transform:uppercase}
+  .hero h1{font-size:clamp(30px,4vw,46px);line-height:1.1;letter-spacing:-1px;margin:14px 0 8px;color:#fff}
+  .hero h1 .g{background:linear-gradient(92deg,#fff 15%,#ffb59a 55%,#7dd3fc 92%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .role{font:600 13.5px var(--mono);color:var(--emerald);letter-spacing:.5px}
+  .hero .sub{font-size:16px;color:var(--ink2);margin-top:12px;max-width:620px}
+  .hero .meta{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:16px;font-size:13px;color:var(--muted)}
+  .hero .meta b{color:var(--ink2);font-weight:600}
+  .hero .cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .hero .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:24px}
+  .chip{font:600 11px var(--mono);padding:4px 11px;border-radius:999px;background:rgba(56,189,248,.08);
+    border:1px solid rgba(56,189,248,.28);color:#9ed8f7}
+  .chip.o{background:rgba(255,120,73,.1);border-color:rgba(255,120,73,.35);color:#ffb59a}
+
+  .term{border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#05080f}
+  .term .bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:var(--surface2);border-bottom:1px solid var(--line)}
+  .term .bar i{width:11px;height:11px;border-radius:50%;display:inline-block}
+  .term .bar .t{font:600 10.5px var(--mono);color:var(--muted);margin-left:8px}
+  .term pre{margin:0;padding:16px 18px;font:12.2px/1.75 var(--mono);color:#cfe0f7;overflow-x:auto}
+  .term .p{color:#5a7096}.term .c{color:#7ee2b8}.term .s{color:#8ed8fb}.term .k{color:#ffab7a}.term .d{color:#4e6390;font-style:italic}
+  .term .blink{animation:blink 1.2s steps(2) infinite}
+  @keyframes blink{50%{opacity:0}}
+
+  section{padding:60px 0 6px}
+  .sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:8px}
+  .sec-num{flex:none;font:700 14px var(--mono);color:var(--sky);background:rgba(56,189,248,.09);
+    border:1px solid rgba(56,189,248,.3);width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center}
+  .sec-head h2{font-size:clamp(23px,3vw,30px);letter-spacing:-.5px;color:#fff}
+  .sec-head .en{display:block;font:600 11px var(--mono);letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:3px}
+  .sec-intro{color:var(--ink2);max-width:960px;margin:8px 0 22px;font-size:15.6px}
+  h3{font-size:19px;margin:34px 0 12px;color:#fff;display:flex;align-items:center;gap:10px;letter-spacing:-.2px}
+  h3 .h{width:6px;height:20px;border-radius:3px;background:linear-gradient(180deg,var(--orange),var(--sky));flex:none}
+  p{margin:9px 0;color:var(--ink2)}
+  b,strong{color:#fff}
+  ul,ol{margin:9px 0 9px 22px;color:var(--ink2)}
+  li{margin:5px 0}
+  code{font-family:var(--mono);font-size:.86em;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.25);
+    border-radius:5px;padding:1px 6px;color:#8ed8fb}
+  .card{background:linear-gradient(180deg,var(--surface),var(--bg2));border:1px solid var(--line);
+    border-radius:var(--radius);padding:22px 24px;margin:16px 0;box-shadow:var(--shadow)}
+  .k{font:600 10.5px var(--mono);letter-spacing:1.6px;text-transform:uppercase;color:var(--sky)}
+  .grid{display:grid;gap:16px;margin:16px 0}
+  .grid.c2{grid-template-columns:repeat(auto-fit,minmax(330px,1fr))}
+  .grid.c3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .card h4{margin:4px 0 6px;color:#fff}
+
+  .callout{border-radius:12px;padding:14px 18px;margin:14px 0;font-size:14.2px;border:1px solid}
+  .callout.info{background:rgba(56,189,248,.07);border-color:rgba(56,189,248,.3);color:#b9e3fa}
+  .callout.ok{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.3);color:#b5ecd8}
+  .callout.warn{background:rgba(251,191,36,.07);border-color:rgba(251,191,36,.32);color:#f7ddb0}
+  .callout.danger{background:rgba(248,113,113,.07);border-color:rgba(248,113,113,.32);color:#f6c2c2}
+  .callout b{display:block;margin-bottom:2px;color:#fff}
+
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:560px}
+  th{background:var(--surface2);text-align:left;font:700 10.5px var(--mono);letter-spacing:.8px;text-transform:uppercase;
+    color:var(--muted);padding:10px 14px;border-bottom:1px solid var(--line)}
+  td{padding:9px 14px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td code{white-space:nowrap}
+
+  .flow{display:flex;flex-direction:column;align-items:center;margin:20px 0}
+  .fstep{width:min(94%,640px);padding:12px 18px;border-radius:12px;background:var(--surface);
+    border:1px solid var(--line);box-shadow:var(--shadow);font-size:13.7px;position:relative}
+  .fstep .t{font-weight:650;color:#fff}
+  .fstep .d{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .fstep .chip{position:absolute;top:-10px;right:14px;font:700 9.5px var(--mono);padding:2px 9px;border-radius:999px;
+    background:var(--bg2);border:1px solid var(--line);color:#9ed8f7;letter-spacing:.6px}
+  .fstep.acc{border-left:4px solid var(--orange)}
+  .fstep.sky{border-left:4px solid var(--sky)}
+  .fstep.grn{border-left:4px solid var(--emerald)}
+  .fstep.red{border-left:4px solid var(--red)}
+  .fstep.soft{background:var(--bg2);box-shadow:none}
+  .fstep.llm{background:rgba(255,120,73,.06);border-color:rgba(255,120,73,.3)}
+  .fstep.model{background:rgba(56,189,248,.06);border-color:rgba(56,189,248,.3)}
+  .fstep.data{background:rgba(52,211,153,.06);border-color:rgba(52,211,153,.3)}
+  .fstep.alert{background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.35)}
+  .farrow{color:#5a7096;font-size:18px;line-height:1;padding:7px 0;font-weight:700}
+  .farrow .lbl{display:block;font:600 10px var(--mono);color:var(--muted);letter-spacing:.5px;text-align:center;padding-bottom:2px}
+  .fdecision{width:min(94%,560px);padding:11px 18px;border-radius:12px;background:rgba(251,191,36,.07);
+    border:1.5px dashed rgba(251,191,36,.45);font-size:13.7px;position:relative;text-align:center}
+  .fdecision .t{font-weight:700;color:#f7ddb0}
+  .fdecision .d{font-size:12.5px;color:#d8b877}
+  .fdecision::before{content:"◆";color:var(--amber);margin-right:8px;font-size:11px}
+  .branch{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:10px 0 4px;width:100%}
+  .branch .leg{display:flex;align-items:center;justify-content:center;gap:8px;font:700 10.5px var(--mono);color:var(--muted);
+    text-transform:uppercase;letter-spacing:1.2px}
+  .branch .leg::before,.branch .leg::after{content:"";height:1px;width:34px;background:var(--line)}
+  .branch .flow{margin:6px 0}
+
+  .arch{display:flex;flex-direction:column;gap:6px;margin:20px 0}
+  .arch-layer{border:1px solid var(--line);border-radius:14px;padding:13px 16px;background:linear-gradient(180deg,var(--surface),var(--bg2));box-shadow:var(--shadow)}
+  .arch-layer h4{margin:0 0 10px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--ink2)}
+  .arch-layer h4 .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px}
+  .arch-boxes{display:flex;gap:10px;flex-wrap:wrap}
+  .arch-box{flex:1;min-width:150px;border-radius:11px;padding:10px 13px;border:1px solid var(--line);
+    background:rgba(255,255,255,.02);font-size:12.6px;color:var(--ink2)}
+  .arch-box b{display:block;font-size:13px;color:#fff}
+  .arch-box .m{font:10.3px var(--mono);color:var(--muted);display:block;margin-top:3px;line-height:1.5}
+  .arch-box.hl{border-color:rgba(255,120,73,.45);background:rgba(255,120,73,.07)}
+  .arch-box.hl b{color:#ffb59a}
+  .arch-box.sk{border-color:rgba(56,189,248,.4);background:rgba(56,189,248,.06)}
+  .arch-box.sk b{color:#8ed8fb}
+  .arch-arrow{text-align:center;color:#5a7096;font-size:15px;font-weight:700;line-height:1;padding:3px 0}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:26px 0}
+  .stat{background:linear-gradient(180deg,var(--surface),var(--bg2));border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;position:relative;overflow:hidden}
+  .stat::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--orange2),var(--sky))}
+  .stat b{display:block;font-size:26px;letter-spacing:-.5px;color:#fff;font-weight:800}
+  .stat span{font-size:11.8px;color:var(--muted);line-height:1.45;display:block;margin-top:2px}
+
+  .foot{color:var(--muted);font-size:12.5px;padding:44px 40px 20px;text-align:center;border-top:1px solid var(--line);margin-top:60px}
+
+  @media(max-width:980px){
+    .wrap{padding:0 22px}
+    .topnav{padding:10px 16px;flex-wrap:wrap}
+    .topnav .links{order:3;width:100%;margin-left:0;overflow-x:auto}
+    .hero{padding:56px 0 44px}
+    .hero .wrap{grid-template-columns:1fr}
+    .branch{grid-template-columns:1fr}
+  }
+  @media print{
+    .topnav,#progress,.foot{display:none!important}
+    body{background:#fff;color:#111}
+    section{break-inside:avoid-page}
+    .hero{background:#070b16;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav class="topnav">
+  <div class="brand"><span class="logo">MI</span><span>Minhazul Islam<small>AI ENGINEER · PORTFOLIO</small></span></div>
+  <div class="links">
+    <a href="#brief">Brief</a>
+    <a href="#design">System Design</a>
+    <a href="#pipeline">Pipeline</a>
+    <a href="#model-eng">Model Eng</a>
+    <a href="#rag-eng">RAG Eng</a>
+    <a href="#llm-eng">LLM Eng</a>
+    <a href="#decisions">Decisions</a>
+    <a href="#eval">Evaluation</a>
+  </div>
+  <div class="cta"></div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Flagship Project · AI Engineering</div>
+      <h1>BepsBot — <span class="g">AI-Powered Peer Support</span> Platform</h1>
+      <div class="role">AI Engineer / Full-stack Developer · Zhejiang University · HHME 2026 PCC Oral · Springer LNCS</div>
+      <p class="sub">End-to-end AI system engineering: fine-tuned RoBERTa regression, LIWC-2015 psycholinguistic
+        features, retrieval-augmented generation, LLM-powered safety moderation, and a decoupled Flask → FastAPI
+        microservice stack — validated by a 24-participant study (SUS 88.0).</p>
+      <div class="meta">
+        <span>Period: <b>2024 – 2025</b></span>
+        <span>Stack: <b>PyTorch · Transformers · FastAPI · Elasticsearch · ChromaDB · DeepSeek</b></span>
+      </div>
+      <div class="cta-row">
+        <a class="btn ghost" href="https://github.com/minhazulzju/BepsBot" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn ghost" href="https://hhme.ccf.org.cn/PCC_paper.html" target="_blank" rel="noopener">HHME 2026 Paper ↗</a>
+      </div>
+      <div class="chips">
+        <span class="chip o">Fine-tuning</span><span class="chip">RAG</span><span class="chip o">LLM Engineering</span>
+        <span class="chip">Prompt Design</span><span class="chip o">Safety Moderation</span><span class="chip">Vector DB</span>
+        <span class="chip o">Microservices</span><span class="chip">MLOps Loop</span><span class="chip o">Human Evaluation</span>
+      </div>
+    </div>
+    <div class="term">
+      <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">bepsbot — dual-mode inference</span></div>
+      <pre><span class="p">$</span> curl -X POST /recommend_candidates \
+    -d '{"op_text": "…", "comment": "sorry you feel bad"}'<span class="blink">▊</span>
+
+<span class="d"># 1. safety gate</span>
+<span class="c">SAFE</span> → generate 3 candidates <span class="d">(parallel · RAG-grounded)</span>
+
+<span class="s">"candidate_1"</span>: <span class="c">"I'm really sorry you're going through this — I hear you, and you're not alone…"</span>
+<span class="s">"candidate_2"</span>: <span class="c">"Please lean on your friends and family right now — together you can get through this…"</span>
+<span class="s">"candidate_3"</span>: <span class="c">"Stay strong — there is hope, and things genuinely do get better…"</span>
+
+<span class="d"># 2. per-candidate moderation</span>
+<span class="k">ThreadPoolExecutor(3)</span> → <span class="c">all SAFE</span> → <span class="k">200 OK</span></pre>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- 01 BRIEF -->
+  <section id="brief">
+    <div class="sec-head"><div class="sec-num">01</div><div><h2>The Engineering Brief</h2><span class="en">Problem → constraints → solution</span></div></div>
+    <p class="sec-intro">Engineering brief: build a system that measurably improves supportive communication in mental-health
+      communities, without trusting the LLM to be safe or factual on its own. That brief produced three hard engineering requirements.</p>
+    <div class="grid c3">
+      <div class="card"><span class="k">R1 · Measurable</span>
+        <p style="margin-top:6px">Support quality must be <b>scored, not guessed</b> — a regression model over psycholinguistic features, benchmarked against expert labels (10-fold CV, F1, R²).</p></div>
+      <div class="card"><span class="k">R2 · Grounded</span>
+        <p style="margin-top:6px">Generation must be <b>retrieval-augmented</b> — the LLM writes with real, high-quality examples in context, never from hallucination.</p></div>
+      <div class="card"><span class="k">R3 · Safe</span>
+        <p style="margin-top:6px">Every input and every generated candidate passes an <b>LLM safety moderator</b> — dangerous advice, self-harm encouragement, and toxicity are blocked or masked.</p></div>
+    </div>
+    <div class="callout ok"><b>Constraint-driven design</b> Scoring is done by <i>local</i> transformers (fast, private, free at inference); the LLM is reserved for generation + moderation where its fluency matters. Every component degrades gracefully — the UI never crashes.</div>
+  </section>
+
+  <!-- 02 SYSTEM DESIGN -->
+  <section id="design">
+    <div class="sec-head"><div class="sec-num">02</div><div><h2>System Design</h2><span class="en">Decoupled dual-mode architecture</span></div></div>
+    <p class="sec-intro">Two processes, two modes, one safety gate. Flask owns UX and orchestration; FastAPI owns models, retrieval, generation, and moderation.</p>
+    <div class="arch">
+      <div class="arch-layer"><h4><span class="dot" style="background:var(--emerald)"></span>1 · Client Layer</h4>
+        <div class="arch-boxes">
+          <div class="arch-box"><b>Browser</b><span class="m">templates/index.html</span></div>
+          <div class="arch-box"><b>analyse.js</b><span class="m">preview / accept / submit</span></div>
+        </div>
+      </div>
+      <div class="arch-arrow">▼</div>
+      <div class="arch-layer"><h4><span class="dot" style="background:var(--orange)"></span>2 · Orchestration — Flask :5000</h4>
+        <div class="arch-boxes">
+          <div class="arch-box hl"><b>app.py</b><span class="m">GET / · POST /assess · POST /recommend</span></div>
+          <div class="arch-box"><b>Feedback engine</b><span class="m">threshold tiers + LIWC vector</span></div>
+          <div class="arch-box"><b>Session store</b><span class="m">in-memory → record/*.json</span></div>
+          <div class="arch-box"><b>Subprocess mgr</b><span class="m">uvicorn :8000 · live-server :5500</span></div>
+        </div>
+      </div>
+      <div class="arch-arrow">▼</div>
+      <div class="arch-layer"><h4><span class="dot" style="background:var(--sky)"></span>3 · Model Service — FastAPI :8000</h4>
+        <div class="arch-boxes">
+          <div class="arch-box sk"><b>backend_api.py</b><span class="m">/predict_scores · /recommend_candidates</span></div>
+          <div class="arch-box sk"><b>TransformerPredictor ×2</b><span class="m">roberta_is · roberta_es</span></div>
+          <div class="arch-box sk"><b>GenerativeRecommender</b><span class="m">LLM + retrieval + threads</span></div>
+          <div class="arch-box sk"><b>SafetyFilter</b><span class="m">LLM moderation · in + out</span></div>
+        </div>
+      </div>
+      <div class="arch-arrow">▼</div>
+      <div class="arch-layer"><h4><span class="dot" style="background:var(--violet)"></span>4 · Models &amp; Retrieval</h4>
+        <div class="arch-boxes">
+          <div class="arch-box"><b>RoBERTa IS / ES</b><span class="m">fine-tuned regressors</span></div>
+          <div class="arch-box"><b>all-MiniLM-L6-v2</b><span class="m">384-d embeddings (code)</span></div>
+          <div class="arch-box"><b>BERT 768-d</b><span class="m">re-ranking (paper)</span></div>
+          <div class="arch-box"><b>LIWC-2015 · NRC</b><span class="m">psycholinguistic lexicons</span></div>
+        </div>
+      </div>
+      <div class="arch-arrow">▼</div>
+      <div class="arch-layer"><h4><span class="dot" style="background:var(--red)"></span>5 · Data Layer</h4>
+        <div class="arch-boxes">
+          <div class="arch-box"><b>chroma_db/</b><span class="m">vector store · RAG</span></div>
+          <div class="arch-box"><b>record/*.json</b><span class="m">interaction logs</span></div>
+          <div class="arch-box"><b>Elasticsearch</b><span class="m">is_es_3_256 · dense vectors</span></div>
+          <div class="arch-box"><b>dataset.csv</b><span class="m">rated comments</span></div>
+        </div>
+      </div>
+    </div>
+    <h3><span class="h"></span>API surface</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Layer</th><th>Endpoint</th><th>Request</th><th>Response</th></tr>
+      <tr><td>Flask</td><td><code>POST /assess</code></td><td><code>{comment, click_event, op_text, is_final}</code></td><td><code>{mode:"AF", IS_score, ES_score, feedback_1, feedback_2, details}</code></td></tr>
+      <tr><td>Flask</td><td><code>POST /recommend</code></td><td><code>{comment, click_event, op_text, is_final}</code></td><td><code>{mode:"RE", 0, 1, 2, descriptions}</code></td></tr>
+      <tr><td>FastAPI</td><td><code>POST /predict_scores</code></td><td><code>{comment}</code></td><td><code>{IS_score: 2.43, ES_score: 3.03}</code></td></tr>
+      <tr><td>FastAPI</td><td><code>POST /recommend_candidates</code></td><td><code>{op_text, comment}</code></td><td><code>{is_safe, reason?, candidates{1,2,3}}</code></td></tr>
+    </table></div>
+  </section>
+
+  <!-- 03 PIPELINE -->
+  <section id="pipeline">
+    <div class="sec-head"><div class="sec-num">03</div><div><h2>Core Pipeline</h2><span class="en">The dual-mode algorithm</span></div></div>
+    <p class="sec-intro">The engine room: safety-gated, constrained, parallel generation. This is the exact control flow from the codebase.</p>
+    <div class="code" style="background:#05080f;border-color:#1d2a48"><span class="cm"># backend_api.py → /recommend_candidates</span>
+<span class="k">def</span> recommend_candidates(req):
+    <span class="c">is_safe, reason</span> = safety_filter.is_safe(req.comment)      <span class="cm"># LLM gate · temp=0</span>
+    <span class="k">if not</span> is_safe: <span class="k">return</span> {<span class="s">"is_safe"</span>: False, <span class="s">"reason"</span>: reason}
+
+    candidates = gen_recommender.generate_candidates(req.op_text, req.comment)  <span class="cm"># 3 × LLM, parallel</span>
+
+    <span class="cm"># per-candidate moderation, parallel</span>
+    <span class="k">with</span> ThreadPoolExecutor(max_workers=<span class="k">3</span>) <span class="k">as</span> ex:
+        <span class="k">for</span> future <span class="k">in</span> as_completed({ex.submit(check, k, v): k <span class="k">for</span> k, v <span class="k">in</span> candidates.items()}):
+            key, safe, why = future.result()
+            <span class="k">if not</span> safe: candidates[key] = <span class="s">f"[Content Filtered: {why}]"</span>
+    <span class="k">return</span> {<span class="s">"is_safe"</span>: True, <span class="s">"candidates"</span>: candidates}</div>
+
+    <div class="grid c2">
+      <div class="card"><span class="k">Mode A · Assessment</span>
+        <ol style="margin-top:6px">
+          <li>RoBERTa IS + ES regression → float scores.</li>
+          <li>LIWC-2015 vector + TextBlob → explainable features.</li>
+          <li>Threshold tiers select the feedback opener.</li>
+          <li>Weakest of ppron / social / posemo gets the targeted suggestion, with 12 sampled LIWC words.</li>
+        </ol></div>
+      <div class="card"><span class="k">Mode B · Recommendation</span>
+        <ol style="margin-top:6px">
+          <li>LLM safety gate on the user's input.</li>
+          <li>3 constrained rewrites in parallel, each RAG-grounded.</li>
+          <li>Parallel safety check on all 3 outputs; unsafe ones masked.</li>
+          <li>Dedupe + rule-based fallback guarantees 3 distinct candidates.</li>
+        </ol></div>
+    </div>
+  </section>
+
+  <!-- 04 MODEL ENGINEERING -->
+  <section id="model-eng">
+    <div class="sec-head"><div class="sec-num">04</div><div><h2>Model Engineering</h2><span class="en">Fine-tuned RoBERTa regression</span></div></div>
+    <p class="sec-intro">Two independent RoBERTa-base regressors (IS and ES), fine-tuned on 450 expert-annotated comments (3 experts, κ &gt; 0.85) and benchmarked against classical baselines.</p>
+    <div class="grid c2">
+      <div class="card"><span class="k">Inference wrapper</span>
+        <div class="code" style="margin:10px 0 0;font-size:12.3px"><span class="cm"># models/transformer_predictor.py</span>
+<span class="k">def</span> predict(self, comment, op_text=None):
+    <span class="k">if</span> self.model <span class="k">is</span> None: <span class="k">return</span> <span class="k">0.0</span>
+    text = <span class="s">f"{op_text} &lt;/s&gt;&lt;/s&gt; {comment}"</span> <span class="k">if</span> op_text <span class="k">else</span> comment
+    inputs = self.tokenizer(text, return_tensors=<span class="s">"pt"</span>,
+        truncation=<span class="k">True</span>, padding=<span class="k">True</span>, max_length=<span class="k">512</span>)
+    <span class="k">with</span> torch.no_grad():
+        <span class="k">return</span> self.model(**inputs).logits.squeeze().item()</div></div>
+      <div class="card"><span class="k">Training recipe</span>
+        <div class="code" style="margin:10px 0 0;font-size:12.3px"><span class="cm"># training/train_is_es_model.py</span>
+model = AutoModelForSequenceClassification.from_pretrained(
+    <span class="s">"roberta-base"</span>, num_labels=<span class="k">1</span>, problem_type=<span class="s">"regression"</span>)
+TrainingArguments(
+    learning_rate=<span class="k">2e-5</span>, per_device_train_batch_size=<span class="k">8</span>,
+    warmup_steps=<span class="k">500</span>, weight_decay=<span class="k">0.01</span>, num_train_epochs=<span class="k">3</span>,
+    eval_strategy=<span class="s">"epoch"</span>, save_strategy=<span class="s">"epoch"</span>,
+    load_best_model_at_end=<span class="k">True</span>, metric_for_best_model=<span class="s">"mse"</span>)</div></div>
+    </div>
+    <div class="table-wrap"><table>
+      <tr><th>Model</th><th>IS F1 (10-fold CV)</th><th>ES F1 (10-fold CV)</th><th>Holdout (100 comments)</th></tr>
+      <tr><td>SVM</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>Multinomial Logistic Regression</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><b>Random Forest</b> (best IS)</td><td><b>.62</b></td><td>—</td><td>—</td></tr>
+      <tr><td><b>XGBoost</b> (best ES)</td><td>—</td><td><b>.68</b></td><td>—</td></tr>
+      <tr><td><b>Fine-tuned RoBERTa</b></td><td>.62</td><td>.68</td><td><b>IS 65% · ES 75%</b></td></tr>
+    </table></div>
+    <div class="callout info"><b>Engineering note</b> Context-aware input ("OP &lt;/s&gt;&lt;/s&gt; Comment") is supported in both training and inference, so the model can condition on the post being replied to — the exact same token format must be used at both ends.</div>
+  </section>
+
+  <!-- 05 RAG ENGINEERING -->
+  <section id="rag-eng">
+    <div class="sec-head"><div class="sec-num">05</div><div><h2>RAG Engineering</h2><span class="en">Retrieval-augmented generation</span></div></div>
+    <p class="sec-intro">Two generations of retrieval: the current codebase ships a ChromaDB RAG pipeline; the HHME 2026 paper documents the earlier two-stage Elasticsearch + BERT pipeline. Same principle — prove it with examples before you generate.</p>
+    <div class="grid c2">
+      <div class="card"><span class="k">Index build (offline)</span>
+        <div class="code" style="margin:10px 0 0;font-size:12.3px"><span class="cm"># build_vector_db.py</span>
+good = df[(df.IS_rating &gt;= <span class="k">3</span>) | (df.ES_rating &gt;= <span class="k">3</span>)]   <span class="cm"># quality gate</span>
+docs = [Document(page_content=r.comment_body,
+                 metadata={<span class="s">"IS"</span>: r.IS_rating, <span class="s">"ES"</span>: r.ES_rating})
+        <span class="k">for</span> _, r <span class="k">in</span> good.iterrows() <span class="k">if</span> len(r.comment_body.split()) &gt;= <span class="k">5</span>]
+Chroma.from_documents(docs, embedding=HuggingFaceEmbeddings(
+    model_name=<span class="s">"all-MiniLM-L6-v2"</span>), persist_directory=<span class="s">"chroma_db"</span>)</div></div>
+      <div class="card"><span class="k">Query-time retrieval</span>
+        <div class="code" style="margin:10px 0 0;font-size:12.3px"><span class="cm"># models/generative_recommender.py</span>
+<span class="k">def</span> _get_rag_context(self, query_text, k=<span class="k">3</span>):
+    results = self.vector_db.similarity_search(query_text, k=k)
+    examples = <span class="s">"\n\n"</span>.join(<span class="s">f"Example {i+1}: {d.page_content}"</span>
+                             <span class="k">for</span> i, d <span class="k">in</span> enumerate(results))
+    <span class="k">return</span> <span class="s">f"\nHere are some high-quality examples:\n{examples}\n"</span>
+<span class="cm"># query = OP text → situation-matched examples → prompt</span></div></div>
+    </div>
+    <div class="flow">
+      <div class="fstep data"><span class="t">Paper pipeline — 2-stage retrieval</span><div class="d">Elasticsearch More-Like-This (tf-idf, 50 candidates) → 768-d BERT cosine re-ranking → top examples</div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep data"><span class="t">Code pipeline — ChromaDB RAG</span><div class="d">all-MiniLM-L6-v2 384-d → similarity_search(k=3) on quality-gated docs</div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep llm"><span class="t">Prompt injection</span><div class="d">examples positioned as few-shot inspiration — "use for tone and structure, but do not copy directly"</div></div>
+    </div>
+    <div class="callout warn"><b>Same-embedding invariant</b> The embedder used at build time must exactly match the one at query time — the code enforces this by reusing the identical model string. Chroma failure degrades gracefully: retrieval returns "" and generation continues ungrounded.</div>
+  </section>
+
+  <!-- 06 LLM ENGINEERING -->
+  <section id="llm-eng">
+    <div class="sec-head"><div class="sec-num">06</div><div><h2>LLM Engineering</h2><span class="en">DeepSeek · prompts · safety · concurrency</span></div></div>
+    <p class="sec-intro">One model (<code>deepseek-chat</code> via OpenAI SDK), two engineered jobs with deliberately different temperatures — creative generation at 0.7, deterministic moderation at 0.0.</p>
+    <div class="grid c2">
+      <div class="card"><span class="k">Constrained generation</span>
+        <div class="code" style="margin:10px 0 0;font-size:12.3px"><span class="cm"># one constraint per candidate → 3 distinct outputs</span>
+constraints = [
+  (<span class="s">"candidate_1"</span>, <span class="s">"Personal Pronouns"</span>,
+   <span class="s">'Use "I", "we", "my", "our" to show connection'</span>),
+  (<span class="s">"candidate_2"</span>, <span class="s">"Family/Friends"</span>,
+   <span class="s">'Mention "friend", "family", "partner"'</span>),
+  (<span class="s">"candidate_3"</span>, <span class="s">"Positive Words"</span>,
+   <span class="s">'Use "hope", "strength", "better"'</span>),
+]
+<span class="cm"># ThreadPoolExecutor(max_workers=3) → ~1× LLM latency, not 3×</span></div></div>
+      <div class="card"><span class="k">Safety moderation</span>
+        <div class="code" style="margin:10px 0 0;font-size:12.3px"><span class="cm"># models/safety_filter.py · temp=0.0 · max_tokens=50</span>
+<span class="s">"""You are a safety moderator for a mental health peer
+support platform. Detect: dangerous advice · self-harm
+encouragement · toxic/hateful language · irrelevance.
+Return "UNSAFE: &lt;reason&gt;" or "SAFE"."""</span>
+verdict = llm(...)   <span class="cm"># starts with SAFE → allowed</span></div></div>
+    </div>
+    <ul>
+      <li><b>Two moderation passes per recommendation:</b> input gate before generation + parallel per-candidate gate after (up to 4 moderation calls + 3 generations, two thread-pool waves).</li>
+      <li><b>"Return ONLY the text"</b> keeps LLM output clean for the UI.</li>
+      <li><b>Fail-open policy on API errors</b> — moderation never blocks valid traffic during an outage.</li>
+    </ul>
+  </section>
+
+  <!-- 07 DECISION ENGINEERING -->
+  <section id="decisions">
+    <div class="sec-head"><div class="sec-num">07</div><div><h2>Decision &amp; Feedback Engineering</h2><span class="en">Deterministic logic around the models</span></div></div>
+    <p class="sec-intro">The part that makes the system feel intelligent: a deterministic, explainable decision layer around the neural predictions. Six decision points, zero black boxes.</p>
+    <div class="grid c2">
+      <div class="card"><span class="k">Score → feedback tier</span>
+        <div class="code" style="margin:10px 0 0;font-size:12.3px"><span class="cm"># app.py /assess</span>
+<span class="k">if</span> IS &lt; <span class="k">3</span> <span class="k">and</span> ES &lt; <span class="k">3</span>:   <span class="cm"># both low → gentle guidance</span>
+    f1 = <span class="s">"Here are my small suggestions:"</span>
+<span class="k">elif</span> IS == <span class="k">3</span> <span class="k">and</span> ES == <span class="k">3</span>: <span class="cm"># both perfect → praise</span>
+    f1 = <span class="s">"Excellent! You can polish the comment if you want:"</span>
+<span class="k">else</span>:                    <span class="cm"># mixed → one targeted tip</span>
+    f1 = <span class="s">"Great! There is one point I think you could improve:"</span>
+<span class="cm"># then attack min(ppron, social, posemo) with 12 sampled LIWC words</span></div></div>
+      <div class="card"><span class="k">Feature vector</span>
+        <div class="code" style="margin:10px 0 0;font-size:12.3px"><span class="cm"># util.py get_vector()</span>
+dic = extract(lex, doc)                 <span class="cm"># LIWC-2015 proportions</span>
+vec = np.array([dic.get(c, <span class="k">0</span>) <span class="k">for</span> c <span class="k">in</span> cats])
+vec = np.append(vec, len(sent_tokenize(doc)))   <span class="cm"># #sentences</span>
+vec = np.append(vec, len(TweetTokenizer().tokenize(doc))) <span class="cm"># #words</span>
+blob = TextBlob(doc)
+vec = np.append(vec, [blob.sentiment.polarity, blob.sentiment.subjectivity])</div></div>
+    </div>
+    <div class="table-wrap"><table>
+      <tr><th>Decision point</th><th>Signal</th><th>Behavior</th></tr>
+      <tr><td>Mode routing</td><td>Endpoint (/assess | /recommend)</td><td>AS pipeline vs RE pipeline</td></tr>
+      <tr><td>Safety gate</td><td>LLM verdict</td><td>Unsafe → block rewrite + alert; Safe → generate</td></tr>
+      <tr><td>Feedback tier</td><td>IS/ES thresholds</td><td>3 tiers of opener (low / perfect / mixed)</td></tr>
+      <tr><td>Target dimension</td><td>min(ppron, social, posemo)</td><td>Suggestion attacks the weakest LIWC dimension</td></tr>
+      <tr><td>Candidate dedupe</td><td>canonical-text comparison</td><td>Fallback polish + "(emphasis)" suffix → 3 distinct slots</td></tr>
+      <tr><td>Final submit</td><td>is_final flag</td><td>Persist record JSON · reset session · next task</td></tr>
+    </table></div>
+    <div class="callout ok"><b>Why deterministic?</b> The feedback layer is explainable, unit-testable, and free to run — the LLM never touches the assessment path. Random sampling (word banks + templates) keeps messages from feeling robotic.</div>
+  </section>
+
+  <!-- 08 EVALUATION -->
+  <section id="eval">
+    <div class="sec-head"><div class="sec-num">08</div><div><h2>Evaluation &amp; Evidence</h2><span class="en">Model benchmarks + human study</span></div></div>
+    <p class="sec-intro">Engineering claims backed by numbers: model benchmarks, inter-coder reliability, and a 24-participant within-subjects study (12F/12M, 3 writing tasks, counterbalanced Latin square, SUS + Likert + exit interviews).</p>
+    <div class="stats">
+      <div class="stat"><b>SUS 88.0</b><span>SD=11.4 · 70.8% Grade A · vs 68 industry avg</span></div>
+      <div class="stat"><b data-count="32.3" data-dec="1">0</b><span>% task-time reduction T1→T3 (11.21 → 7.59 min)</span></div>
+      <div class="stat"><b data-count="58.3" data-dec="1">0</b><span>% participants improved ES (14/24)</span></div>
+      <div class="stat"><b data-count="62.5" data-dec="1">0</b><span>% improved IS (15/24)</span></div>
+      <div class="stat"><b>rs=.552</b><span>T3 IS × confidence (p=.005, Bonferroni)</span></div>
+      <div class="stat"><b>κ=.78</b><span>inter-coder agreement · substantial</span></div>
+    </div>
+    <h3><span class="h"></span>Behavioral archetypes (the interesting finding)</h3>
+    <div class="grid c3">
+      <div class="card"><span class="k">A · Validation</span><p style="margin-top:6px"><b>66.7%</b> used AS as a confirmation checkpoint and submitted unchanged — feedback as validation, not revision.</p></div>
+      <div class="card"><span class="k">B · Selective Integration</span><p style="margin-top:6px"><b>20.5%</b> blended suggestions into their own voice.</p></div>
+      <div class="card"><span class="k">C · Full Replacement</span><p style="margin-top:6px"><b>12.8%</b> adopted the generated draft wholesale — autonomy concern.</p></div>
+    </div>
+    <div class="callout info"><b>Design implication</b> AI writing support should augment reflection, not automate authorship — evaluative transparency and voice preservation matter more than full automation. This directly shaped the next iteration direction (context-adaptive generation).</div>
+  </section>
+
+  <!-- 09 RELIABILITY -->
+  <section id="reliability">
+    <div class="sec-head"><div class="sec-num">09</div><div><h2>Reliability &amp; Security Engineering</h2><span class="en">Graceful degradation by design</span></div></div>
+    <div class="table-wrap"><table>
+      <tr><th>Failure</th><th>Fallback behavior</th></tr>
+      <tr><td>FastAPI backend down</td><td>Assessment → scores 0 · Recommendation → original + rule-based polish</td></tr>
+      <tr><td>Model files missing</td><td>/predict_scores returns zeros · UI unaffected</td></tr>
+      <tr><td>LLM API error</td><td>Generation returns user draft · safety fails open (never blocks valid traffic)</td></tr>
+      <tr><td>Chroma load failure</td><td>RAG context "" · generation continues ungrounded</td></tr>
+      <tr><td>Empty / duplicate candidates</td><td>Rule-based polish + "(emphasis)" suffix → 3 distinct guaranteed</td></tr>
+      <tr><td>Elasticsearch down</td><td>Indexing scripts fail only · main UI flow unaffected</td></tr>
+    </table></div>
+    <div class="grid c2">
+      <div class="card"><span class="k">Security controls</span>
+        <ul style="margin-top:6px">
+          <li>All credentials via environment variables; <code>.env</code> gitignored.</li>
+          <li>LLM moderation on both input and output (self-harm, harmful medical advice, toxicity).</li>
+          <li>Elasticsearch over HTTPS + basic auth + CA verification.</li>
+          <li>Sensitive data (record/, chroma_db/, models) excluded from git.</li>
+        </ul></div>
+      <div class="card"><span class="k">MLOps loop</span>
+        <p style="margin-top:6px"><code>record/</code> → clean &amp; safety-filter → pseudo-label with current models → append CSV → retrain RoBERTa → validate (MSE / R² / safety pass rate) → promote to serving path → monitor drift (score shift, fallback rate, block rate, acceptance).</p></div>
+    </div>
+  </section>
+
+  <!-- 10 STACK -->
+  <section id="stack">
+    <div class="sec-head"><div class="sec-num">10</div><div><h2>Engineering Stack</h2><span class="en">Tools used end-to-end</span></div></div>
+    <div class="grid c4" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+      <div class="card"><span class="k">Languages &amp; frameworks</span><p style="margin-top:6px">Python · Flask · FastAPI · uvicorn · Pydantic</p></div>
+      <div class="card"><span class="k">Deep learning</span><p style="margin-top:6px">PyTorch · Transformers · RoBERTa · BERT · sentence-transformers</p></div>
+      <div class="card"><span class="k">Retrieval</span><p style="margin-top:6px">Elasticsearch · More-Like-This · ChromaDB · LangChain</p></div>
+      <div class="card"><span class="k">LLM</span><p style="margin-top:6px">DeepSeek (deepseek-chat) · OpenAI SDK · prompt engineering</p></div>
+      <div class="card"><span class="k">NLP features</span><p style="margin-top:6px">LIWC-2015 · NRC · spaCy · NLTK · TextBlob</p></div>
+      <div class="card"><span class="k">ML tooling</span><p style="margin-top:6px">scikit-learn · XGBoost · pandas · datasets · evaluate</p></div>
+      <div class="card"><span class="k">Concurrency</span><p style="margin-top:6px">ThreadPoolExecutor — parallel generation + moderation</p></div>
+      <div class="card"><span class="k">Frontend</span><p style="margin-top:6px">HTML · Bootstrap 3 · jQuery · vanilla JS</p></div>
+    </div>
+    <div class="callout ok" style="margin-top:24px"><b>What this project demonstrates</b> End-to-end AI system engineering: model fine-tuning &amp; benchmarking · RAG pipeline design (2 generations) · LLM prompt &amp; safety engineering · deterministic decision logic · microservice architecture · MLOps active-learning loop · and a published human evaluation (HHME 2026 PCC Oral, Springer LNCS).</div>
+  </section>
+
+  <div class="foot">Minhazul Islam · AI Engineer — BepsBot Case Study · Zhejiang University · HHME 2026 PCC Oral · August 2026</div>
+</div>
+
+<script>
+  var bar=document.getElementById('progress'), navs=Array.prototype.slice.call(document.querySelectorAll('.topnav .links a'));
+  var secs=navs.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function onScroll(){
+    var h=document.documentElement, y=h.scrollTop, max=h.scrollHeight-h.clientHeight;
+    bar.style.width=(max?(y/max*100):0)+'%';
+    var pos=y+150, cur=null;
+    secs.forEach(function(s){if(s&&s.offsetTop<=pos)cur=s.id;});
+    navs.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  var counted=false;
+  function animateCount(el){
+    var target=parseFloat(el.dataset.count), dec=parseInt(el.dataset.dec||'0'), t0=null, dur=1100;
+    function step(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/dur,1); p=1-Math.pow(1-p,3);
+      el.textContent=(target*p).toFixed(dec); if(p<1)requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting&&!counted){counted=true;
+      if(!reduced)e.target.querySelectorAll('[data-count]').forEach(animateCount);
+      else e.target.querySelectorAll('[data-count]').forEach(function(el){el.textContent=el.dataset.count;});
+      io.disconnect();}
+  });},{threshold:.25});
+  var st=document.querySelector('.stats'); if(st)io.observe(st);
+</script>
+</body>
+</html>

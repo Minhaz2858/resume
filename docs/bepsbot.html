@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BepsBot | AI & LLM Engineering Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter:400,500,600,700&display=swap' rel='stylesheet'>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>BepsBot: AI-Powered Peer Support System</h1>
+            <p class="subtitle">LLM Engineering & Predictive Analytics by Minhazul Islam</p>
+            <nav>
+                <a href="#overview">Overview</a>
+                <a href="#architecture">Architecture</a>
+                <a href="#rag">RAG Pipeline</a>
+                <a href="#ml-lifecycle">ML Lifecycle</a>
+                <a href="#tech-stack">Stack</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <div class="try-bepsbot-banner" style="position:relative; overflow:hidden; min-height:340px; display:flex; align-items:center; justify-content:center;">
+        <div style="position:absolute; inset:0; background:linear-gradient(120deg, rgba(255,69,0,0.7) 0%, rgba(56,189,248,0.5) 100%); filter:blur(16px); z-index:0;"></div>
+        <div class="try-bepsbot-content" style="position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2rem; width:100%;">
+            <a href="http://104.214.178.64:5000/" target="_blank" style="display:inline-block;">
+                <img src="bepsbot.png" alt="BepsBot Logo" class="bepsbot-logo" style="width:120px; height:120px; border-radius:50%; box-shadow:0 8px 32px rgba(0,0,0,0.18); object-fit:cover; margin-bottom:1rem; transition:transform 0.4s cubic-bezier(.4,0,.2,1);">
+            </a>
+            <div class="try-bepsbot-text" style="text-align:center; max-width:480px;">
+                <p style="font-size:1.15rem; color:#f8fafc; font-weight:500; margin-bottom:1.5rem; text-shadow:0 1px 8px rgba(0,0,0,0.12);">Scaling high-quality peer support using <span style="color:#38BDF8; font-weight:700;">Transformer-based regression</span> and <span style="color:#FF7849; font-weight:700;">generative AI</span>.</p>
+                <a href="http://104.214.178.64:5000/" target="_blank" class="try-bepsbot-btn" style="background:linear-gradient(90deg,#fff 60%,#38BDF8 100%); color:#FF4500; font-size:1.1rem; font-weight:700; padding:1rem 2.5rem; border-radius:50px; box-shadow:0 4px 24px rgba(56,189,248,0.12); transition:transform 0.3s, box-shadow 0.3s; text-decoration:none; display:inline-block;">Launch Live Demo</a>
+            </div>
+        </div>
+        <script>
+        // Animate logo on hover
+        document.addEventListener('DOMContentLoaded', function() {
+            var logo = document.querySelector('.try-bepsbot-logo');
+            if(logo) {
+                logo.addEventListener('mouseenter', function(){ logo.style.transform = 'scale(1.08) rotate(-6deg)'; });
+                logo.addEventListener('mouseleave', function(){ logo.style.transform = 'scale(1) rotate(0deg)'; });
+            }
+            var btn = document.querySelector('.try-bepsbot-btn');
+            if(btn) {
+                btn.addEventListener('mouseenter', function(){ btn.style.transform = 'scale(1.06)'; btn.style.boxShadow = '0 8px 32px rgba(255,69,0,0.18)'; });
+                btn.addEventListener('mouseleave', function(){ btn.style.transform = 'scale(1)'; btn.style.boxShadow = '0 4px 24px rgba(56,189,248,0.12)'; });
+            }
+        });
+        </script>
+    </div>
+
+    <main>
+        <!-- PROBLEM & OVERVIEW -->
+        <section id="overview">
+            <div class="section-header">
+                <span class="badge">The Mission</span>
+            </div>
+            <p><b>Online mental health communities (OMHCs)</b>: are vital spaces for <b>peer support</b>, but users often struggle to write comments
+            that are both <b>empathetic</b> and <b>informative</b>. Many comments lack either <b>emotional support (ES)</b> or <b>informational support (IS)</b>, and users may feel uncertain about the <b>quality</b> or <b>helpfulness</b> of their responses. Traditional writing assistance
+            tools are not tailored for the <b>sensitive, high-stakes context</b> of mental health support, and can frustrate users or lead
+            to <b>insincere</b>, <b>repetitive</b>, or even <b>risky content</b>. There is a clear need for <b>intelligent, context-aware tools</b> that can
+            guide users to compose <b>high-quality, safe, and supportive comments</b> in real time.</p>
+        </section>
+        <!-- DATA COLLECTION & MODEL TRAINING -->
+        <section id="data-annotation">
+            <div class="section-header">
+                <span class="badge">Data & Annotation</span>
+                <h2>Data Collection and Annotation</h2>
+            </div>
+            <p>BepsBot’s data pipeline initiates with the <b>large-scale extraction</b> of <b>mental health discussions</b> from <b>Reddit</b>, encompassing six years of posts and comments. Leveraging the <b>Pushshift API</b>, the system systematically collects and aggregates this data, which is then subjected to comprehensive <b>processing, cleaning, normalization, and formatting</b>. To ensure both <b>data quality</b> and <b>computational efficiency</b>, only comments that meet stringent <b>length and relevance criteria</b> are retained, forming a robust <b>raw data lake</b>.</p>
+            <p>A <b>domain expert annotation interface</b> is employed to label a representative sample of comments for <b>Informational Support (IS)</b> and <b>Emotional Support (ES)</b> on a <b>three-point ordinal scale</b> (low, medium, high). IS is operationalized as the presence of <b>advice, referrals, or knowledge</b>, while ES is defined by evidence of <b>understanding, encouragement, affirmation, sympathy, or caring</b>. Multiple annotators independently label the data, with rigorous <b>quality control</b> and <b>validation procedures</b> ensuring high <b>inter-rater reliability (Cohen’s κ &gt; 0.85)</b>. Discrepancies are adjudicated by a <b>third expert</b>, resulting in a <b>gold-standard dataset</b> for <b>supervised learning</b>.</p>
+            <div class="section-header" style="margin-top:2.5rem;">
+                <span class="badge">Model Training</span>
+                <h2>Model Training and Active Learning</h2>
+            </div>
+            <p>The expertly annotated dataset serves as the foundation for training and fine-tuning advanced transformer-based models, such as RoBERTa, for regression-based IS/ES scoring. The modeling pipeline incorporates custom regression heads and loss function optimization, with model performance evaluated using standard metrics (e.g., F1 score, R²). BepsBot employs an active learning loop: new user interactions are pseudo-labeled, filtered for quality, and iteratively incorporated into retraining cycles. This enables continuous model refinement, domain adaptation, and seamless deployment of updated models.</p>
+        </section>
+
+        <!-- SYSTEM ARCHITECTURE -->
+        <section id="architecture" class="alt-bg-section">
+            <div class="section-header">
+                <span class="badge">System Design</span>
+                <h2>Decoupled Inference Architecture</h2>
+            </div>
+            <p>BepsBot is a modular AI system leveraging <b>large language models (LLMs)</b>, <b>vector databases</b>, and <b>advanced NLP pipelines</b> to
+            assist users in composing <b>high-quality, supportive comments</b> in online mental health communities. The system integrates
+            <b>Retrieval-Augmented Generation (RAG)</b>, <b>prompt engineering</b>, and <b>fine-tuned models</b> for <b>real-time feedback</b> and
+            <b>recommendations</b>.</p>
+
+            <div class="diagram-container">
+                <img src="system architecture.png" alt="System Architecture Diagram">
+                <p class="caption">Figure 1: Hybrid architecture combining symbolic NLP (LIWC) and Neural Transformers.
+                </p>
+            </div>
+        </section>
+
+        <!-- ALGORITHM: RAG -->
+        <section id="rag">
+            <div class="section-header">
+                <span class="badge">RAG Implementation</span>
+                <h2>Semantic Search & Vector Retrieval</h2>
+            </div>
+            <p>To prevent hallucinations, BepsBot uses a <b>Retrieval-Augmented Generation (RAG)</b> pipeline with
+                <b>ChromaDB</b> to provide the LLM with relevant, expert-labeled context.</p>
+
+            <div class="diagram-container">
+                <img src="The RAG & Generation Pipeline.png" alt="RAG Algorithm Pipeline" style="max-width:100%; height:1200px; object-fit:contain; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+            </div>
+
+            <div class="algorithm-grid">
+                <div class="algo-card">
+                    <h4>Vector Embeddings</h4>
+                    <p>Drafts are converted to high-dimensional vectors using <code>all-MiniLM-L6-v2</code> for semantic
+                        matching.</p>
+                </div>
+                <div class="algo-card">
+                    <h4>Contextual Prompting</h4>
+                    <p>Top-ranked examples are injected into the <b>DeepSeek-V3</b> prompt to align outputs with
+                        clinical best practices.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MACHINE LEARNING LIFECYCLE -->
+        <section id="ml-lifecycle" class="alt-bg-section">
+            <div class="section-header">
+                <span class="badge">Core Engines</span>
+                <h2>Machine Learning Lifecycle</h2>
+            </div>
+            <p>BepsBot integrates predictive assessment, generative recommendations, and a self-evolving data loop to
+                maintain high support standards.</p>
+
+                <img src="Machine Learning Lifecycle.png" alt="Machine Learning Lifecycle" style="max-width:100%; height:auto; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+
+            <!-- Assessment Algorithm -->
+            <div class="algo-detail">
+                <h3>Assessment Algorithm</h3>
+                <p>Real-time quantification of empathy using <b>Transformer-based Regression</b>. The model analyzes
+                    linguistic markers to provide instant feedback on support quality.</p>
+                
+                <div class="algorithm-grid">
+                    <div class="algo-card">
+                        <h4>Informational Support (IS)</h4>
+                        <p>Measures the degree of advice, suggestions, and helpful knowledge provided in a response.</p>
+                    </div>
+                    <div class="algo-card">
+                        <h4>Emotional Support (ES)</h4>
+                        <p>Evaluates expressions of empathy, validation, and emotional presence using sentiment-aware
+                            attention layers.</p>
+                    </div>
+                    
+                </div>
+                <div style="text-align:center; margin: 20px 0;">
+                    <img src="Assessment Algorithm.png" alt="Assessment Algorithm"
+                        style="max-width:100%; height:auto; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                </div>
+            </div>
+
+            <!-- Recommendation Algorithm -->
+            <div class="algo-detail" style="margin-top: 4rem;">
+                <h3>Recommendation Algorithm</h3>
+                <p>A hybrid generative approach that suggests improvements based on high-performing historical peer
+                    interactions.</p>
+                <div class="process-steps">
+                    <div class="step">
+                        <span class="step-num">A</span>
+                        <div>
+                            <strong>Candidate Generation:</strong> Retrieval of top-k similar high-quality comments from
+                            the vector database.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">B</span>
+                        <div>
+                            <strong>Safety Filtering:</strong> Multi-layer content moderation to ensure non-toxic,
+                            clinically appropriate suggestions.
+                        </div>
+                    </div>
+                                    <div style="text-align:center; margin: 20px 0;">
+                                        <img src="Recommendation Algorithm.png" alt="Assessment Algorithm"
+                                            style="max-width:100%; height: 1200px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                                    </div>
+                </div>
+            </div>
+
+            <!-- ACTIVE LEARNING -->
+            <div id="active-learning" style="margin-top: 4rem;">
+                <h3>Automated Active Learning Loop</h3>
+                <p>I developed a continuous improvement pipeline that solves the "cold start" problem in support
+                    scoring.</p>
+
+                <div class="diagram-container">
+                    <img src="Active Learning & Training Pipeline.png" alt="Active Learning Pipeline" style="max-width:100%; height:1200px; object-fit:contain; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                </div>
+
+                <div class="process-steps">
+                    <div class="step">
+                        <span class="step-num">01</span>
+                        <div>
+                            <strong>Data Ingestion:</strong> Captures real-world user interactions in structured JSON
+                            logs.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">02</span>
+                        <div>
+                            <strong>Pseudo-Labeling:</strong> Automated scoring using current <b>RoBERTa-Base</b>
+                            predictors (regression heads).
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">03</span>
+                        <div>
+                            <strong>Fine-Tuning:</strong> High-confidence samples are integrated into the training set
+                            for iterative model updates.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TECH STACK -->
+        <section id="tech-stack">
+            <div class="section-header" style="text-align: center;">
+                <h2>AI Engineering Tech Stack</h2>
+            </div>
+            <div class="tech-tags">
+                <span class="tag">Python</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">PyTorch</span>
+                <span class="tag">HuggingFace</span>
+                <span class="tag">ChromaDB</span>
+                <span class="tag">LangChain</span>
+                <span class="tag">DeepSeek-V3</span>
+                <span class="tag">Scikit-Learn</span>
+                <span class="tag">LIWC</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Project by <b>Minhazul Islam</b> | ZJU Human-Computer Interaction Initiative</p>
+            <p>Contact: <a href="mailto:minhaz1396@zju.edu.cn">minhaz1396@zju.edu.cn</a></p>
+        </div>
+        <!-- Image Modal -->
+        <div id="img-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(15,23,42,0.85); z-index:9999; align-items:center; justify-content:center;">
+            <span id="img-modal-close" style="position:absolute; top:32px; right:48px; font-size:2.5rem; color:#fff; cursor:pointer; font-weight:700;">&times;</span>
+            <img id="img-modal-img" src="" alt="Preview" style="max-width:90vw; max-height:80vh; border-radius:16px; box-shadow:0 8px 32px rgba(0,0,0,0.25);">
+        </div>
+    </footer>
+
+    <script>
+    // Modal logic for all images except the hero logo
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('img-modal');
+        const modalImg = document.getElementById('img-modal-img');
+        const closeBtn = document.getElementById('img-modal-close');
+        document.querySelectorAll('img').forEach(img => {
+            // Only enable for images with src, not inside the modal, and not the hero logo
+            const isHeroLogo = img.classList.contains('bepsbot-logo') && img.closest('.try-bepsbot-banner');
+            if (!img.closest('#img-modal') && img.src && !isHeroLogo) {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', function() {
+                    modalImg.src = img.src;
+                    modal.style.display = 'flex';
+                });
+            }
+        });
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+            modalImg.src = '';
+        });
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                modalImg.src = '';
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>

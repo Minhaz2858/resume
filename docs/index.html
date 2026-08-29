@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhazul Islam - Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfcfc;
+            /* Very subtle off-white background */
+            color: #334155;
+            /* Slightly darker text for better contrast */
+        }
+
+        .container {
+            max-width: 1280px;
+            /* Slightly wider container */
+        }
+
+        .section-title {
+            color: #1a202c;
+            /* Darker title color */
+            border-bottom: 4px solid #34d399;
+            /* Vibrant green underline */
+            padding-bottom: 0.85rem;
+            margin-bottom: 3rem;
+            /* More space below title */
+            font-weight: 800;
+            /* Extra bolder title */
+            letter-spacing: -0.03em;
+            /* Slightly tighter letter spacing for impact */
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.25rem;
+            /* Even more rounded corners */
+            box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.15), 0 6px 12px -4px rgba(0, 0, 0, 0.08);
+            /* More elegant, diffused shadow */
+            padding: 2.5rem;
+            /* Increased padding for spaciousness */
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            /* Smoother animation */
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            /* More pronounced lift on hover */
+            box-shadow: 0 25px 40px -8px rgba(0, 0, 0, 0.2), 0 15px 20px -8px rgba(0, 0, 0, 0.08);
+        }
+
+        .link-style {
+            color: #34d399;
+            /* Primary vibrant green for links */
+            text-decoration: none;
+            transition: color 0.3s ease-in-out, text-decoration 0.3s ease-in-out;
+        }
+
+        .link-style:hover {
+            color: #10b981;
+            /* Darker green on hover */
+            text-decoration: underline;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background-color: #e0f2f7;
+            /* Very light blue-green background for tags */
+            color: #065f46;
+            /* Darker green text for tags */
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            /* Fully rounded pills */
+            font-size: 0.9rem;
+            /* Slightly larger text */
+            margin: 0.35rem;
+            font-weight: 600;
+            /* Semibold */
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .skill-tag:hover {
+            background-color: #a7f3d0;
+            /* Slightly darker on hover */
+            color: #047857;
+        }
+
+        .project-media {
+            width: 100%;
+            height: 220px;
+            /* Fixed height for project media (image/video) */
+            object-fit: cover;
+            /* Ensure media covers the area */
+            border-radius: 1rem;
+            /* Match card border-radius */
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for media */
+        }
+
+        .project-media.gif-loop {
+            animation: gif-refresh 0.1s infinite;
+        }
+
+        @keyframes gif-refresh {
+            0% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+        .header-text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-br from-emerald-700 to-emerald-900 text-white py-20 px-6 shadow-2xl">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <!-- Profile Picture -->
+            <div class="mb-10 md:mb-0 md:mr-16 flex-shrink-0">
+                <img src="minhaz.jpg"
+                    onerror="this.onerror=null;this.src='https://placehold.co/200x200/34d399/ffffff?text=MINHAZUL';"
+                    alt="Minhazul Islam"
+                    class="w-52 h-52 rounded-full object-cover border-8 border-emerald-300 shadow-xl transform hover:scale-105 transition-transform duration-500 ease-in-out">
+            </div>
+
+            <!-- Name and Contact Info -->
+            <div class="text-center md:text-left flex-grow">
+                <h1 class="text-7xl font-extrabold mb-4 leading-tight header-text-shadow">MINHAZUL ISLAM</h1>
+                <p class="text-3xl font-light mb-8 opacity-95">Industrial Design Engineer & Software Developer</p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-x-10 gap-y-4 text-lg">
+                    <a href="tel:+8615990259205" class="flex items-center link-style text-emerald-200 hover:text-white">
+                        <i class="fas fa-phone-alt mr-3"></i> +86 15990259205
+                    </a>
+                    <a href="mailto:minhaz249602@gmail.com"
+                        class="flex items-center link-style text-emerald-200 hover:text-white">
+                        <i class="fas fa-envelope mr-3"></i> minhaz249602@gmail.com
+                    </a>
+                    <a href="mailto:22351396@zju.cn"
+                        class="flex items-center link-style text-emerald-200 hover:text-white">
+                        <i class="fas fa-envelope mr-3"></i> 22351396@zju.cn
+                    </a>
+                    <span class="flex items-center text-emerald-200">
+                        <i class="fas fa-map-marker-alt mr-3"></i> Zhejiang University, Xuefu Rd, Yinzhou District,
+                        Zhejiang
+                    </span>
+                </div>
+                <div class="flex flex-wrap justify-center md:justify-start gap-x-10 gap-y-4 mt-6 text-lg">
+                    <a href="https://www.linkedin.com/in/minhazul-islam-43b3a4221/" target="_blank"
+                        class="flex items-center link-style text-emerald-200 hover:text-white">
+                        <i class="fab fa-linkedin mr-3"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/Minhazul249602" target="_blank"
+                        class="flex items-center link-style text-emerald-200 hover:text-white">
+                        <i class="fab fa-github mr-3"></i> GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Sections -->
+    <main class="container mx-auto py-20 px-8">
+
+        <!-- Summary Section -->
+        <section id="summary" class="mb-20">
+            <h2 class="text-5xl section-title">Summary</h2>
+            <div class="card">
+                <p class="text-gray-700 leading-relaxed text-xl text-justify">
+                    A versatile professional with a Bachelor's in Computer Science and a Master's in Industrial Design
+                    Engineering. My expertise spans coding, data analysis, and problem-solving, enabling me to manage
+                    complex datasets and systems effectively. I combine technical acumen with practical experience in
+                    product design, 3D modeling, and project management, offering a holistic understanding of product
+                    development and international trade. My hands-on projects and internships have honed my ability to
+                    integrate technology and design, making me uniquely equipped for roles in foreign trade that demand
+                    analytical, technical, and design skills for navigating global markets and product innovation.
+                </p>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="mb-20">
+            <h2 class="text-5xl section-title">Education</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="card">
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-3">Zhejiang University</h3>
+                    <p class="text-emerald-600 font-medium text-xl">Masters in Industrial Design Engineering</p>
+                    <p class="text-gray-600 text-lg mt-2">September 2023 | Zhejiang, China</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-3">Yunnan University</h3>
+                    <p class="text-emerald-600 font-medium text-xl">Bachelor in Computer Science and Technology</p>
+                    <p class="text-gray-600 text-lg mt-2">2019-2023 | Kunming, China</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="mb-20">
+            <h2 class="text-5xl section-title">Experience</h2>
+            <div class="grid grid-cols-1 gap-10">
+                <!-- <div class="card">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
+                        <div>
+                            <h3 class="text-3xl font-semibold text-gray-800">Piliving</h3>
+                            <p class="text-emerald-600 font-medium text-xl">Technical Product Manager</p>
+                        </div>
+                        <p class="text-gray-600 text-lg sm:text-right mt-3 sm:mt-0">February 2025 - September 2025 |
+                            Ningbo, China</p>
+                    </div>
+                    <ul class="list-disc list-inside text-gray-700 text-lg space-y-3">
+                        <li>Executed a large-scale data science project by leveraging the Pushshift API to harvest 100,000+ posts/comments
+                            from user forums, employing text mining to analyze product failure points.</li>
+                        <li>Analyzed structured and unstructured user data to identify, categorize, and quantify critical product problems,
+                            providing data-driven guidance for the next-generation product roadmap.</li>
+                        <li>Engineered the control panel system for a new pizza oven, applying embedded systems and technical design skills
+                            to build a functional, integrated component.</li>
+                        <li>Designed innovative 3D models for new products using Autodesk Fusion 360 based on data insights, showcasing
+                            technical design proficiency.</li>
+                        <li>Managed the end-to-end product development lifecycle, coordinating supplier technical specifications and leading
+                            cross-functional teams to ensure quality standards.</li>
+                    </ul>
+                </div> -->
+                <div class="card">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
+                        <div>
+                            <h3 class="text-3xl font-semibold text-gray-800">ProFabx</h3>
+                            <p class="text-emerald-600 font-medium text-xl">Software Engineer and 3D Designer</p>
+                        </div>
+                        <p class="text-gray-600 text-lg sm:text-right mt-3 sm:mt-0">June 2024 - September 2024 | Ningbo,
+                            China</p>
+                    </div>
+                    <ul class="list-disc list-inside text-gray-700 text-lg space-y-3">
+                        <li>Developed advanced 3D models using Autodesk Fusion 360 and Inventor, successfully
+                            transitioning from manual design to automated workflows.</li>
+                        <li>Created robust Python scripts to automate complex 3D modeling processes through the Autodesk
+                            Inventor API.</li>
+                        <li>Designed an intuitive web interface using JavaScript that dynamically updates 3D models
+                            based on real-time parameter changes.</li>
+                        <li>Implemented a sophisticated parametric modeling system, ensuring dimension modifications
+                            automatically propagate throughout entire designs.</li>
+                        <li>Streamlined design processes by 40% through the strategic automation of repetitive modeling
+                            tasks, significantly boosting efficiency.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="mb-20">
+            <h2 class="text-5xl section-title">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+                <!-- BepsBot Project -->
+                <div class="card">
+                    <div style="display:flex;justify-content:center;align-items:center;background:#fff;border-radius:50%;border:2px solid #e5e7eb;box-shadow:0 6px 18px rgba(52,211,153,0.10);height:180px;width:180px;margin:0 auto 2rem auto;overflow:hidden;">
+                        <img src="bepsbot.png" alt="BepsBot Chatbot Logo" style="height:100%;width:100%;object-fit:cover;filter:drop-shadow(0 2px 8px rgba(52,211,153,0.15));border-radius:50%;background:#fff;" onerror="this.src='https://placehold.co/180x180/34d399/ffffff?text=BepsBot';">
+                    </div>
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-3">BepsBot – AI-Powered Mental Health Peer Support Platform</h3>
+                    <p class="text-gray-600 text-base mb-3">2025 | Zhejiang University</p>
+                    <p class="text-gray-700 text-lg mb-4">Tools: Python, Flask, FastAPI, PyTorch, RoBERTa, LangChain, DeepSeek LLM, Sentence Transformers, ChromaDB, RAG, Pushshift API, ThreadPoolExecutor</p>
+                    <ul class="list-disc list-inside text-gray-700 text-lg space-y-2 mb-5">
+                        <li>Developed a fully functional web-based prototype as an intelligent writing assistant for peer supporters, providing real-time feedback on Emotional Support (ES) and Informational Support (IS) levels and using Generative AI to suggest context-aware improvements for safer, more empathetic replies.</li>
+                        <li>Designed and deployed a scalable microservice architecture, integrating a large language model (LLM), retrieval augmentation generation (RAG), and a Transformer-based regression model.</li>
+                        <li>Built a robust data pipeline to crawl and preprocess mental health discussions from Reddit over the past six years. Led a rigorous annotation effort with three domain experts to annotate IS/ES metrics, creating a high-quality gold-standard dataset for supervised learning.</li>
+                        <li>Experimented with SVM, Multinomial Logistic Regression, Random Forest (RF), and XGBoost to predict support metrics, achieving the best results for IS with RF and for ES with XGBoost.</li>
+                        <li>Fine-tuned the RoBERTa model on the expert-annotated dataset to predict support quality scores highly correlated with human judgment.</li>
+                        <li>Built a RAG system using LangChain, ChromaDB, and SentenceTransformers, retrieving semantically similar, high-quality human responses to ground the DeepSeek LLM, reducing hallucinations and improving generated suggestions.</li>
+                        <li>Deployed models via a high-concurrency FastAPI inference service, decoupled from the Flask frontend, optimizing inference latency by ~65% through asynchronous request processing and parallel execution of LLM generation and security checks (using ThreadPoolExecutor).</li>
+                        <li>Developed a real-time security filtering middleware using LLM to detect and block harmful content, self-harm risks, and dangerous medical suggestions, ensuring strict adherence to ethical guidelines for mental health applications.</li>
+                        <li>Implemented an automated active learning pipeline that filters, pseudo-labels, and incorporates new user submissions into the training set, enabling the model to adapt and improve over time without human intervention.</li>
+                    </ul>
+                    <a href="https://minhazulzju.github.io/BepsBot/" target="_blank" class="link-style flex items-center text-xl font-medium">
+                        <img src="bepsbot.png" alt="BepsBot Logo" class="w-8 h-8 mr-3 rounded-full object-cover" style="box-shadow: 0 2px 6px rgba(52,211,153,0.2);"> Visit BepsBot
+                    </a>
+                </div>
+
+                <!-- SPROUT Project -->
+                <div class="card">
+                    <img src="SPROUT.png" alt="SPROUT Project" class="project-media">
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-3">SPROUT – Shape-changing Meditation Device for
+                        Academic Mindset Support</h3>
+                    <p class="text-gray-600 text-base mb-3">Oct 2024 – Dec 2024 | Zhejiang University</p>
+                    <p class="text-gray-700 text-lg mb-4">Tools: Arduino IDE/C++, Embedded Systems, Sensor Integration,
+                        Fusion 360</p>
+                    <ul class="list-disc list-inside text-gray-700 text-lg space-y-2 mb-5">
+                        <li>Designed a bio-inspired, shape-changing interactive board to help students transform
+                            academic challenges into opportunities for growth.</li>
+                        <li>Addressed <span class="text-emerald-600 font-semibold">Fear of Failure</span> by
+                            developing a supportive non-intrusive intervention device for university environments.</li>
+                        <li>Integrated sensors and actuators with Arduino-based embedded systems to create a meditative
+                            interaction, fostering mindset reflection and improvement.</li>
+                        <li>Utilized the metaphor of "planting a seed" to symbolize the transformation of negative
+                            emotions into resilience and a growth mindset.</li>
+                        <li>Key skills: System Design, Embedded Systems, Circuit Prototyping, C++ Programming, Sensor
+                            Integration, Prototype Development.</li>
+                    </ul>
+                    <a href="https://minhazulzju.github.io/SPROUT/" target="_blank"
+                        class="link-style flex items-center text-xl font-medium">
+                        <i class="fab fa-github mr-3"></i> Exploring SPROUT Project
+                    </a>
+                </div>
+                <!-- Autodesk Inventor API Project -->
+                <div class="card">
+                    <img src="api.gif" id="api-gif"
+                        alt="Autodesk Inventor API with Python – Parametric CAD Automation" class="project-media gif-loop"
+                        onerror="this.src='https://placehold.co/600x220/34d399/ffffff?text=CAD+Automation';">
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-3">Autodesk Inventor API with Python – Parametric
+                        CAD Automation</h3>
+                    <p class="text-gray-600 text-base mb-3">Apr 2024 – Aug 2024</p>
+                    <p class="text-gray-700 text-lg mb-4">Tools: Autodesk Inventor, Python, win32com.client</p>
+                    <ul class="list-disc list-inside text-gray-700 text-lg space-y-2 mb-5">
+                        <li>Developed a robust parametric modeling system using Python to dynamically update Autodesk
+                            Inventor 3D models by modifying key dimensions.</li>
+                        <li>Automated repetitive CAD tasks, significantly reducing design time and minimizing manual
+                            errors in complex projects.</li>
+                        <li>Seamlessly integrated Python scripting with Inventor’s API to streamline mechanical design
+                            workflows and enhance prototyping efficiency.</li>
+                    </ul>
+                    <!-- Note: The provided link in the CV for this project points to the Product Recommendation System. Please verify and update if needed. -->
+                    <a href="https://minhazulzju.github.io/Autodesk-Inventor-API-with-Python-/"
+                        target="_blank" class="link-style flex items-center text-xl font-medium">
+                        <i class="fab fa-github mr-3"></i> Exploring Autodesk Inventor API with Python
+                    </a>
+                </div>
+
+                <!-- InclusiveVision Project -->
+                <div class="card">
+                    <img src="smart_glass.jpg" alt="Smart Glasses Project"
+                        class="project-media">
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-3">InclusiveVision - Smart Glasses for Visually
+                        Impaired Individuals</h3>
+                    <p class="text-gray-600 text-base mb-3">December 2023</p>
+                    <p class="text-gray-700 text-lg mb-4">Tools: Arduino UNO, Ultrasonic Sensors, Fusion 360, Flashforge
+                        3D Printing, Talkie Library, AutoCAD, Laser Cutting</p>
+                    <ul class="list-disc list-inside text-gray-700 text-lg space-y-2 mb-5">
+                        <li>Developed a functional prototype of smart glasses using Arduino UNO and ultrasonic sensors,
+                            achieving real-time obstacle detection with high accuracy.</li>
+                        <li>Implemented an effective voice alert system using the Talkie library, providing immediate
+                            auditory feedback based on sensor data.</li>
+                        <li>Created optimized 3D models of the glasses frame using Fusion 360, prioritizing comfort and
+                            functionality for a wearable form factor.</li>
+                        <li>Designed an integrated component with multiple ultrasonic sensors for easy assembly and
+                            seamless compatibility with existing assistive technologies, enhancing user independence and
+                            safety.</li>
+                    </ul>
+                    <a href="https://nexmaker-fab.github.io/2023zjudem-The-Dynamic-Seven/#/FINALPROJECT/final"
+                        target="_blank" class="link-style flex items-center text-xl font-medium">
+                        <i class="fab fa-github mr-3"></i> Exploring Smart Glasses for Visually Impaired
+                    </a>
+                </div>
+
+                <!-- IoT Dormitory Attendance System Project -->
+                <div class="card">
+                    <img src="https://placehold.co/600x220/34d399/ffffff?text=IoT+Attendance+System"
+                        alt="IoT Dormitory Attendance System" class="project-media">
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-3">IoT Based Dormitory Attendance System with Face Recognition</h3>
+                    <p class="text-gray-600 text-base mb-3">2022 - 2023 | Yunnan University</p>
+                    <p class="text-gray-700 text-lg mb-4">Tools: ESP32 Cam, Arduino Mega, OpenCV, MongoDB, GSM Module, LBPH Algorithm</p>
+                    <ul class="list-disc list-inside text-gray-700 text-lg space-y-2 mb-5">
+                        <li>Developed a contactless attendance system using ESP32 Cam with face recognition to replace manual dormitory attendance tracking.</li>
+                        <li>Implemented LBPH (Local Binary Patterns Histogram) algorithm with OpenCV for accurate face detection and recognition.</li>
+                        <li>Integrated real-time data storage using MongoDB cloud database with automated SMS alerts to parents via GSM module.</li>
+                        <li>Designed a comprehensive IoT architecture with perception, network, middleware, and application layers for robust data management.</li>
+                        <li>Created a web interface for dormitory managers to monitor attendance records and generate reports in real-time.</li>
+                    </ul>
+                    <a href="https://minhazulzju.github.io/IOT-Based-Dormitory-Attendance-System/#conclusion" target="_blank" class="link-style flex items-center text-xl font-medium">
+                        <i class="fab fa-github mr-3"></i> Exploring IoT Dormitory Attendance System
+                    </a>
+                </div>
+
+                <!-- Product Recommendation System Project -->
+                <div class="card">
+                    <img src="https://placehold.co/600x220/34d399/ffffff?text=Recommendation+System"
+                        alt="Recommendation System Project" class="project-media">
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-3">Product recommendation system based on
+                        Collaborative Filtering Algorithm</h3>
+                    <p class="text-gray-600 text-base mb-3">2022 - 2023</p>
+                    <p class="text-gray-700 text-lg mb-4">Tools: Python, NumPy, Pandas, MongoDB, Matplotlib, Flask</p>
+                    <ul class="list-disc list-inside text-gray-700 text-lg space-y-2 mb-5">
+                        <li>Developed a collaborative filtering strategy for the goodbooks-10k dataset to generate
+                            high-quality recommendations based on user purchase and rating history.</li>
+                        <li>Utilized Python with NumPy, Pandas, and Matplotlib for comprehensive data analysis and
+                            visualization, leading to accurate and insightful recommendations.</li>
+                        <li>Created a personalized recommendation model based on matrix factorization, ensuring tailored
+                            suggestions for users.</li>
+                        <li>Applied Euclidean Distance for similarity analysis between books, significantly enhancing
+                            the accuracy of book recommendations.</li>
+                    </ul>
+                    <a href="https://github.com/Minhazul249602/Product-Recommendation-System-Based-on-collaborative-algorithm"
+                        target="_blank" class="link-style flex items-center text-xl font-medium">
+                        <i class="fab fa-github mr-3"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="mb-20">
+            <h2 class="text-5xl section-title">Publications</h2>
+            <div class="card">
+                <ul class="list-decimal list-inside text-gray-700 text-lg space-y-4">
+                    <li>
+                        Islam, M., Xue, M., Afra, T. (2025). <strong>Exploring Psychologist Applied Biomarkers in Bipolar
+                        Disorder: A Systematic Framework</strong>. In: Yamanishi, R., Formico, A., Sugiura, Y.,
+                        Matsumura, K. (eds) <em>Entertainment Computing – ICEC 2025 IFIP TC 14 Workshops. ICEC 2025.
+                        Lecture Notes in Computer Science, vol 15935</em>. Springer, Cham. 
+                        <a href="https://doi.org/10.1007/978-3-032-02534-0_8" target="_blank" class="link-style">https://doi.org/10.1007/978-3-032-02534-0_8</a>
+                    </li>
+                    <li>
+                        Afra, T., Xue, M., Islam, M. (2025). <strong>Enhancing Biofeedback Interventions for Depression
+                        and Anxiety Through Entertainment Computing: A Systematic Review</strong>. In: Yamanishi, R.,
+                        Formico, A., Sugiura, Y., Matsumura, K. (eds) <em>Entertainment Computing – ICEC 2025 IFIP TC 14
+                        Workshops. ICEC 2025. Lecture Notes in Computer Science, vol 15935</em>. Springer, Cham. 
+                        <a href="https://doi.org/10.1007/978-3-032-02534-0_6" target="_blank" class="link-style">https://doi.org/10.1007/978-3-032-02534-0_6</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Honors & Awards Section -->
+        <section id="honors-awards" class="mb-20">
+            <h2 class="text-5xl section-title">Honors & Awards</h2>
+            <div class="card">
+                <h3 class="text-3xl font-semibold text-gray-800 mb-3">United Nations Technology Bank</h3>
+                <p class="text-emerald-600 font-medium text-xl">Global Youth Talent Program</p>
+                <p class="text-gray-600 text-lg mb-4">Selected Participant | 2023</p>
+                <ul class="list-disc list-inside text-gray-700 text-lg space-y-3">
+                    <li>Selected among top young designers worldwide for this prestigious UN program, recognizing
+                        innovative talent.</li>
+                    <li>Recognized for developing innovative 3D design and engineering solutions with real-world
+                        applicability.</li>
+                    <li>Actively participated in a specialized curriculum bridging advanced design principles with
+                        sustainable development goals.</li>
+                    <li>The program's impact and my participation were prominently featured on the official UN
+                        Technology Bank website.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="mb-20">
+            <h2 class="text-5xl section-title">Skills</h2>
+            <div class="card">
+                <div class="mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3 text-2xl">Programming Languages:</h4>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">JavaScript</span>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3 text-2xl">Web Technologies:</h4>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">Node.js</span>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3 text-2xl">Database Systems:</h4>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag">MongoDB</span>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3 text-2xl">Data Science & Machine Learning:</h4>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Matplotlib</span>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3 text-2xl">Computer-Aided Design & Automation:</h4>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag">Autodesk Inventor API</span>
+                        <span class="skill-tag">Parametric CAD Modeling</span>
+                        <span class="skill-tag">3D Modeling</span>          
+                        <span class="skill-tag">Design Automation</span>
+                        <span class="skill-tag">win32com (COM Automation)</span>
+                        <span class="skill-tag">API Integration</span>
+                        <span class="skill-tag">Batch Processing</span>
+                        <span class="skill-tag">Simulation and Analysis</span>
+                        <span class="skill-tag">Product Visualization</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Open Source Projects Section -->
+        <section id="open-source" class="mb-20">
+            <h2 class="text-5xl section-title">Open Source Projects</h2>
+            <div class="card">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 text-2xl">3D Model:</h4>
+                        <a href="https://minhazul249602.github.io/3D-Model/" target="_blank"
+                            class="link-style text-lg">Fusion 360</a>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 text-2xl">Design Engineering:</h4>
+                        <a href="https://nexmaker-fab.github.io/2023zjudem-The-Dynamic-Seven/#/" target="_blank"
+                            class="link-style text-lg">Project at ZJU</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white py-10 px-6 text-center shadow-inner">
+        <div class="container mx-auto text-base">
+            <p class="mb-4">&copy; 2025 Minhazul Islam. All rights reserved.</p>
+            <div class="flex justify-center gap-8 mt-3">
+                <a href="https://www.linkedin.com/in/minhazul-islam-43b3a4221/" target="_blank"
+                    class="text-emerald-300 hover:text-white transition-colors duration-300"><i
+                        class="fab fa-linkedin fa-2x"></i></a>
+                <a href="https://github.com/Minhazul249602" target="_blank"
+                    class="text-emerald-300 hover:text-white transition-colors duration-300"><i
+                        class="fab fa-github fa-2x"></i></a>
+                <a href="mailto:minhaz249602@gmail.com"
+                    class="text-emerald-300 hover:text-white transition-colors duration-300"><i
+                        class="fas fa-envelope fa-2x"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to set the profile picture once the page loads
+        window.onload = function () {
+            // The image source is already set in the HTML with a placeholder.
+            // If you host your image online, replace the `src` attribute in the HTML directly.
+            // Example: <img src="YOUR_IMAGE_URL_HERE" ...>
+            // The `onerror` attribute will ensure a fallback if the image fails to load.
+            
+            // Force GIF to loop continuously
+            const apiGif = document.getElementById('api-gif');
+            if (apiGif) {
+                // Force refresh the GIF every 10 seconds to ensure it keeps looping
+                setInterval(function() {
+                    const src = apiGif.src;
+                    apiGif.src = '';
+                    apiGif.src = src + '?t=' + new Date().getTime();
+                }, 10000);
+            }
+        };
+    </script>
+
+</body>
+
+</html>

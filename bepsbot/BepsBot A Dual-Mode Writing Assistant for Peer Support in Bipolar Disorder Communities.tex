@@ -1,0 +1,784 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.21 of 2022/01/12
+%
+\documentclass[]{llncs}
+%
+\usepackage[T1]{fontenc}
+% T1 fonts will be used to generate the final print and online PDFs,
+% so please use T1 fonts in your manuscript whenever possible.
+% Other font encondings may result in incorrect characters.
+%
+\usepackage{graphicx}
+\usepackage{threeparttable}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{textgreek}
+\usepackage{fontawesome}
+\usepackage{changepage}
+\usepackage{array}
+% \usepackage{indentfirst}
+\usepackage{adjustbox}
+% \usepackage[margin=1in]{geometry} % optional, for better margins
+
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following two lines
+% to display URLs in blue roman font according to Springer's eBook style:
+\usepackage{color}
+% \renewcommand\UrlFont{\color{blue}\rmfamily}
+% \urlstyle{rm}
+%
+\begin{document}
+%
+\title{BepsBot: A Dual-Mode Writing Assistant for Peer Support in Bipolar Disorder Communities}
+%
+\titlerunning{BepsBot: Dual-Mode AI Writing Assistance for Bipolar Support}
+% If the paper title is too long for the running head, you can set
+% an abbreviated paper title here
+%
+\author{Minhazul Islam\inst{}\orcidID{0009-0007-6866-7687} \and
+Mengru Xue({\faEnvelopeO})\inst{}\inst{}\orcidID{0000-0001-9996-0594} \and
+Tasnim Afra\inst{}\orcidID{0009-0007-4789-2420}}
+%
+\authorrunning{M. Islam et al.}
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+\institute{Ningbo Global Innovation Center, Zhejiang University\\
+\email{mengruxue@zju.edu.cn}\\
+% \url{http://www.springer.com/gp/computer-science/lncs} \and
+% ABC Institute, Rupert-Karls-University Heidelberg, Heidelberg, Germany\\
+% \email{\{abc,lncs\}@uni-heidelberg.de}
+}
+
+
+\maketitle         % typeset the header of the contribution
+%
+\begin{abstract}
+
+Online mental health communities (OMHCs) provide valuable peer support for individuals living with bipolar disorder, yet composing emotionally appropriate and supportive responses remains challenging. Although AI-assisted writing systems can support users during composition, little is known about how people engage with different forms of AI guidance in emotionally sensitive communication contexts. We present BepsBot, a dual-mode human--AI writing assistant that combines evaluative feedback with example based recommendations for peer-support writing. We evaluated BepsBot through a within-subjects longitudinal study with 24 participants completing three counterbalanced bipolar-support writing tasks. Results show that participants strongly preferred evaluative feedback as their primary interaction strategy, while reliance on recommendation-based support varied across individuals. Example-based suggestions provided linguistic scaffolding and confidence support for some users, but also raised concerns regarding contextual appropriateness and authenticity. We discuss implications for designing collaborative AI systems for digital mental health, particularly regarding adaptive guidance, contextual grounding, transparency, and preservation of authentic user voice.
+
+\keywords{Human--AI collaboration \and bipolar disorder \and online mental health communities \and peer support \and AI-assisted writing}
+
+\end{abstract}
+
+\section{Introduction}
+
+Online mental health communities (OMHCs) have become important spaces where individuals with mental health conditions seek emotional reassurance, informational advice, and peer connection \cite{Naslund2016,DeChoudhury2020,Naslund2020}. Within bipolar disorder communities such as Reddit r/bipolar, users frequently share experiences related to depressive episodes, hypomania, medication side effects, emotional instability, stigma, and diagnostic uncertainty. Peer responses typically provide informational support advice, coping strategies, lived experience and emotional support (e.g., empathy, validation, reassurance) \cite{Schaefer1981,Wang2012}. Prior research shows that such interactions can reduce isolation and support emotional normalization in online environments \cite{Barney2011,Li2016,Naslund2020}.
+
+Despite these benefits, producing effective peer support remains challenging. Supportive communication requires balancing empathy, validation, and actionable guidance while avoiding overly generic, dismissive, or emotionally misaligned responses \cite{Cutrona1990,Li2016,OLeary2017}. In practice, many peer responses fail to achieve this balance, resulting in low-quality or insufficiently supportive content \cite{Feuston2019}. These challenges are amplified in bipolar disorder contexts due to rapidly shifting emotional states and highly sensitive disclosures. At the same time, support providers often experience uncertainty about whether their responses are helpful, which can reduce confidence and long-term engagement in peer-support activities \cite{Bracke2008}.
+
+Existing approaches to improving communication quality in OMHCs primarily rely on post-hoc interventions such as moderation, toxicity detection, or communication skill training \cite{Chancellor2017,Feuston2019}. While useful, these methods intervene after content is produced and provide limited support during the actual writing process \cite{Andersson2014,Doherty2012}. Recent advances in generative AI enable a shift toward real-time writing assistance, where users receive support during content creation \cite{Weisz2023,Yang2024CHI}. Such systems have been shown to reduce cognitive load and improve writing confidence in interactive settings \cite{Hui2018,Gero2019}. Broadly, AI writing support systems follow two paradigms: assessment-based feedback and recommendation-based guidance. Assessment-based systems provide evaluative feedback on user drafts to support revision and reflection \cite{Hattie2007,Peng2020}, while recommendation-based systems provide example texts or generated suggestions that serve as communicative models \cite{Kim2019,Gero2019}. These paradigms offer complementary strengths: assessment preserves authorship and encourages reflection, while recommendation expands expressive possibilities through exemplars.
+
+However, both paradigms introduce tensions in emotionally sensitive communication. Assessment-based feedback may be perceived as evaluative or performance-oriented, potentially increasing pressure during writing. Recommendation-based systems may improve fluency but raise concerns about authenticity, over-reliance, and loss of personal voice \cite{Shen2024,Jakesch2019}. These concerns are particularly critical in OMHCs, where authenticity, lived experience, and trust are central to peer-support interactions \cite{DeChoudhury2020}. Human--AI collaboration research emphasizes the importance of preserving user agency, transparency, and control in AI-assisted systems \cite{Amershi2019}. In sensitive communication domains, a key unresolved challenge is the ``empathy gap'': AI-generated emotional expressions may be fluent but are often perceived as generic or inauthentic \cite{Jakesch2019,Jakesch2023b}. This creates a tension between providing linguistic scaffolding and preserving authentic self-expression. Prior work has explored AI-assisted writing in social contexts, showing that AI can scaffold expression and improve communication confidence \cite{Wu2019,Kim2019}. However, most systems focus on a single form of assistance and are rarely evaluated in high-stakes mental health communication settings. Consequently, little is known about how users navigate multiple forms of AI support when both evaluative and exemplar-based guidance are available, or how their interaction strategies evolve over time.
+
+To address these gaps, we present \textit{BepsBot}, a dual-mode AI writing assistant designed to support peer communication in online bipolar disorder communities. BepsBot integrates two complementary modes: Assessment (AS), which provides evaluative feedback on user-written drafts, and Recommendation (RE), which retrieves semantically similar peer-generated comments as supportive exemplars. Rather than enforcing a fixed workflow, BepsBot allows users to flexibly engage with either or both modes depending on their writing needs and confidence. We investigate the following research questions:
+
+\textbf{RQ1:} How do users prioritize, combine, and switch between assessment-based and recommendation-based AI assistance during peer-support writing tasks?
+
+\textbf{RQ2:} How do users’ writing behavior, performance, and confidence evolve over repeated interactions with dual-mode AI support?
+
+\textbf{RQ3:} How do users perceive dual-mode AI assistance in terms of usability, trust, authorship, and authenticity in peer-support communication?
+
+To answer these questions, we conducted a within-subjects longitudinal study with 24 participants completing three counterbalanced peer-support writing tasks in a simulated OMHC environment. Participants interacted with both AS and RE modes, and we collected interaction logs, revision traces, questionnaires, and interview data to analyze behavioral and perceptual changes over time. This work makes the following contributions:
+\begin{itemize}
+\item We present \textit{BepsBot}, a dual-mode AI writing assistant combining assessment-based and recommendation-based support for peer-support communication in bipolar disorder contexts and we empirically investigate how users engage with, prioritize, and adapt to evaluative and recommendation-based AI assistance in emotionally sensitive writing tasks.
+\item We derive design implications for AI-assisted writing systems in online mental health communities, focusing on adaptive assistance, contextual grounding, transparency, and preservation of user voice.
+\end{itemize}
+
+\section{Related Work}
+
+
+
+\subsection{AI-Assisted Writing in Social and Sensitive Communication}
+
+AI-assisted writing systems have evolved from rule-based correction tools to generative systems capable of supporting real-time writing tasks \cite{Jakesch2023a,Weisz2023}. In social communication contexts, such systems can reduce cognitive load and support more fluent expression \cite{Hui2018,Gero2019}. However, interpersonal writing differs from transactional writing in that it requires managing tone, empathy, and relational meaning in addition to linguistic correctness. Prior HCI research has demonstrated the potential of AI to support communicative expression in social contexts. Wu et al. \cite{Wu2019} showed that AI-assisted rewriting systems can improve communication confidence for users facing writing difficulties. Kim et al. \cite{Kim2019} demonstrated that AI-generated suggestions can scaffold emotional expression and support interpersonal messaging. These findings support a view of AI as a collaborative partner that augments rather than replaces human authorship \cite{Jakesch2019}. However, applying AI assistance in emotionally sensitive communication introduces important challenges. Users may perceive AI-generated text as overly generic or emotionally inauthentic, reducing trust in system suggestions \cite{Jakesch2019,Jakesch2023b}. This creates a fundamental tension between expressive support and perceived authenticity, which is especially salient in peer-support contexts where lived experience and sincerity are central to communication quality \cite{Shen2024}. Effective systems must therefore balance linguistic assistance with preservation of user voice and communicative ownership.
+
+\subsection{Assessment- and Recommendation-Based Writing Support}
+
+Existing AI writing support systems in HCI generally adopt two paradigms: assessment-based feedback and recommendation-based guidance. Assessment-based systems evaluate user-generated text and provide structured feedback to support revision \cite{Hattie2007}. These systems typically highlight strengths, weaknesses, or missing elements to promote reflection and iterative improvement \cite{Wang2018,Kelly2018}. A key advantage of this approach is that it preserves authorship while encouraging metacognitive awareness of writing quality. However, assessment alone may not provide concrete linguistic alternatives, limiting its effectiveness in emotionally complex communication tasks where users struggle to translate feedback into actionable expression.
+
+Recommendation-based systems instead provide example texts or generated suggestions to guide writing \cite{Hui2018,Gero2019}. By exposing users to high-quality exemplars, these systems expand expressive possibilities and offer concrete models for communication. Such systems can reduce uncertainty and support articulation of complex emotional content. However, recommendation-based approaches may be perceived as generic or contextually misaligned, particularly in sensitive domains such as mental health communication \cite{Shen2024}. They may also introduce risks of over-reliance, where users substitute AI-generated content for their own intent. While both paradigms have demonstrated benefits, prior research has largely studied them independently. Assessment systems emphasize evaluation and reflection, while recommendation systems emphasize generation and imitation. Few studies have examined how users interact with both forms of assistance within a unified system or how they dynamically switch between evaluative and exemplar-based guidance during real-time writing tasks \cite{Peng2020}. In particular, little is known about how these interaction strategies evolve over repeated use in emotionally sensitive communication settings.
+
+\subsection{Human--AI Collaboration in Interactive Communication Systems}
+
+Human--AI collaboration research emphasizes systems in which AI supports human decision-making while preserving user agency and control \cite{Amershi2019}. Key principles include transparency, non-intrusiveness, and user autonomy. These principles are particularly important in communication systems, where meaning and intent must remain under user control. In emotionally sensitive domains, an additional challenge arises: maintaining authenticity in AI-mediated expression. Users often express skepticism toward AI-generated emotional language, perceiving it as less sincere or contextually appropriate than human-authored content \cite{Jakesch2019}. This creates a design requirement for systems that support expression without replacing or overshadowing the user’s voice. A related challenge is the ``empathy gap'' in AI-mediated communication: while AI can generate fluent emotional language, such expressions may lack perceived sincerity or lived experience \cite{Jakesch2023b}. This tension highlights the need for systems that scaffold expression while preserving personal authenticity and communicative ownership.
+
+From the literature, we identify few key gaps. First, most prior work focuses on support seekers, while support providers who significantly influence the quality of peer support remain underexplored \cite{Jones2019}. Second, existing AI writing systems typically implement either assessment-based or recommendation-based support, but rarely integrate both within a unified interaction framework \cite{Peng2020}. Third, little is known about how users dynamically switch between evaluative feedback and exemplar-based guidance over time in emotionally sensitive writing contexts. To address these gaps, we present \textit{BepsBot}, a dual-mode AI writing assistant designed for peer-support communication in online bipolar disorder communities. BepsBot integrates assessment-based feedback and recommendation-based exemplars within a unified system, allowing users to flexibly engage with both forms of support depending on their communicative needs and confidence levels.
+
+% \section{Related Work}
+
+% \subsection{Peer Support in Online Mental Health Communities}
+
+% \subsection{Challenges of Supportive Communication in Bipolar and Mental Health Contexts}
+
+% \subsection{AI-Assisted Writing and Human--AI Collaboration}
+
+% \subsection{Assessment-Based and Recommendation-Based Writing Support}
+
+
+\section{BepsBot System Design}
+\label{sec:system_design}
+
+We present \emph{BepsBot} (Bipolar emotional peer support Bot), a 
+technological prototype for assisting providers' manifestation of peer 
+support in OMHCs. We do not intend BepsBot as a canonical solution but 
+as a design probe to gain insights into how providers experience 
+different writing-support mechanisms; to keep guidance engaging, the 
+system presents its messages as a bot. We first describe the support 
+evaluation model, then BepsBot's Assessment (AS) and Recommendation (RE) 
+modes.
+
+\subsection{Support Evaluation}
+\label{subsec:support_evaluation}
+
+Following the data-driven approach of~\cite{Peng2020}, we built 
+classifiers that score Informational Support (IS: ``advice, referrals, 
+or knowledge'') and Emotional Support (ES: ``understanding, encouragement, 
+affirmation, sympathy, or caring'') on a three-level scale 
+(1 = low, 2 = medium, 3 = high). Using the Pushshift API, we collected 
+posts and comments from Reddit r/bipolar, excluding comments by original 
+posters and those shorter than three words, yielding 48,148 
+comments. Two researchers familiar with the community independently 
+annotated a stratified 450-comment sample after agreeing on a rating 
+scheme with a third coder holding a mental-health first-aid certificate. 
+Inter-rater agreement was high (Cohen's $\kappa = 0.860$ for IS, $0.892$ 
+for ES); the third coder resolved disagreements. The labelled 
+distribution was IS: 199/149/102 and ES: 127/197/126 (low/medium/high). Each comment was represented by 64 LIWC-2015 
+categories, a binary URL feature, and weighted word- and sentence-count 
+features\footnote{Word/sentence count is set to 1 if $\leq 60$ and 
+$\leq 10$ respectively; weights tuned empirically.}. Under 10-fold 
+cross-validation, Random Forest (RF) performed best for IS and XGBoost 
+for ES, both outperforming SVM and logistic regression baselines 
+(Table~\ref{tab:classifier_performance}). Cross-verification on 100 
+held-out comments against one annotator's labels confirmed robustness 
+(IS 65\%, ES 75\% accuracy). The top features cluster into 
+four groups that drive BepsBot's AS-mode suggestions 
+: \emph{length-based} (predicts both IS 
+and ES; more words $\rightarrow$ higher scores); \emph{personal pronouns} 
+(\emph{I, we, you, s/he, they}; higher density indicates lower IS but 
+higher ES); \emph{social} (\emph{friend, family}; predicts higher IS); 
+and \emph{positive emotion} (\emph{exciting, brave}; predicts higher 
+ES). These four groups are embedded directly in BepsBot's feedback logic.
+
+\begin{table}[h]
+\centering
+\caption{Performance metrics (Accuracy, Precision, Recall, F1-score) and the top-6 important features for IS and ES classifiers. The metrics ($\mu$/$\sigma$) are reported based on 10-fold cross-validation.}
+\label{tab:classifier_performance}
+\begin{tabular}{l|l|l|l|l|p{5.5cm}}
+\hline
+& \textbf{A} & \textbf{P} & \textbf{R} & \textbf{F1} & \textbf{Top-6 Important Features} \\
+\hline
+IS & .64 / .07 & .64 / .11 & .62 / .07 & .62 / .07 & Word count(.066), I(.048), Sentence count(.033), Social(.031), Pronouns(.027), Personal Pronouns(.024) \\
+ES & .68 / .11 & .70 / .14 & .68 / .12 & .68 / .11 & Word count(.090), Sentence count(.045), Personal Pronouns(.028), I(.027), Positive emotions(.026), You(.022) \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Assessment (AS) Mode}
+\label{subsec:as_mode}
+
+In AS mode, BepsBot first introduces itself, then reports the predicted 
+IS and ES levels of the current draft and surfaces one improvement 
+suggestion drawn from 
+(Figure~\ref{fig:as_mode}). Three design considerations shaped this 
+flow: (1)~the utterance is conditioned on the predicted IS/ES scores so 
+that feedback reflects current writing performance; (2)~since repetitive 
+emphasis on a single feature (especially word count) can frustrate 
+users, the length-based issue is raised only at its first occurrence, 
+and groups 2--4 are sampled with a random factor so that no single 
+feature always dominates; (3)~when promoting groups 2, 3, or 4, BepsBot 
+randomly suggests twelve related words from the LIWC-2015 dictionary to 
+seed serendipity for writing inspiration. We prepare multiple scripts 
+per feature, with samples in Table~\ref{tab:feature_types}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.85\linewidth]{assesment_ui.png}
+\caption{AS mode: (i) IS/ES report and (ii) one improvement suggestion.}
+\label{fig:as_mode}
+\end{figure}
+
+\begin{table}[h]
+\centering
+\caption{Four feature types in predicting IS or ES and their mean 
+distributions across predicted levels (1=low / 2=medium / 3=high) on 
+the labelled 450 comments. Feature 1 is weighted word count; features 
+2--4 are percentages of feature words. ``--'' indicates the feature is 
+not predictive for that dimension. (SDs reported in supplementary 
+material.)}
+\label{tab:feature_types}
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}p{3.0cm}|c|c|p{4.5cm}@{}}
+\hline
+\textbf{Features} & \textbf{IS (1/2/3)} & \textbf{ES (1/2/3)} & \textbf{AS-mode utterance} \\
+\hline
+1) Length-based 
+  (word, sentence count) & 
+  .45 / .68 / .90 & 
+  .41 / .59 / .90 & 
+  ``Try to write more.'' \\
+\hline
+2) Personal pronouns 
+  (\emph{I, you}) & 
+  .15 / .12 / .11 & 
+  .10 / .15 / .14 & 
+  (IS) ``Maybe share some knowledge.'' / 
+  (ES) ``Show connections, e.g.,\ldots'' \\
+\hline
+3) Social 
+  (\emph{friend, family}) & 
+  .10 / .11 / .13 & 
+  -- & 
+  ``Share experience about yourself or others, e.g.,\ldots'' \\
+\hline
+4) Positive emotion 
+  (\emph{exciting, brave}) & 
+  -- & 
+  .03 / .05 / .05 & 
+  ``More positive words can be used, e.g.,\ldots'' \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\subsection{Recommendation (RE) Mode}
+In RE mode, BepsBot returns three linguistically transformed versions 
+of the user's current draft, each foregrounding a different supportive 
+strategy. Candidates are retrieved from the 48{,}148-comment r/bipolar 
+pool in two steps for near-real-time response: an Elasticsearch 
+\emph{More Like This} query selects 50 tf-idf-relevant candidates, which 
+are then re-ranked by cosine similarity over 768-dimensional BERT 
+embeddings. From the top candidates, BepsBot generates three revisions 
+of the user's own draft, each applying one targeted transformation: 
+(1)~Personal Pronouns (\emph{I, you, we, your}); 
+(2)~Family and Friends (LIWC \emph{social}: \emph{friend, 
+family, together, community}); and 
+(3)~Positive Words (LIWC \emph{positive emotion}: \emph{hope, 
+care, brave, courage}). Each transformation preserves the draft's 
+structural content and communicative intention. The UI 
+Figure~\ref{fig:re_mode} opens with a brief bot introduction, 
+colour-codes the three feature types for quick visual scanning, and 
+pairs each version with an \emph{Accept to Replace Comment} button so 
+users may adopt a revision in full or use it as inspiration for manual 
+editing.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\linewidth]{recomendation_ui.png}
+\caption{RE mode: three transformed versions, each with an 
+\emph{Accept to Replace Comment} button.}
+\label{fig:re_mode}
+\end{figure}
+
+
+\section{EXPERIMENT}
+
+
+\subsection{Simulated OMHC Environment and BepsBot Setup}
+
+We simulated an anonymous peer-support community for people living with 
+bipolar disorder (Figure~\ref{fig:as_mode}) that reproduces the 
+fundamental elements of r/bipolar: a target help-seeking post at the top, 
+a comment-composition box, and a list of recent posts with comments 
+(sampled from r/bipolar and de-identified). Following 
+\cite{peng2020mepsbot}, we embedded BepsBot with the interaction flow 
+\textit{write} $\rightarrow$ \textit{Preview Assessment / Preview 
+Recommendation} $\rightarrow$ \textit{Continue to submit}.
+
+To avoid interrupting composition~\cite{hui2018wakeword}, BepsBot stays 
+hidden until the first preview click. The button row then shifts from 
+(e1) \textit{Preview Assessment / Preview Recommendation} to (e2) 
+\textit{Quit / Preview Recommendation / Continue to submit} in AS mode, 
+or \textit{Quit / Continue to submit} plus three \textit{Accept to Replace 
+Comment} buttons in RE mode. Participants could iterate freely between 
+modes, edit at any point, accept a recommendation in full, or submit the 
+draft as written; BepsBot re-evaluated the current draft on every preview 
+click and hid again on submission. The system ran on a local web server 
+on a researcher-controlled MacBook Pro.
+
+\subsection{Participants}
+We recruited 24 participants (12 female, 12 male; age range 22--33, 
+$M = 27.75$, $SD = 3.40$) from online mental-health peer-support 
+platforms. The inclusion criteria were that participants had prior 
+experience receiving or providing mental-health support and were 
+willing to offer support to peers in online communities. All 
+participants were fluent in reading and writing in English; the 
+recruitment platforms operate in English, and all study materials 
+were conducted in English. We refer to participants as P1--P24 
+throughout. All 24 completed the core protocol (three writing tasks, 
+post-task questionnaires, and the end-of-study); 24
+additionally consented to the semi-structured exit interview.
+
+\subsection{Tasks}
+Each participant completed three writing tasks (T1--T3), composing a 
+single supportive comment per task in response to a help-seeking post 
+from a person living with bipolar disorder. Because shared experience 
+and a common register of mood-state language matter for OMHC 
+engagement~\cite{andalibi2018}, we invited three individuals with a 
+self-identified bipolar diagnosis and active OMHC participation to 
+each write an anonymous post drawn from their own experience. The posts 
+span the trajectory of living with the condition: 
+(i) disclosing a long-managed diagnosis to a therapist and peers in a 
+high-pressure academic setting; 
+(ii) handling intrusive rumination and self-harm thoughts during an 
+otherwise stable mood phase; and 
+(iii) imposter feelings during diagnosis for Bipolar~II. Post order was 
+counterbalanced via a full Latin square: each of the six possible 
+orderings was assigned to four participants, so every post appeared 
+equally often at T1, T2, and T3.
+
+
+
+\subsection{Measures}
+
+We evaluated user experience using multiple complementary measures. Confidence and satisfaction were measured using 5-point Likert scales (1 = not at all, 5 = extremely) at baseline and post-task \cite{koo2025likert}. System usability was assessed using the System Usability Scale (SUS; 0--100), along with additional utility (Q11--Q16) and concern (Q17--Q20) items \cite{brooke1996sus}
+
+To assess communication quality, we computed informational and emotional support (IS/ES) scores using a 1--3 coded rubric, evaluated at both pre- (first preview interaction) and post- (final submission) stages \cite{sharma2018mental,pruksachatkun2019moments}. We further conducted human coding of edited responses using eight categories capturing informational support (advice, information), emotional support (understanding, encouragement), and linguistic/social markers (personal pronouns, social connection, positive affect, minor edits). Two independent coders achieved substantial agreement ($\kappa = .78$), with disagreements resolved through discussion.
+
+System interaction behavior was captured through detailed logs, including task completion time, mode selection order (AS vs. RE), frequency of post-feedback edits, and whether recommendation outputs were accepted or replaced. In addition, semi-structured interviews (15--25 minutes) were conducted, audio-recorded, and transcribed verbatim. We analyzed qualitative data using reflexive thematic analysis \cite{braun2006thematic}, combining inductive and deductive coding with two researchers blind to quantitative results during initial coding.
+
+
+\subsection{Procedure}
+
+After obtaining informed consent, we first showcased the simulated 
+community and told participants it was a mapping from a real one. 
+We then let them freely explore it for three minutes. Next, we 
+introduced the task and walked participants through the BepsBot 
+system, demonstrating both Assessment and Recommendation modes. 
+In each of the three task sessions, participants were asked to 
+write a comment in response to a given support-seeking post. They 
+could click \textit{Preview Assessment} or \textit{Preview 
+Recommendation} whenever and as many times as they wanted, edit 
+their comment, or continue to submit. After participants hit 
+\textit{Continue to submit}, they filled out a post-task survey 
+rating their confidence in and satisfaction with the comment. 
+Upon completion of all three tasks, participants finished a final 
+questionnaire including the System Usability Scale, utility items, 
+and concern items. Participants who consented then took 
+part in a semi-structured interview to make sense of their ratings. 
+After debriefing, we chatted with participants to ensure they left 
+in a stable emotional status. The whole study lasted 60--90 minutes 
+for each participant.
+
+\subsection{Ethical Issues and Safety Protocol}
+
+Prior to this work, we obtained IRB approval for a broader research 
+project on peer-support practices in online mental-health communities, 
+covering our data collection, analysis, and interviews. When citing 
+anonymous comments from r/bipolar and from our participants, we removed 
+all identifiable information to protect their privacy. We set up a 
+protocol to ensure the safety of our support-seeking post authors 
+and providers during the study. For the three post authors individuals 
+with lived experience of bipolar disorder we contacted them every 
+day during the course of the study to check if they were mentally 
+stable. For the 24 providers, we allowed them to exit the study at 
+any point without consequence if they felt uncomfortable, and 
+suggested they consult mental-health resources (contact provided). 
+No participant requested to pause or withdraw, and no incident 
+requiring escalation occurred.
+
+\subsection{Data Analysis}
+
+A preliminary Friedman test confirmed that post order had no main effect 
+or interaction with time-point on confidence or satisfaction; we 
+therefore treat time-point as the sole within-subjects factor. 
+Confidence and satisfaction trajectories across Baseline, T1, T2, and T3 
+were assessed with Friedman tests followed by Wilcoxon signed-rank 
+post-hoc comparisons (Baseline vs.\ each post-task rating), Holm-corrected 
+at family-wise $\alpha = .05$; effect sizes are reported as 
+$r = Z/\sqrt{2N}$. Monotonic improvement in comment quality across tasks 
+was tested with Page's $L$ on the ordinal IS and ES scores (low~=~1, 
+medium~=~2, high~=~3). At sustained use, we computed Spearman's $r_s$ 
+between T3 IS/ES scores and T3 confidence; T1 and T2 correlations are 
+reported descriptively. Pre- vs.\ post-bot comment changes were coded 
+through reflexive thematic analysis~\cite{braun2006thematic}: two authors 
+independently coded added, removed, or modified sentences, reconciled 
+codes through discussion, and counted theme occurrences. The same 
+procedure was applied to the interview transcripts.
+
+
+
+\section{Result}
+
+\subsection{Quantative Result}
+\subsubsection{System Engagement and Mode Prioritization}
+\textbf{Task completion times.}
+Completion time decreased monotonically from T1 (M = 11.21 min, SD = 1.89 min) to T2 (M = 8.82 min, SD = 1.10 min) to T3 (M = 7.59 min, SD = 0.62 min), representing a 32.3\% reduction from T1 to T3. The standard deviation also collapsed from 1.89 to 0.62 min, indicating not only faster performance but convergent strategies: by T3, nearly all participants completed tasks in approximately 7–8 minutes. This pattern reflects procedural learning of the dual-mode interface rather than deepened engagement with either individual mode. The narrowing variability suggests that participants developed a consistent workflow routine by the third task, having internalized the available feedback mechanisms.
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{task_completion_boxplot_white.png}
+  \caption{Task completion times across tasks T1--T3.}
+  \label{fig:task-completion-times}
+\end{figure}
+
+\textbf{First-Click Mode Preference}
+All 24 participants (100\%) clicked Assessment Mode first at T1. By T2, 23 (95.8\%) still began with Assessment, with only one participant (4.2\%) initiating with Recommendation. By T3, 21 participants (87.5\%) continued the Assessment-first pattern, while 3 (12.5\%) switched to Recommendation-first. This minimal shift suggests that participants treated the Assessment mode as a validation checkpoint before considering alternatives, not as one of two equivalent options. The stable AS-first pattern indicates that evaluative feedback served as the primary anchor in participants’ workflow—a finding echoed in interviews where participants described wanting to “know how I’m doing” before seeking examples.
+This near-unanimous preference for Assessment-first contrasts with systems offering contextually grounded recommendations, where prior work has observed up to 62.5\% Recommendation-first behavior. The difference suggests that retrieval-based, non-contextual exemplars provide insufficient incentive to bypass evaluative feedback: participants wanted to know the quality of their own writing before examining alternatives. As one participant explained, “I wanted to see my own assessment first before looking at what others wrote—it gave me a baseline to compare against” (P11).
+
+\textbf{Recommendation engagement.} Participants engaged the Recommendation mode 52 times across 72 sessions, with full replacement accepted in 24 instances (46.2\% overall acceptance). Acceptance varied across tasks—T1: 50.0\%, T2: 27.3\%, T3: 52.4\%—with the T2 dip possibly reflecting content difficulty and the T3 rebound suggesting growing selectivity with experience. The moderate rate indicates participants used recommendations as inspirational reference rather than templates; as one participant noted, "I looked at the examples to get ideas, but I wanted to say things in my own way" (P14), reflecting a desire for creative autonomy alongside directional guidance.
+
+\textbf{Version selection.} Among RE users, version choice was approximately uniform across the three linguistic dimensions: Personal Pronouns (34.4\%, 11/32), Family and Friends (34.4\%, 11/32), and Positive Words (31.2\%, 10/32). This parity suggests that no single dimension was perceived as universally superior; instead, participants matched stylistic features to the specific content of each community post. For instance, posts emphasizing interpersonal relationships elicited more Family \& Friends selections, while posts expressing despair elicited more Positive Words selections.
+
+\textbf{Post-Assessment Editing Behavior}
+The frequency of post-AS editing declined sharply across tasks: 10 instances at T1, 8 at T2, and only 2 at T3. This trend is consistent with growing confidence in initial drafts and increased familiarity with the rating criteria. By T3, most participants either received high scores on their initial drafts (making editing unnecessary) or had internalized the feedback patterns sufficiently to write higher-quality initial drafts. As one participant noted, “By the third time, I kind of knew what the system was looking for, so I wrote better from the start” (P6).
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=1\linewidth]{Post-Assessment Editing Behavior.png}
+    \caption{(a) First-click mode preference across tasks; (b) Recommendation acceptance rate by task.}
+    \label{fig:placeholder}
+\end{figure}
+
+
+\subsubsection{Confidence and Satisfaction Trajectories}
+
+Baseline confidence and satisfaction were moderate (M = 2.29 and 2.12, respectively), reflecting initial uncertainty. Both measures increased sharply after first system exposure at T1 (M = 4.17 each). By T3, ceiling effects were pronounced: 75\% of participants reached maximum confidence and 62.5\% maximum satisfaction. Given the interquartile range of [5, 5] for T3 confidence, inferential comparisons are driven by the minority of non-ceiling participants. Cochran's Q test confirmed a significant increase in ceiling attainment from Baseline to T3 for both measures (both $p < .001$).
+
+\begin{table}[htbp]
+\centering
+\caption{Descriptive statistics for confidence and satisfaction (5-point Likert, $N=24$)}
+\label{tab:descriptives}
+\begin{tabular}{lcccccc}
+\hline
+Variable & Mean & Mdn & SD & Min & Max & IQR \\
+\hline
+Baseline Confidence & 2.29 & 2.0 & 0.86 & 1 & 4 & [2.0, 3.0] \\
+T1 Post Confidence & 4.17 & 4.5 & 1.01 & 2 & 5 & [3.8, 5.0] \\
+T2 Post Confidence & 3.96 & 4.0 & 0.96 & 2 & 5 & [3.0, 5.0] \\
+T3 Post Confidence & 4.58 & 5.0 & 0.83 & 2 & 5 & [4.8, 5.0] \\
+Baseline Satisfaction & 2.13 & 2.0 & 0.68 & 1 & 4 & [2.0, 2.0] \\
+T1 Post Satisfaction & 4.17 & 4.0 & 0.92 & 2 & 5 & [4.0, 5.0] \\
+T2 Post Satisfaction & 3.92 & 4.0 & 1.06 & 2 & 5 & [3.8, 5.0] \\
+T3 Post Satisfaction & 4.54 & 5.0 & 0.72 & 2 & 5 & [4.0, 5.0] \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Normality and Overall Effects}
+Shapiro–Wilk tests confirmed non-normality at all time-points for 
+both measures (all $W < 0.85$, all $p < .01$), justifying non-parametric 
+analysis throughout. Friedman tests revealed highly significant 
+differences across the four measurement points for confidence 
+($\chi^2(3, N = 24) = 38.14$, $p < .001$) and satisfaction 
+($\chi^2(3, N = 24) = 39.06$, $p < .001$), rejecting the null 
+hypothesis of no systematic change over time.
+
+\textbf{Post-hoc comparisons.} Wilcoxon signed-rank tests with 
+Holm--Bonferroni correction ($\alpha_{adj}=.006$ for 9 comparisons) 
+showed all Baseline-to-Post comparisons significant with large effect 
+sizes (Table~\ref{tab:posthoc}). T2-to-T3 satisfaction ($p=.008$, 
+$p_{adj}=.048$) did not survive correction; we report it as a trend. 
+No significant differences emerged among T1, T2, and T3 post-task 
+ratings, indicating that gains were primarily \textit{Baseline-to-Post} 
+rather than \textit{inter-post} improvements.
+
+\begin{table}[htbp]
+\centering
+\caption{Wilcoxon post-hoc comparisons for confidence and satisfaction ($N=24$)}
+\label{tab:posthoc}
+
+\begin{threeparttable}
+\begin{tabular}{lccccc}
+\hline
+Comparison & $W$ & $Z$ & $p$ & $r$ & Decision \\
+\hline
+Baseline vs. T1 Confidence & 3.0 & 3.95 & $<$.001 & .57 & $p_{adj}<.001$ \textsuperscript{**} \\
+Baseline vs. T2 Confidence & 2.5 & 3.65 & $<$.001 & .53 & $p_{adj}<.001$ \textsuperscript{**} \\
+Baseline vs. T3 Confidence & 3.0 & 4.24 & $<$.001 & .61 & $p_{adj}<.001$ \textsuperscript{**} \\
+T1 vs. T2 Confidence & 30.0 & 1.17 & .244 & .17 & ns \\
+T1 vs. T3 Confidence & 29.0 & 1.51 & .131 & .22 & ns \\
+T2 vs. T3 Confidence & 25.0 & 2.31 & .021 & .33 & ns ($p_{adj}=.126$) \\
+Baseline vs. T1 Satisfaction & 2.0 & 4.00 & $<$.001 & .58 & $p_{adj}<.001$ \textsuperscript{**} \\
+Baseline vs. T2 Satisfaction & 3.5 & 3.87 & $<$.001 & .56 & $p_{adj}<.001$ \textsuperscript{**} \\
+Baseline vs. T3 Satisfaction & 2.5 & 4.29 & $<$.001 & .62 & $p_{adj}<.001$ \textsuperscript{**} \\
+T1 vs. T2 Satisfaction & 31.0 & 1.06 & .289 & .15 & ns \\
+T1 vs. T3 Satisfaction & 28.0 & 1.62 & .105 & .23 & ns \\
+T2 vs. T3 Satisfaction & 4.0 & 2.66 & .008 & .38 & trend ($p_{adj}=.048$) \\
+\hline
+\end{tabular}
+
+\begin{tablenotes}
+\footnotesize
+\item Note. $r = Z/\sqrt{2N}$ for paired comparisons. ** $p_{adj} < .006$.
+\end{tablenotes}
+
+\end{threeparttable}
+\end{table}
+
+\textbf{Ceiling effects.} The 75\% ceiling at T3 confidence constrains 
+interpretation: Wilcoxon tests are driven by the 6 non-ceiling 
+participants, making effect sizes unstable. We analyzed ceiling 
+attainment (score = 5) via Cochran's $Q$ test, which confirmed 
+significant increase from Baseline to T3 ($Q(3) = 16.8$, $p < .001$).
+
+
+
+
+
+
+\subsubsection{Comment Quality Evolution}
+
+Table~\ref{tab:quality} presents IS/ES score distributions across tasks. For Emotional Support, the proportion of High-quality comments increased from 0\% at T1 to 41.7\% at T3, while Low-quality comments decreased from 41.7\% to 12.5\%. Medium-quality comments dominated at T1 and T2 (58.3\% and 70.8\%, respectively), suggesting that most participants initially produced adequate emotional content that improved with system assistance.
+
+For Informational Support, the shift was even more pronounced: High-quality comments rose from 12.5\% at T1 to 58.3\% at T3, while Low-quality comments dropped from 54.2\% to 20.8\%. The mean IS score increased from 1.58 (T1) to 2.38 (T3), representing a shift of approximately one full quality level. This stronger improvement in IS relative to ES may reflect the particular effectiveness of AS feedback for informational content---when participants saw ``Low Information'' scores, the concrete suggestion to add advice or knowledge provided a clear revision target.
+
+\begin{table}[htbp]
+\centering
+\caption{Distribution of IS/ES classifier scores across tasks ($N=24$)}
+\label{tab:quality}
+\begin{tabular}{lcccccc}
+\hline
+ & \multicolumn{3}{c}{Emotional Support (ES)} & \multicolumn{3}{c}{Informational Support (IS)} \\
+Task & High (3) & Medium (2) & Low (1) & High (3) & Medium (2) & Low (1) \\
+\hline
+T1 & 0 (0\%) & 14 (58.3\%) & 10 (41.7\%) & 3 (12.5\%) & 8 (33.3\%) & 13 (54.2\%) \\
+T2 & 0 (0\%) & 17 (70.8\%) & 7 (29.2\%) & 6 (25.0\%) & 6 (25.0\%) & 12 (50.0\%) \\
+T3 & 10 (41.7\%) & 11 (45.8\%) & 3 (12.5\%) & 14 (58.3\%) & 5 (20.8\%) & 5 (20.8\%) \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Trend analysis.} Page’s $L$ test for ordered alternatives confirmed significant monotonic 
+improvement across T1 $\rightarrow$ T2 $\rightarrow$ T3 for both ES 
+($L = 487.5$, $p = .002$) and IS ($L = 501.0$, $p < .001$). These results 
+support genuine quality improvement beyond simple practice effects, as the 
+ordered nature of the improvement aligns with progressive learning from 
+system feedback.
+
+At the individual level, 14/24 (58.3\%) improved on ES from T1 to T3, 
+15/24 (62.5\%) on IS; only 1/24 (4.2\%) declined on ES, and 4/24 (16.7\%) 
+on IS. The preponderance of improvement over decline suggests that 
+BEBPSBot’s feedback was generally beneficial rather than merely shifting 
+scores randomly. 
+
+\textbf{Quality--confidence association.} Table~\ref{tab:correlations} 
+presents Spearman correlations between IS/ES scores and confidence at 
+each time-point. The T3 IS $\times$ T3 confidence correlation was 
+significant ($r_s = .552$, $p = .005$, two-tailed), surviving 
+Bonferroni correction for two confirmatory tests ($\alpha_{adj} = .025$). 
+T1 and T2 correlations were exploratory and did not survive correction.
+\begin{table}[htbp]
+\centering
+\caption{Spearman correlations between IS/ES scores and confidence ($N=24$)}
+\label{tab:correlations}
+
+\begin{threeparttable}
+\begin{tabular}{llcc}
+\hline
+Time-point & Pair & $r_s$ & $p$ \\
+\hline
+T1 & IS $\times$ Confidence & .379 & .068 \\
+   & ES $\times$ Confidence & $-$.145 & .498 \\
+T2 & IS $\times$ Confidence & .312 & .142 \\
+   & ES $\times$ Confidence & .397 & .055 \\
+T3 & IS $\times$ Confidence & .552 & .005 \textsuperscript{*} \\
+   & ES $\times$ Confidence & .218 & .310 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item Note. * $p < .025$, Bonferroni-corrected for 2 confirmatory tests (T3 only).
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\subsubsection{Comment Quality Evolution}
+\textbf{Word count.} Among 39 analyzable comment pairs (54.2\% of 72 possible sessions), mean 
+length change was +3.4 words (initial: $M = 79.5$, final: $M = 82.9$). 
+A Wilcoxon signed-rank test was non-significant ($W = 34.0$, $p = .455$, 
+$r = .19$), indicating no systematic length change. The absence of length 
+increase is notable because it suggests that participants improved quality 
+through content refinement rather than verbosity.
+
+Most participants (26/39, 66.7\%) submitted comments identical to their 
+initial draft, using Assessment Mode as validation rather than revision 
+trigger. This pattern---which we label Pattern A (Validation)---indicates 
+that for many participants, simply seeing a high or medium score was 
+sufficient to confirm comment adequacy. As one participant explained, 
+``When the system said my comment was good, I felt confident enough to 
+just submit it'' (P3). Among those who did revise, the modification rate 
+increased with task experience, suggesting growing comfort with iterative 
+refinement.
+
+\textbf{Content changes.} Among 13 modified comments, 33 total code 
+occurrences were identified (multiple codes per comment permitted). 
+Inter-coder agreement was Cohen's $\kappa = .78$ (substantial); 
+disagreements resolved through discussion.
+
+\begin{table}[htbp]
+\centering
+\caption{Content change categories among 13 modified comments}
+\label{tab:coding}
+\begin{tabular}{llcc}
+\hline
+Theme & Category & $n$ & \% of codes \\
+\hline
+IS-related & Advice & 9 & 27.3\% \\
+ & Information & 3 & 9.1\% \\
+ES-related & Understanding & 6 & 18.2\% \\
+ & Encouragement & 3 & 9.1\% \\
+Expression & Personal Pronoun & 4 & 12.1\% \\
+ & Social-Connection & 3 & 9.1\% \\
+ & Positive-Affect & 3 & 9.1\% \\
+Other & Minor-Edit & 2 & 6.1\% \\
+\hline
+\end{tabular}
+\end{table}
+
+IS-Advice dominated (27.3\%), indicating that when participants revised, 
+they primarily added actionable guidance. ES-related changes accounted 
+for 27.3\% of codes, but this represents only $\sim$9\% of all submitted 
+comments (27.3\% $\times$ 33.3\% modification rate).
+
+\textbf{Change patterns.} Pattern A (validation, unchanged): 26/39 
+(66.7\%). Pattern B (selective integration, expanded): 8/39 (20.5\%). 
+Pattern C (full replacement, shortened via RE acceptance): 5/39 (12.8\%). 
+Pattern C raises autonomy concerns: these participants surrendered 
+authorship entirely to retrieved exemplars, warranting attention in 
+design.
+
+\subsubsection{System Perception and Concerns}
+
+\textbf{SUS usability.} The aggregate SUS score was 88.0 ($SD = 11.4$, $Mdn = 90.0$, range 65--100), 
+classified as ``Excellent'' per Bangor et al. (2008) and substantially 
+exceeding the 68-point industry average. The grade distribution was highly 
+favorable: 70.8\% (17/24) received Grade A ($\geq$85), 12.5\% (3/24) Grade B, 
+and 16.7\% (4/24) Grade C. No participant scored below the ``OK'' threshold.
+
+Item-level analysis Table~\ref{tab:sus} revealed strongest 
+performance on learnability (Q7: $M = 4.88$, $SD = 0.45$) and self-sufficiency 
+(Q4: $M = 1.33$, $SD = 0.76$, reverse-scored), indicating that participants 
+found the system highly learnable and did not require technical support. 
+The weakest-performing item was Q8 (cumbersome: $M = 1.50$, $SD = 0.98$), 
+reflecting occasional loading latency noted in interviews. All other items 
+scored favorably, with perceived confidence (Q9: $M = 4.62$) and ease of use 
+(Q3: $M = 4.50$) particularly strong.
+
+\begin{table}[htbp]
+\centering
+\caption{SUS item-level means (original 1--5 scale, $N=24$)}
+\label{tab:sus}
+\begin{tabular}{clcc}
+\hline
+Item & Statement & Mean & SD \\
+\hline
+Q1 & Use frequently & 4.24 & 0.78 \\
+Q2 & Unnecessarily complex & 1.44 & 0.92 \\
+Q3 & Easy to use & 4.48 & 1.00 \\
+Q4 & Need tech support & 1.32 & 0.75 \\
+Q5 & Well integrated & 4.32 & 0.80 \\
+Q6 & Too much inconsistency & 1.44 & 0.71 \\
+Q7 & Learn quickly & 4.84 & 0.47 \\
+Q8 & Cumbersome & 1.52 & 0.96 \\
+Q9 & Felt confident & 4.60 & 0.58 \\
+Q10 & Need to learn a lot & 1.68 & 0.99 \\
+\hline
+\end{tabular}
+\end{table}
+
+Utility items (Q11–Q16) scored highly across the board (M = 4.08–4.71), with Q11 (system useful) highest (M = 4.71, SD = 0.62) and Q13 (feedback accurate) lowest (M = 4.12, SD = 0.90). The high utility ratings align with the confidence and satisfaction improvements observed in the main task measures.
+Concern items (Q17–Q20) were generally low, indicating limited perceived risk. However, Q19 (suggestions overly generic) showed the highest concern (M = 2.42, SD = 1.50) with high variability indicating polarized views—some participants found recommendations well-targeted while others perceived them as insufficiently tailored. This finding directly motivated our Study 2 architectural redesign to incorporate more contextually aware recommendation generation.
+
+\textbf{Correlation analysis.} Spearman correlations between SUS total and outcome variables yielded 
+negligible associations: SUS $\times$ confidence gain ($r_s = -.07$, 
+$p = .76$), SUS $\times$ satisfaction gain ($r_s = -.02$, $p = .91$), 
+SUS $\times$ T3 confidence ($r_s = .27$, $p = .20$), and SUS $\times$ 
+T3 satisfaction ($r_s = .25$, $p = .24$). The absence of significant 
+correlations---despite both SUS and satisfaction being high---confirms 
+that usability and self-reported benefit are orthogonal dimensions in 
+this context. Participants could perceive the system as highly usable 
+while experiencing varying degrees of benefit, and vice versa. This 
+orthogonality is consistent with prior findings (Sauro \& Lewis, 2012) 
+and underscores the importance of measuring both constructs separately \cite{ma2016usability}.
+
+
+\subsection{Qualitative Result}
+
+Eight themes from 24 exit interviews (conducted by researcher, transcribed verbatim, analyzed via reflexive thematic analysis \cite{Braun2006}):
+
+
+
+
+\textbf{Theme 1: Structured Self-Improvement Workflow.} 
+The dominant integration pattern was a sequential, three-step loop in which participants (i) drafted independently, (ii) opened \textit{Preview Assessment} as a checkpoint, and (iii) consulted \textit{Preview Recommendation} selectively, often when the assessment surfaced a deficiency or when seeking phrasing alternatives. Assessment functioned as the \textit{primary} mode and the entry point for revision; Recommendation was \textit{secondary} and conditional. P7 described this loop precisely: \textit{"I first write an initial comment based on my own thoughts after reading the post. Then I go to the 'review' or 'assessment' option to see how my written comment is rated. When I saw that my comment had low information, I checked the recommendations provided by the system."} P18 reported the same assessment-first sequence with conditional RE use: \textit{"I first write down what I feel or want to say. Then I use the system's 'Assessment' option to see how much informational or emotional support my comment provides... If I feel further improvement is needed, I look at the recommendations and finalize my comment with their help."} P12 explained the rationale for preserving autonomous authorship: \textit{"I would first write a message or comment myself based on the poster's problem... Then I used the system's 'Preview Assessment' and 'Recommendation' buttons to see how effective my writing was. If I felt I didn't like the system's suggestion or it didn't align with my thoughts, I would submit my own written comment."} This theme directly explains the near-unanimous AS-first behavioral pattern reported in §4.1 and indicates that providers treated assessment not as a peer of recommendation but as an \textit{evaluative gate}.
+
+
+
+% 14/18 participants described a two-stage process: write independently, then use Assessment for evaluation, then optionally consult Recommendation. Assessment was primary; Recommendation secondary. \textit{``I first wrote a comment based on my own thoughts...then I go to the review or assessment option to see how my written comment is rated''} (P7).
+
+
+
+
+
+
+\textbf{Theme 2: Diagnostic Self-Evaluation.} Nine participants explicitly used the structured IS/ES scores as a diagnostic instrument that localised gaps in their drafts. P9 described the mechanism most precisely: \textit{"When I saw that my comment had 'High Information' but 'Medium Emotion,' I tried to fill that emotional gap. Looking at these parameters from the system, I could understand how to make my comment even better."} P12 expressed the same diagnostic stance more emotionally: \textit{"when I saw that my 'Mental Support' level was low, I understood it needed modification to have a better impact on the poster."} This theme provides a candidate mechanism for the quality trajectory reported in §4.3 (Page's L, IS \textit{p} < .001; ES \textit{p} = .002): the categorical labels appear to have made an otherwise abstract notion of "supportiveness" actionable.
+
+\textbf{Theme 3: Vocabulary and Expression Scaffold.} 
+Eleven participants valued Recommendation Mode for \textit{expressive assistance} — using retrieved examples to refine their own language, complete partial thoughts, or discover more effective phrasings. P5, who explicitly identified as a non-native English speaker, reported relying most heavily on RE: \textit{"For people whose mother language is not English, the best flow is to just use the system's recommended version instead of their own."} P14 described a hybrid approach in which RE helped crystallize latent ideas: \textit{"Since some of the system's sentences matched my own thoughts, they helped me organize the content of my final comment."} P18 reported the same value in affective terms, noting that polished phrasing increased confidence: \textit{"While reading the system's feedback, I never felt like a machine or AI was speaking; rather, it felt like a close person or friend was advising me, which greatly increased my trust."} For participants whose own expressive resources felt insufficient, RE served not as a replacement for authorship but as a \textit{linguistic scaffold} — a source of well-formed support language that they could adopt, adapt, or simply learn from. This theme partially explains the rebound in RE acceptance at T3 (52.4\%; §4.1): participants who discovered expressive value in the examples continued engaging with the mode even as their overall confidence grew.
+
+
+
+
+\textbf{Theme 4: Voice Preservation vs. AI Expression.} 
+Five participants reported an active refusal of Recommendation Mode in order to protect what they described as personal voice, sentiment, or experiential authority. P8 made this an explicit principle: \textit{"I didn't want to fully rely on the recommendations. I wanted to maintain my own tone and thoughts while using the system's tools to improve them, and I only accepted new ideas or examples from the recommendations."} P9 invoked experiential authority: \textit{"I always trust my own experience more...I prioritized my own thoughts because some of the system's suggestions felt irrelevant or out of context."} P16, the most extreme expression of this position, rejected the AI rewrites on identity grounds: \textit{"the suggestions felt way too robotic for me...I felt my comments had more emotion than the system was capable of recognizing."} Voice-preservation is not a failure of the system but a legitimate user position, and it accounts for a meaningful subset of the comments that were submitted unchanged after Assessment served as a \textit{confirmation} signal (§4.4): these were not unengaged users but users for whom Assessment validated their own draft as sufficiently authentic.
+
+\textbf{Theme 5: Emergent Skill Transfer.} 
+Seven participants spontaneously reported that the system had taught them something portable about supportive writing. P17 was most explicit: \textit{"It didn't just help improve the current comment; it taught me how to write better supportive comments elsewhere in the future."} P18 reported a comparable generalisation: \textit{"Using it increased my confidence in my own writing skills and made the subject much clearer to me."} P7 framed the system in pedagogical terms: \textit{"it can be a good medium for newcomers to learn comment-writing styles."} This theme is consistent with the \textit{sustained} confidence elevation observed at T3 (M = 4.58; §4.2): the gain did not behave like a tool-dependent boost but more like an internalised competence.
+
+\textbf{Theme 6: Generic Suggestions as Primary Friction.} 
+Nine participants spontaneously identified a single, consistent failure mode of Recommendation Mode: the rewrites were perceived as formulaic, repetitive, or insufficiently anchored to the specific post. P12 quantified the perception: \textit{"the system's suggestions often felt formulaic and about 90\% similar...the system often couldn't catch the actual problem or situation of the post, leading to off-topic responses."} P9 reported the same in milder terms: \textit{"some of the system's suggestions felt out of context and were not consistent with the main subject."} P2 added: \textit{"some of the comments were very generic."} This theme corresponds directly to the highest-variance SUS-concern item, Q19 ("suggestions overly generic", M = 2.42, SD = 1.50; §4.5).
+
+\textbf{Theme 7: Performance and UI Friction.} 
+Eight participants raised concrete usability defects: latency between mode invocations (P1, P10, P12, P16, P17), text-loss on the \textit{Quit} control (P16: \textit{"if I clicked 'quit,' the words I had written would vanish"}), and minor copy errors (P17: \textit{"there were minor spelling errors in the system (like 'Biopolar' instead of 'Bipolar')"}). These defects map onto Q8 (cumbersome, M = 1.52, SD = 0.96; §4.5), which was the only marginal item in an otherwise "Excellent" SUS profile. None of the reports challenged the system's conceptual model; they were uniformly framed as implementation issues addressable in subsequent iterations.
+
+\textbf{Theme 8: Differential Trust.} 
+Sixteen participants articulated trust at the \textit{mode} level rather than the \textit{system} level, and trust in Assessment exceeded trust in Recommendation for the large majority. P8 captured the asymmetry in a single sentence: \textit{"I trusted the system's evaluation because it gives me a chance to correct myself before being judged by others. However, I didn't want to fully rely on the recommendations."} P9 was more categorical: \textit{"I trusted the system's assessment, but not the recommendations."} P5 quantified RE trust specifically at ``four out of five,'' implicitly rating AS trust higher. Participants linked their differential trust to the structural difference between the two modes: Assessment was experienced as evaluating the participant's own text, whereas Recommendation was experienced as proposing AI-authored text whose provenance was uncertain. This differential trust pattern is the strongest single explanation for the persistence of AS-first behaviour from T1 through T3 (§4.1) and constitutes a substantive design implication.
+
+
+\section{Discussion}
+Our findings demonstrate that support providers did not treat assessment-based (AS) and recommendation-based (RE) assistance as interchangeable forms of AI support. Instead, participants developed a consistent interaction strategy in which evaluative feedback served as the primary mechanism for self-verification, while example-based guidance was used selectively for linguistic and expressive scaffolding during uncertainty. This bifurcated use pattern aligns with recent frameworks distinguishing \textit{augmentative} from \textit{generative} AI roles in sensitive communication contexts~\cite{Sharma2023,Wang2025PeerCounseling}.
+
+\subsection{Assessment as a Self-Verification Mechanism}
+Participants perceived assessment-based feedback not as external judgment, but as a form of self-evaluation supported by the system. They consistently used Preview Assessment after drafting to verify whether their comments sufficiently expressed informational support (IS) and emotional support (ES). Rather than replacing authorship, this process supported revision while preserving ownership of the final response. 
+
+This interpretation is supported by behavioral patterns: Assessment Mode was the dominant first interaction across all sessions . Confidence ratings remained stable over time ($\beta = -0.03$, $p = 0.42$) despite reduced interaction frequency, and most participants submitted comments without substantial revision after assessment. Together, these results suggest that evaluative feedback primarily functioned as a \textit{confirmation mechanism} that reduces uncertainty without displacing user agency.  These findings extend prior work on AI-assisted writing in online mental health contexts by suggesting that lightweight evaluative feedback may be perceived as less intrusive than generative rewriting systems~\cite{Sharma2023,Liao2023}. In emotionally sensitive peer-support settings, users appear to prefer systems that support refinement of their own expressions rather than generating alternative responses. This preference for \textit{evaluative over generative} support is consistent with recent findings that AI disclosure in interpersonal contexts erodes perceived trustworthiness and sincerity, whereas assistive AI use (under 50\% contribution) is socially acceptable when it preserves human effort and voice~\cite{Jakesch2019,Hwang2025Authenticity}.
+
+\subsection{Selective Use of Generative Recommendations}
+Although Recommendation Mode was used less frequently , it was not rejected. Participants engaged with generative suggestions in situations involving expressive difficulty, limited fluency, or uncertainty in phrasing. Non-native English speakers in particular  valued recommendations as scaffolding for clearer and more fluent emotional expression. However, participants rarely treated recommendations as novel ideas. Instead, they evaluated them based on alignment with their intended meaning and usefulness for improving tone or clarity a \textit{curatorial} rather than \textit{adoptive} stance.
+
+Recommendations were most useful when they refined rather than replaced existing content. At the same time, participants reported concerns about generic or context-insensitive suggestions, which reduced trust and perceived usefulness over time. These issues were reflected in declining perceived utility ratings from Session 1 ($M = 4.2$, $SD = 0.8$) to Session 3 ($M = 3.5$, $SD = 0.9$), $t(23) = 2.84$, $p = .009$, highlighting challenges of contextual grounding in generative support systems~\cite{Heersmink2024,Shen2024}. This temporal degradation suggests that static recommendation engines without adaptive personalization may suffer from \textit{utility decay} in longitudinal use~\cite{Wang2025PeerCounseling}.
+
+\subsection{Authenticity, Voice, and Differential Trust in AI Writing Support}
+A key finding is the marked difference in trust between evaluative and generative AI assistance. Participants consistently reported higher trust in Assessment Mode compared to Recommendation Mode . Assessment was perceived as supporting their own writing process, whereas recommendations were often viewed as externally generated text requiring careful evaluation consistent with prior concerns about authorship and control in generative AI systems~\cite{Weisz2023,Liao2023}. 
+
+This distinction shaped user behavior in practice. Participants frequently modified or rejected recommendations to preserve personal voice and emotional sincerity in peer-support writing. In contrast, assessment feedback was primarily used as confirmation, allowing users to refine their responses while maintaining ownership of the final message. This pattern reflects the \textit{transparency dilemma} identified in recent AI-mediated communication research: while AI assistance can improve textual quality, disclosure or perception of AI authorship in relational contexts triggers negative shifts in perceived authenticity and trust~\cite{Schilke2025,Jakesch2019}. 
+
+Participants also reported longer-term reflective benefits from using BEBPSBot. Repeated exposure to assessment categories and exemplar-based recommendations helped some users develop greater awareness of how empathetic and supportive responses are structured. This learning effect was particularly evident among participants who engaged critically with both modes, using assessment feedback to refine their own drafts rather than directly copying generated suggestions. These users showed increasing reflective awareness over time, suggesting that AI-assisted writing can support \textit{situated skill development} when used as a reflective aid rather than an automated writing tool~\cite{Sharma2023,Yang2024SocialSkill}. This finding aligns with scaffolding theory in educational technology, where tools that preserve learner agency produce deeper learning outcomes than those that automate performance~\cite{Wood2001Scaffolding}.
+
+\subsection{Design Implications for Human--AI Support Writing Systems}
+Our findings suggest three key implications for designing AI-assisted peer-support writing systems:
+
+\textbf{First,} evaluative feedback should be designed as a low-friction self-verification mechanism rather than a form of automated judgment. Participants valued assessment because it supported reflection while preserving authorship. Future systems should therefore emphasize lightweight, supportive guidance that helps users refine their own expressions without replacing them. This aligns with emerging design principles for \textit{context-sensitive transparency} in AI-mediated writing, where the functional role of AI (e.g., ``AI assisted with grammatical revisions'') should be disclosed rather than quantitative contribution metrics~\cite{Hwang2025Authenticity}.
+
+\textbf{Second,} generative recommendations should be used in a context-aware and adaptive manner. Participants engaged with suggestions primarily when facing expressive difficulty, limited fluency, or reduced emotional clarity. This suggests that generative support should be \textit{selectively triggered} based on user need---for example, activated by linguistic markers of uncertainty or non-native language patterns rather than continuously provided. Such \textit{adaptive scaffolding} would mitigate utility decay while respecting user agency~\cite{Wang2025PeerCounseling}.
+
+\textbf{Third,} preserving user voice and ensuring transparency are both essential for trust. Participants were more likely to accept AI assistance when they understood its role and could maintain control over wording. Future systems should therefore support editable, partial reuse of suggestions while clearly communicating how recommendations are generated and intended to be used. Interfaces could integrate features that visualize human effort, such as edit histories or authorship heatmaps, to foreground user agency and mitigate authenticity concerns~\cite{Hoque2024Hallmark,Peng2025IntentPrism}.
+
+
+\subsection{Limitations and Future Work}
+
+This study was conducted in a controlled, simulated bipolar-support environment rather than a live online mental health community. While this enabled consistent observation of writing behavior under structured conditions, real-world settings may introduce stronger social dynamics, community norms, and emotional stakes that could influence AI-assisted communication. The study involved 24 participants in a within-subjects design, which is appropriate for exploratory HCI research \cite{caine2016local} but limits generalization to broader populations.  The longitudinal component included three interaction sessions, capturing early-stage adaptation to dual-mode AI assistance. Longer-term deployments are needed to better understand sustained usage patterns, trust calibration, and potential reliance over time. In addition, Recommendation Mode relied on retrieval-based exemplars, which were occasionally perceived as contextually limited. Future work could explore more adaptive and context-aware generation mechanisms to improve relevance and grounding. Finally, this study focused on support providers. Future research should also examine how support recipients perceive AI-assisted peer responses in terms of authenticity, trust, and emotional impact.
+\section{Conclusion}
+
+We presented \textit{BepsBot}, a dual-mode AI writing assistant designed to support peer-support communication in online bipolar disorder communities through assessment-based and recommendation-based guidance. Through a within-subjects longitudinal study, we examined how support providers engaged with evaluative and exemplar-based AI assistance during repeated emotionally sensitive writing tasks. Our findings show that participants consistently prioritized Assessment Mode as a reflective and trustworthy evaluative checkpoint, while Recommendation Mode was used more selectively as linguistic scaffolding. Over time, users developed stable interaction strategies that balanced AI support with preservation of personal voice and communicative agency. While recommendation-based assistance benefited some participants particularly non-native English speakers it also raised concerns regarding contextual fit, authenticity, and potential overreliance. This work contributes empirical insights into how users negotiate multiple forms of AI assistance in emotionally sensitive communication contexts. Overall, the results suggest that AI writing support for mental health communities should move beyond automation toward augmenting reflection and expression. We argue that future systems should emphasize evaluative transparency, contextual sensitivity, and preservation of user authorship to enable collaborative and trustworthy peer-support communication.
+
+\bibliographystyle{splncs04}
+\bibliography{reference}
+
+\end{document}
+

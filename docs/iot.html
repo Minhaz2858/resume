@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOT Based Dormitory Attendance System</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+            /* Lighter gray background */
+            color: #4a5568;
+            /* Darker gray text for better contrast */
+        }
+
+        .anchor-offset {
+            padding-top: 90px;
+            /* Adjust this value based on your fixed header height */
+            margin-top: -90px;
+            /* Counteract the padding-top to keep the scroll position accurate */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body class="scroll-smooth">
+    <!-- Header/Navigation Bar -->
+    <header class="bg-indigo-800 text-white p-4 shadow-lg fixed w-full z-50 top-0">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-bold">IoT Attendance System</a>
+            <div class="space-x-4">
+                <a href="#introduction" class="text-white hover:text-indigo-300 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-300">Introduction</a>
+                <a href="#system-overview" class="text-white hover:text-indigo-300 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-300">System Overview</a>
+                <a href="#components" class="text-white hover:text-indigo-300 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-300">Components</a>
+                <a href="#architecture" class="text-white hover:text-indigo-300 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-300">Architecture</a>
+                <a href="#data-management" class="text-white hover:text-indigo-300 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-300">Data Management</a>
+                <a href="#results" class="text-white hover:text-indigo-300 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-300">Results</a>
+                <a href="#conclusion" class="text-white hover:text-indigo-300 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-300">Conclusion & Future Scope</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-20"> <!-- Padding to account for fixed header -->
+        <!-- Hero Section -->
+        <section id="hero"
+            class="bg-gradient-to-r from-indigo-700 to-purple-600 text-white py-20 text-center rounded-b-lg shadow-xl">
+            <div class="container mx-auto px-4">
+                <h1 class="text-5xl font-extrabold mb-4 animate-fade-in-down">IOT Based Dormitory Attendance System</h1>
+                <p class="text-xl mb-8 opacity-90 animate-fade-in-up">Revolutionizing dormitory attendance with Face
+                    Recognition and IoT Technologies</p>
+                <a href="#introduction"
+                    class="bg-white text-indigo-700 hover:bg-indigo-100 px-8 py-3 rounded-full text-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">Learn
+                    More</a>
+            </div>
+        </section>
+
+        <!-- Introduction Section -->
+        <section id="introduction" class="py-16 bg-gray-50 anchor-offset">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Introduction</h2>
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                        <h3 class="text-2xl font-semibold text-indigo-600 mb-4">Project Introduction</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            Manual attendance management in dormitories is a time-consuming and tedious task.
+                            Traditional methods, including contact-based biometrics like fingerprints or cards, pose
+                            health risks, especially in situations like the COVID-19 pandemic. To address these
+                            challenges, our project introduces an IoT-based smart attendance system utilizing a Face
+                            Recognition module.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            The system employs an ESP32 Cam to authenticate individuals. Upon enrollment, student
+                            information (ID, name, class, etc.) is captured. When a student approaches the ESP32 Cam, it
+                            automatically detects, recognizes, and stores their attendance data in an IoT cloud via
+                            HTTPS. Unauthorized access is prevented, and a buzzer alerts staff to invalid entries,
+                            effectively resolving proxy issues and enhancing security.
+                        </p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                        <h3 class="text-2xl font-semibold text-indigo-600 mb-4">Compare and Contrast with Existing
+                            System</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            The current dormitory system relies on manual attendance, which is inefficient and prone to
+                            errors. Our IoT-based solution offers a significant upgrade by automating the entire
+                            process. Unlike traditional analogue systems, our proposed system provides real-time,
+                            accurate, and contact-free attendance tracking.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            Existing systems often involve long queues or physical contact, which our face recognition
+                            approach eliminates. This not only saves time but also improves hygiene and security by
+                            preventing unauthorized entries and proxy attendance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Overview Section -->
+        <section id="system-overview" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">System Overview</h2>
+                <div class="grid md:grid-cols-1 gap-10">
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                        <h3 class="text-2xl font-semibold text-indigo-600 mb-4">General Design
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            The smart attendance system operates in several stages:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-700 mb-4 space-y-2">
+                            <li><strong>Registration:</strong> Students register by filling out a form. An operator
+                                enters this data into a computer and records the student's image via an ESP32 module at
+                                the Registration Node. This data is then sent to the server and saved in the database.
+                            </li>
+                            <li><strong>Dormitory Entry (Initial):</strong> When students first enter the dormitory,
+                                attendance is taken using face recognition at the Camera Node. This attendance data is
+                                sent from the Camera Node through the ThingSpeak cloud to the Server.</li>
+                            <li><strong>Dormitory Entry (Before 11:00 PM):</strong> If students enter before 11:00 PM,
+                                attendance is again recorded via the Camera Node, and the data is sent through the Cloud
+                                (ThingSpeak) to the Server.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                        <h3 class="text-2xl font-semibold text-indigo-600 mb-4">Concept of Operation & Use Case
+                            Diagram</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            The system continuously tracks student attendance, providing a robust solution to existing
+                            management problems. The use case diagram illustrates the interactions between the system
+                            and its actors:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-700 mb-4 space-y-2">
+                            <li><strong>Register:</strong> Dorm managers/staff register students and teachers.</li>
+                            <li><strong>Record Attendance:</strong> Staff record attendance using identification numbers
+                                and save to the database.</li>
+                            <li><strong>View Records:</strong> Staff, students, teachers, and parents can view
+                                attendance details (with appropriate permissions).</li>
+                            <li><strong>Generate Report:</strong> Staff can generate reports for teachers and students.
+                            </li>
+                        </ul>
+                        <div class="flex justify-center mt-8">
+                            <img src="System_Structure.png"
+                                alt="System Structure Diagram" class="rounded-lg shadow-md max-w-md h-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Components Section -->
+        <section id="components" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Components & Technologies</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-3">ESP32 Camera Module</h3>
+                        <p class="text-gray-700 mb-3">A compact Wi-Fi and Bluetooth module with an OV2640 2MP camera,
+                            ideal for IoT applications and face recognition. It features low power consumption and a
+                            microSD card slot for storage.</p>
+                        <img src="esp.png" alt="ESP32 Cam"
+                            class="rounded-md mb-3 max-w-full h-auto">
+                        <p class="text-sm text-gray-500">Key for face detection and image capture.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-3">Arduino Mega 2560</h3>
+                        <p class="text-gray-700 mb-3">A microcontroller board based on ATmega2560, providing numerous
+                            digital I/O pins and analog inputs. It interfaces with the ESP32 Cam and other modules.</p>
+                        <img src="ardunio.png" alt="Arduino Mega 2560"
+                            class="rounded-md mb-3 max-w-full h-auto">
+                        <p class="text-sm text-gray-500">Central control unit for the system.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-3">GSM SIM800L Module</h3>
+                        <p class="text-gray-700 mb-3">A miniature GSM modem for GPRS transmission, sending/receiving
+                            SMS, and making/receiving calls. Used for sending attendance alerts to parents and dorm
+                            managers.</p>
+                        <img src="sim.png" alt="GSM SIM800L"
+                            class="rounded-md mb-3 max-w-full h-auto">
+                        <p class="text-sm text-gray-500">Enables communication for alerts.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 col-span-full">
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-4">Display & Alert Components</h3>
+                        <div class="flex justify-center mb-4">
+                            <img src="buzzer_display_real_time_clock.png" alt="LCD, RTC and Buzzer Components"
+                                class="rounded-md max-w-full h-auto">
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div>
+                                <h4 class="text-lg font-semibold text-indigo-600 mb-2">Liquid Crystal Display (LCD)</h4>
+                                <p class="text-gray-700 mb-2">An electronically-modulated optical device used to display current
+                                    date, time, and student attendance status (name, present/absent).</p>
+                                <p class="text-sm text-gray-500">Provides real-time visual feedback.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-indigo-600 mb-2">DS3231 Real Time Clock (RTC)</h4>
+                                <p class="text-gray-700 mb-2">A highly accurate I2C real-time clock module with a built-in
+                                    temperature sensor, ensuring precise timekeeping for attendance records.</p>
+                                <p class="text-sm text-gray-500">Maintains accurate time for records.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-indigo-600 mb-2">Buzzer</h4>
+                                <p class="text-gray-700 mb-2">An active electromagnetic buzzer used to generate an audible alert
+                                    when an unauthorized person is detected by the ESP32 Cam.</p>
+                                <p class="text-sm text-gray-500">Provides immediate security alerts.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 col-span-full">
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-3">Software & Algorithms: OpenCV & LBPH</h3>
+                        <p class="text-gray-700 mb-3">The system leverages <strong>OpenCV</strong> (Open Source Computer
+                            Vision Library) for image processing and face detection. The <strong>Local Binary Patterns
+                                Histogram (LBPH)</strong> algorithm is used for face recognition due to its simplicity
+                            and efficiency, making it suitable for the ESP32 Cam's processing capabilities. This
+                            algorithm analyzes images locally, converts regions into LBPH matrices, and compares
+                            histograms to identify individuals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Architecture Section -->
+        <section id="architecture" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">System Architecture</h2>
+                <p class="text-gray-700 text-center mb-8 max-w-3xl mx-auto">
+                    Our system follows a layered architecture, ensuring robust data flow and functionality.
+                </p>
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                        <h3 class="text-2xl font-semibold text-indigo-600 mb-4">Layered Architecture</h3>
+                        <ul class="list-disc list-inside text-gray-700 mb-4 space-y-2">
+                            <li><strong>Perception Layer:</strong> Consists of sensors (camera, ESP32), transmitters,
+                                actuators, and controllers. It defines the system's environment, capturing student
+                                images and collecting data.</li>
+                            <li><strong>Network Layer:</strong> Responsible for forwarding collected data from objects
+                                to the next layer without interpretation. It handles data transmission, filtering, and
+                                aggregation using technologies like Wi-Fi.</li>
+                            <li><strong>Middleware Layer:</strong> Manages data storage from the perception layer. It
+                                includes a web server and database that handle queries from authorized personnel via the
+                                web application.</li>
+                            <li><strong>Application Layer:</strong> Performs data management and resource discovery. It
+                                provides interfaces for hardware resource utilization, using IoT protocols like HTTP and
+                                HTTPS for message transfer.</li>
+                        </ul>
+                        <div class="flex justify-center mt-8">
+                            <img src="System_Structure.png"
+                                alt="System Architecture Diagram" class="rounded-lg shadow-md max-w-md h-auto">
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                        <h3 class="text-2xl font-semibold text-indigo-600 mb-4">Flowchart of the Proposed System</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            The system ensures student privacy by allowing only the System Admin to log in. It is
+                            designed for ease of use, requiring minimal training. Key services include:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-700 mb-4 space-y-2">
+                            <li><strong>Registration Service:</strong> Admin staff handle person entry, creating
+                                usernames and passwords for system access.</li>
+                            <li><strong>Data Visualization:</strong> Users can view permitted records; parents, for
+                                instance, can only see their children's attendance.</li>
+                            <li><strong>Data Management:</strong> The admin is responsible for managing and filtering
+                                student and faculty data.</li>
+                        </ul>
+                        <div class="flex justify-center mt-8">
+                            <img src="system_arch.png"
+                                alt="System Flowchart" class="rounded-lg shadow-md max-w-full h-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Management Section -->
+        <section id="data-management" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Data Management</h2>
+                <div class="grid md:grid-cols-1 gap-10">
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                        <h3 class="text-2xl font-semibold text-indigo-600 mb-4">Database & Data Dictionary</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            Our system utilizes a <strong>MongoDB</strong> database for storing and managing attendance
+                            records. The conceptual database tables are designed to capture all necessary information,
+                            ensuring data integrity and accessibility.
+                        </p>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2">Student Data Dictionary</h4>
+                        <div class="overflow-x-auto mb-6">
+                            <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                                <thead>
+                                    <tr class="bg-indigo-100 text-indigo-800">
+                                        <th class="py-2 px-4 border-b">Field Name</th>
+                                        <th class="py-2 px-4 border-b">Description</th>
+                                        <th class="py-2 px-4 border-b">Type</th>
+                                        <th class="py-2 px-4 border-b">Length</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">STD_ID (pk)</td>
+                                        <td class="py-2 px-4 border-b">Student ID number</td>
+                                        <td class="py-2 px-4 border-b">Int</td>
+                                        <td class="py-2 px-4 border-b">11</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">STD_FNAME</td>
+                                        <td class="py-2 px-4 border-b">First name</td>
+                                        <td class="py-2 px-4 border-b">Varchar</td>
+                                        <td class="py-2 px-4 border-b">30</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">STD_LNAME</td>
+                                        <td class="py-2 px-4 border-b">Last name</td>
+                                        <td class="py-2 px-4 border-b">Varchar</td>
+                                        <td class="py-2 px-4 border-b">30</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">STD_ADDRESS</td>
+                                        <td class="py-2 px-4 border-b">Address</td>
+                                        <td class="py-2 px-4 border-b">Varchar</td>
+                                        <td class="py-2 px-4 border-b">50</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">STD_YEAR</td>
+                                        <td class="py-2 px-4 border-b">Year Level</td>
+                                        <td class="py-2 px-4 border-b">Varchar</td>
+                                        <td class="py-2 px-4 border-b">10</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">STD_SECTION</td>
+                                        <td class="py-2 px-4 border-b">Section</td>
+                                        <td class="py-2 px-4 border-b">Varchar</td>
+                                        <td class="py-2 px-4 border-b">10</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">STD_BIRTHDAY</td>
+                                        <td class="py-2 px-4 border-b">Date of Birth</td>
+                                        <td class="py-2 px-4 border-b">Varchar</td>
+                                        <td class="py-2 px-4 border-b">30</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">STD_AGE</td>
+                                        <td class="py-2 px-4 border-b">Age</td>
+                                        <td class="py-2 px-4 border-b">Int</td>
+                                        <td class="py-2 px-4 border-b">3</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">STD_GENDER</td>
+                                        <td class="py-2 px-4 border-b">Gender</td>
+                                        <td class="py-2 px-4 border-b">Varchar</td>
+                                        <td class="py-2 px-4 border-b">10</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">STD_CONTACT</td>
+                                        <td class="py-2 px-4 border-b">Student Contact Number</td>
+                                        <td class="py-2 px-4 border-b">Varchar</td>
+                                        <td class="py-2 px-4 border-b">30</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2">Student Attendance Data Dictionary</h4>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                                <thead>
+                                    <tr class="bg-indigo-100 text-indigo-800">
+                                        <th class="py-2 px-4 border-b">Field Name</th>
+                                        <th class="py-2 px-4 border-b">Description</th>
+                                        <th class="py-2 px-4 border-b">Type</th>
+                                        <th class="py-2 px-4 border-b">Length</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">SATT_ID (pk)</td>
+                                        <td class="py-2 px-4 border-b">Student Attendance ID</td>
+                                        <td class="py-2 px-4 border-b">Int</td>
+                                        <td class="py-2 px-4 border-b">11</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">STD_ID (fk)</td>
+                                        <td class="py-2 px-4 border-b">Student ID number</td>
+                                        <td class="py-2 px-4 border-b">Int</td>
+                                        <td class="py-2 px-4 border-b">11</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">SATT_DATE</td>
+                                        <td class="py-2 px-4 border-b">Attendance date</td>
+                                        <td class="py-2 px-4 border-b">Varchar</td>
+                                        <td class="py-2 px-4 border-b">30</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">SATT_AM_IN</td>
+                                        <td class="py-2 px-4 border-b">Am Login</td>
+                                        <td class="py-2 px-4 border-b">Varchar</td>
+                                        <td class="py-2 px-4 border-b">10</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">SATT_AM_OUT</td>
+                                        <td class="py-2 px-4 border-b">Am Logout</td>
+                                        <td class="py-2 px-4 border-b">Varchar</td>
+                                        <td class="py-2 px-4 border-b">10</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">SATT_PM_IN</td>
+                                        <td class="py-2 px-4 border-b">Pm Login</td>
+                                        <td class="py-2 px-4 border-b">Varchar</td>
+                                        <td class="py-2 px-4 border-b">10</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">SATT_PM_OUT</td>
+                                        <td class="py-2 px-4 border-b">Pm Logout</td>
+                                        <td class="py-2 px-4 border-b">Varchar</td>
+                                        <td class="py-2 px-4 border-b">10</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                        <h3 class="text-2xl font-semibold text-indigo-600 mb-4">MongoDB Database Implementation</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            The system leverages <strong>MongoDB</strong>, a NoSQL document database, for storing and managing all attendance data. MongoDB's flexible document structure makes it ideal for handling student information, attendance records, and system logs efficiently.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-700 mb-4 space-y-2">
+                            <li><strong>Scalability:</strong> MongoDB's horizontal scaling capabilities ensure the system can handle growing student populations.</li>
+                            <li><strong>Real-time Data:</strong> Supports real-time data insertion and retrieval for immediate attendance tracking.</li>
+                            <li><strong>JSON-like Documents:</strong> Natural fit for IoT data structures and web application integration.</li>
+                            <li><strong>High Availability:</strong> Built-in replication ensures data redundancy and system reliability.</li>
+                        </ul>
+                        <div class="flex justify-center mt-6">
+                            <img src="mongobd.png" alt="MongoDB Database Structure" class="rounded-lg shadow-md max-w-full h-auto">
+                        </div>
+                        <p class="text-sm text-gray-500 text-center mt-3">MongoDB database interface showing collections and document structure</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results and Discussion Section -->
+        <section id="results" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Results and Discussion</h2>
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                        <h3 class="text-2xl font-semibold text-indigo-600 mb-4">Real-time Attendance Display</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            Before a student approaches the ESP32 Cam, the LCD displays the current date and time. Once
+                            a student's face is detected and recognized, their name, the current date, and "Present" are
+                            displayed on the LCD, providing immediate confirmation. This data is also stored in the
+                            cloud for later access by authorized personnel.
+                        </p>
+                        <div class="flex justify-center mt-8">
+                            <img src="buzzer_display_real_time_clock.png"
+                                alt="LCD Display Examples" class="rounded-lg shadow-md max-w-full h-auto">
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                        <h3 class="text-2xl font-semibold text-indigo-600 mb-4">Automated Absentee Alerts</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            If a student is marked absent after a specified time or at the end of the day, this
+                            information is updated in the cloud. An emergency SMS alert is then automatically sent to
+                            their respective parents and the dormitory manager, ensuring timely notification of
+                            absences.
+                        </p>
+                        <div class="flex justify-center mt-8">
+                            <img src="sms.png"
+                                alt="SMS Alert Example" class="rounded-lg shadow-md max-w-full h-auto">
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 col-span-full">
+                        <h3 class="text-2xl font-semibold text-indigo-600 mb-4">Dorm Manager Web View</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            The dormitory manager has access to a web interface that allows them to view student
+                            attendance reports. This interface provides a comprehensive overview of attendance records,
+                            enabling efficient monitoring and management.
+                        </p>
+                        <div class="flex justify-center mt-8">
+                            <img src="manager.png"
+                                alt="Dorm Manager Web View" class="rounded-lg shadow-md max-w-full h-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion and Future Scope Section -->
+        <section id="conclusion" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Conclusion & Future Scope</h2>
+                <div class="grid md:grid-cols-2 gap-10 items-start">
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-semibold text-indigo-600 mb-4">Conclusion</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            We have successfully designed and prototyped an IoT-based dormitory attendance system using face
+                            recognition, aiming to replace the existing manual methods. This system effectively automates
+                            attendance tracking, enhances security, and provides timely alerts, addressing the limitations of
+                            traditional approaches. While this prototype demonstrates significant potential, we acknowledge that
+                            there is ample room for further development and refinement.
+                        </p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-semibold text-indigo-600 mb-4">Future Scopes</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            The potential of this project extends far beyond its current application. Future enhancements could
+                            include:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>Developing a dedicated Android application for enhanced user interaction.</li>
+                            <li>Building a comprehensive database system for robust data management.</li>
+                            <li>Integrating additional sensors to make the system more versatile.</li>
+                            <li>Designing a portable hardware device with a door accessing method.</li>
+                            <li>Adding a keypad for password verification after card scanning.</li>
+                            <li>Implementing separate interfaces for students to view their attendance.</li>
+                            <li>Extending its application to sensitive environments like banking sectors.</li>
+                        </ul>
+                    </div>
+                        <!-- Back to homepage button -->
+                        <div class="col-span-full flex justify-center mt-8">
+                            <a href="index.html" class="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition-colors duration-200">Back to homepage</a>
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-indigo-800 text-white py-8 text-center mt-10">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2022 IOT Based Dormitory Attendance System. All rights reserved.</p>
+            <p class="text-sm mt-2">Developed for Yunnan University, School of Information Science & Engineering</p>
+            <p class="text-sm">Topic: IOT based dormitory attendance system</p>
+        </div>
+    </footer>
+</body>
+
+</html>
