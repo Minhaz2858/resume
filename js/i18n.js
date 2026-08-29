@@ -15,9 +15,9 @@
   var UI = {
     en: {
       meta: {
-        title: "Minhazul Islam — AI Engineer Portfolio",
+        title: "Minhazul Islam — AI Systems Engineer & Applied Researcher",
         description:
-          "AI Engineer specializing in generative AI, LLM agents, RAG, and production AI systems. Master's from Zhejiang University, publications at ICEC 2025.",
+          "AI Systems Engineer building auditable multi-agent architectures, deterministic guardrails, and enterprise RAG platforms. M.E. from Zhejiang University, publications at ICEC 2025.",
         libTitle: "Project Library — Minhazul Islam",
         libDescription:
           "Comprehensive details on all of Minhazul Islam's AI, ML, and embedded systems projects.",
@@ -51,19 +51,19 @@
       },
 
       hero: {
-        kicker: "Available for AI Engineering roles",
-        role: "Artificial Intelligence Engineer",
+        kicker: "M.E. Student, Zhejiang University | B.S. in Computer Science, Yunnan University",
+        role: "AI Systems Engineer & Applied Researcher",
         summary:
-          "I design and ship production AI systems end-to-end. As a Synexia AI intern, I solo-built EDIA (17-node LangGraph multi-agent, 30s vs 8 min) and Zhanlu (7-layer enterprise agent platform with 14-service Docker + native MCP). My ZJU master's thesis — BepsBot — combined RAG, RoBERTa, and LIWC-2015 to help bipolar-disorder peer supporters, validated by a 24-participant study (SUS 88.0, κ=.78) and published as a PCC Oral at HHME 2026. 4 publications across ICEC 2025 and HHME 2026; 2023 UN Global Youth Talent.",
+          "Building auditable multi-agent architectures, deterministic guardrails, and enterprise agent runtimes. Researching human-AI co-decision and grounded RAG systems across high-stakes industrial & healthcare domains.",
         viewProjects: "View My Projects",
         downloadCv: "Download CV",
         contactMe: "Contact Me",
       },
 
       avail: {
-        textStrong: "Open to AI Engineering, AI Infrastructure, and PhD research positions",
+        textStrong: "Open to AI Engineering, AI Infrastructure & PhD Positions",
         textRest:
-          "— multi-agent LLM, RAG, AI infrastructure, production deployment, and applied research in generative AI & HCI.",
+          " — Building multi-agent systems, deterministic guardrails, enterprise Agent Harness, and human-AI co-decision research.",
         seeProjects: "See Projects",
         industryCv: "Industry CV",
         researchSt: "Research Statement",
@@ -71,47 +71,35 @@
 
       about: {
         eyebrow: "About Me",
-        title: "Engineer at the intersection of AI, product, and impact",
-        p1: "<strong>AI Engineer focused on production AI systems</strong> — LangGraph multi-agent workflows, a custom Synexia cognitive-orchestration layer (the brain of my Zhanlu platform), ChromaDB retrieval-augmented generation, LLM output guardrails, and FastAPI inference at scale.",
-        p2: "Master's in Industrial Design Engineering from Zhejiang University, with a Bachelor's in Computer Science from Yunnan University. I design the <strong>full lifecycle of AI products</strong>: from model research and fine-tuning (RoBERTa, Transformers, PEFT/LoRA) through orchestration, retrieval infrastructure, deterministic validation, and high-concurrency production deployment.",
-        p3: "I ship end-to-end AI systems, not just models — including <strong>LangGraph</strong> state-machine orchestration, <strong>LangChain + ChromaDB</strong> RAG pipelines, contract-style prompting, and Python guardrail layers that block hallucinated numbers before they reach users. I have built and deployed a full 7-layer enterprise AI agent platform solo (Zhanlu).",
-        p4: "I also work at the <strong>AI + hardware frontier</strong>: Arduino/C++, ESP32-CAM, sensor fusion, IoT, and edge AI, with complete smart-device prototype deployments.",
-        interestsTitle: "Research & technical interests",
-        goalsTitle: "What I'm working toward",
+        title: "Engineer & Researcher at the Intersection of AI Systems, Product, and Impact",
+        p1: "I design and deploy the full lifecycle of trustworthy AI products: bridging model research and fine-tuning (Transformers, PEFT/LoRA) with robust orchestration, context engineering, deterministic validation, and high-concurrency production infrastructure.",
+        p2: "Combining a Master's in Industrial Design Engineering from Zhejiang University with a Bachelor's in Computer Science from Yunnan University, I build AI systems that are not just capable models, but <strong>reliable, auditable software platforms</strong>. My work spans enterprise multi-agent architectures (Zhanlu, EDIA), published affective computing research, and edge AI/IoT hardware.",
+        pillarsTitle: "Core Systems & Research Pillars",
       },
 
       rs: {
         eyebrow: "Research Statement",
-        title: "Building trustworthy AI systems",
-        sub: "A summary of my research direction, methodology, and goals — written for PhD admissions committees, research collaborators, and academic reviewers.",
-        p1: "My research investigates how large language models and multi-agent systems can support <strong>decision-making in high-stakes human contexts</strong> — from petrochemical commercial teams to peer-support communities in mental health. I work at the intersection of generative AI, affective computing, and human–AI interaction, with the goal of building AI systems that are simultaneously capable, auditable, and aligned with human values.",
-        p2: "At Zhejiang University I am building two production systems that test this thesis. <strong>EDIA</strong> is a multi-agent decision-intelligence platform for the C5/C9 petrochemical value chain — a 17-node LangGraph orchestrator that pre-computes and locks every business-critical number, then layers a deterministic guardrail on top of the LLM so the model narrates evidence rather than invents forecasts. <strong>Zhanlu</strong> is a 7-layer enterprise AI agent platform I designed and built solo — Synexia cognitive core, Harness Agents, sandboxed tool calling, per-agent model routing, and data-driven PPT artifact generation. My peer-reviewed work at ICEC 2025 addresses biomarkers in bipolar disorder and biofeedback interventions for depression and anxiety through entertainment computing.",
-        p3: "Methodologically, I combine three threads that I believe are individually necessary and jointly insufficient for trustworthy AI: (1) <strong>governance-first system design</strong> — pre-rendering and locking business-critical values before LLM narration, then enforcing them with deterministic Python guardrails; (2) <strong>retrieval-augmented grounding</strong> that fuses structured enterprise truth (SQL, ERP, forecast views) with unstructured evidence (RAG over ChromaDB with semantic and product/date filters); and (3) <strong>empirical validation</strong> through live MAPE tracking, walk-forward backtests against locked regression baselines, and domain-expert annotation studies.",
-        p4: "Looking forward, my PhD research will explore how multi-agent architectures can preserve enterprise-grade reliability while enabling richer causal reasoning, multimodal grounding, and human–AI co-decision in domain-critical workflows — particularly in contexts where AI outputs carry real consequences for safety, health, and economic outcomes.",
-        areasTitle: "Research areas",
-        areas: [
-          "Generative AI & large language models",
-          "Multi-agent systems & LLM orchestration",
-          "Retrieval-augmented generation",
-          "Human–AI interaction & affective computing",
-          "Decision intelligence & human-AI co-decision",
-          "AI for healthcare and social good",
-        ],
-        toolkitTitle: "Methodological toolkit",
-        toolkit: [
-          "Transfer learning & Transformer fine-tuning (RoBERTa, BERT)",
-          "Retrieval-augmented generation (ChromaDB, LangChain)",
-          "Deterministic pre-rendering & guardrail validation",
-          "Walk-forward backtests & live MAPE evaluation",
-          "Multi-agent orchestration (LangGraph, custom Synexia FSM)",
-          "Expert annotation & human-in-the-loop evaluation",
-        ],
+        title: "Building Trustworthy, Grounded, and Auditable AI Systems",
+        sub: "Written for PhD Admissions Committees, Research Collaborators, and AI R&D Labs.",
+        s1Title: "1. Research Vision",
+        s1: "My research investigates how multi-agent architectures and large language models can support decision-making in high-stakes human contexts—ranging from industrial petrochemical supply chains to mental health peer-support communities. As LLMs transition from open-ended chat assistants to critical enterprise nodes, probabilistic generation introduces unacceptable variance and hallucination risks. I design and evaluate system architectures that combine foundation models with <strong>deterministic governance, dynamic retrieval, and human-in-the-loop validation</strong> to ensure AI outputs remain capable, auditable, and aligned with human values.",
+        s2Title: "2. Methodological Framework",
+        s2: "My research framework integrates three complementary methodologies:",
+        s2a: "<strong>Governance-First System Design:</strong> Locking business-critical numbers and evidence prior to LLM narration via finite-state machine (FSM) pre-rendering, enforced by deterministic validation guardrails.",
+        s2b: "<strong>Hybrid Context Grounding:</strong> Fusing structured enterprise truth (ERP databases, SQL views, time-series forecasts) with unstructured evidence through semantic RAG (ChromaDB, vector embeddings, entity linking).",
+        s2c: "<strong>Empirical System Validation:</strong> Evaluating reliability through walk-forward MAPE backtesting against locked baselines, automated LLM-as-a-Judge audit gates, and domain-expert annotation studies.",
+        s3Title: "3. Future Directions",
+        s3: "My ongoing and prospective research focuses on three core frontiers:",
+        s3a: "<strong>Causal Multi-Agent Reasoning:</strong> Extending state-machine orchestrators to perform counterfactual reasoning, temporal walk-forward backtesting, and self-correcting plan execution.",
+        s3b: "<strong>Multimodal & Edge Context Grounding:</strong> Integrating embedded sensor streams (ESP32, IoT hardware) with lightweight edge models for real-time visual and environmental context grounding.",
+        s3c: "<strong>Human-AI Co-Decision Dynamics:</strong> Quantifying trust, cognitive load, and safety alignment when domain experts collaborate with autonomous multi-agent systems in safety-critical workflows.",
+        toolkitTitle: "Methodological & Technical Toolkit",
       },
 
       skills: {
         eyebrow: "Technical Skills",
         title: "Skills & technologies I work with",
-        sub: "Organized by the areas I build in every day — from model training to production LLM infrastructure.",
+        sub: "Organized by the systems I build — from agent orchestration and retrieval infrastructure to production deployment.",
       },
 
       exp: {
@@ -236,18 +224,18 @@
       },
 
       hero: {
-        kicker: "诚邀 AI 工程类职位机会",
-        role: "人工智能工程师",
+        kicker: "浙江大学硕士 | 云南大学计算机科学学士",
+        role: "AI 系统工程师与应用研究者",
         summary:
-          "我设计并交付端到端的生产级 AI 系统。在 Synexia AI 实习期间，我独立构建了 EDIA（17 节点 LangGraph 多智能体，将决策从 8 分钟缩短至 30 秒）与 Zhanlu（7 层企业级智能体平台，14 个服务的 Docker 技术栈，原生 MCP）。我的浙大硕士论文 BepsBot 结合 RAG、RoBERTa 与 LIWC-2015 帮助双相障碍同伴支持者，验证基于 24 人被试研究（SUS 88.0、κ=.78），并以 PCC 口头报告发表于 HHME 2026。已在 ICEC 2025 与 HHME 2026 发表 4 篇论文；2023 年入选联合国全球青年人才计划。",
+          "构建可审计的多智能体架构、确定性护栏与企业级智能体运行时。研究高风险工业与医疗场景中的人机协同决策与落地式 RAG 系统。",
         viewProjects: "查看我的项目",
         downloadCv: "下载简历",
         contactMe: "联系我",
       },
 
       avail: {
-        textStrong: "欢迎 AI 工程、AI 基础设施与博士研究相关岗位",
-        textRest: "——多智能体 LLM、RAG、AI 基础设施、生产部署，以及生成式 AI 与人机交互的应用研究。",
+        textStrong: "欢迎 AI 工程、AI 基础设施与博士研究岗位",
+        textRest: " ——构建多智能体系统、确定性护栏、企业级 Agent Harness，以及人机协同决策研究。",
         seeProjects: "查看项目",
         industryCv: "行业简历",
         researchSt: "研究陈述",
@@ -255,47 +243,35 @@
 
       about: {
         eyebrow: "关于我",
-        title: "人工智能、产品与影响力交汇处的工程师",
-        p1: "<strong>专注于生产级 AI 系统的 AI 工程师</strong>——LangGraph 多智能体工作流、自研 Synexia 认知编排层（我的 Zhanlu 平台的“大脑”）、基于 ChromaDB 的检索增强生成、LLM 输出护栏，以及大规模 FastAPI 推理。",
-        p2: "我拥有浙江大学工业设计工程硕士学位，以及云南大学计算机科学学士学位。我设计 AI 产品的<strong>完整生命周期</strong>：从模型研究与微调（RoBERTa、Transformers、PEFT/LoRA），到编排、检索基础设施、确定性校验和高并发生产部署。",
-        p3: "我交付的是端到端的 AI 系统，而不仅仅是模型——包括 <strong>LangGraph</strong> 状态机编排、<strong>LangChain + ChromaDB</strong> RAG 流水线、契约式提示词，以及在错误数字到达用户之前加以拦截的 Python 护栏层。我曾独立构建并部署了一整套七层企业级 AI 智能体平台（Zhanlu）。",
-        p4: "我也深耕<strong>AI 与硬件结合的前沿领域</strong>：Arduino/C++、ESP32-CAM、传感器融合、IoT 与边缘 AI，并完成过完整的智能硬件原型部署。",
-        interestsTitle: "研究兴趣与技术方向",
-        goalsTitle: "我努力的方向",
+        title: "AI 系统、产品与影响力交汇处的工程师与研究者",
+        p1: "我设计并部署可信赖 AI 产品的完整生命周期：从模型研究与微调（Transformers、PEFT/LoRA）到健壮的编排、上下文工程、确定性校验，以及高并发生产基础设施。",
+        p2: "浙江大学工业设计工程硕士 + 云南大学计算机科学学士。我构建的不仅是能力强大的模型，更是<strong>可靠、可审计的软件平台</strong>。我的工作覆盖企业级多智能体架构（Zhanlu、EDIA）、已发表的情感计算研究，以及边缘 AI/IoT 硬件。",
+        pillarsTitle: "核心系统与研究支柱",
       },
 
       rs: {
         eyebrow: "研究陈述",
-        title: "构建可信赖的 AI 系统",
-        sub: "对我研究方向、方法论与目标的总结——为博士招生委员会、研究合作者与学术评审人而写。",
-        p1: "我的研究探讨大语言模型与多智能体系统如何支持<strong>高风险人类场景中的决策</strong>——从石化行业商务团队到心理健康领域的同伴支持社区。我工作在生成式 AI、情感计算与人机交互的交汇处，目标是构建既强大、可审计，又与人类价值观一致的 AI 系统。",
-        p2: "在浙江大学，我正在构建两个生产系统来检验这一论点。<strong>EDIA</strong> 是面向 C5/C9 石化价值链的多智能体决策智能平台——一个 17 节点 LangGraph 编排器，预先计算并锁定每一项业务关键数据，再在 LLM 之上叠加确定性护栏，使模型转述证据而非凭空生成预测。<strong>Zhanlu</strong> 是我独立设计与构建的七层企业级 AI 智能体平台——包含 Synexia 认知核心、Harness 智能体、沙箱化工具调用、按智能体配置的模型路由，以及数据驱动的 PPT 产物生成。我在 ICEC 2025 发表的同行评审工作，探讨了双相情感障碍中的生物标志物，以及通过娱乐计算对抑郁与焦虑进行生物反馈干预。",
-        p3: "在方法论上，我结合三条线索——我认为它们对可信赖 AI 而言各自必要、但单独不足：(1) <strong>治理优先的系统设计</strong>——在 LLM 叙述之前预渲染并锁定业务关键数值，再用确定性 Python 护栏强制校验；(2) <strong>检索增强的落地依据</strong>——将结构化企业事实（SQL、ERP、预测视图）与非结构化证据（基于 ChromaDB、带语义及产品/日期过滤的 RAG）相融合；(3) <strong>实证验证</strong>——通过实时 MAPE 跟踪、针对锁定回归基线的前推回测，以及领域专家标注研究。",
-        p4: "展望未来，我的博士研究将探索多智能体架构如何在保持企业级可靠性的同时，支持更丰富的因果推理、多模态落地依据，以及领域关键工作流中的人机协同决策——尤其是在 AI 输出对安全、健康与经济结果产生真实影响的场景中。",
-        areasTitle: "研究领域",
-        areas: [
-          "生成式 AI 与大语言模型",
-          "多智能体系统与 LLM 编排",
-          "检索增强生成",
-          "人机交互与情感计算",
-          "决策智能与人机协同决策",
-          "医疗与社会公益领域的 AI",
-        ],
-        toolkitTitle: "方法论工具箱",
-        toolkit: [
-          "迁移学习与 Transformer 微调（RoBERTa、BERT）",
-          "检索增强生成（ChromaDB、LangChain）",
-          "确定性预渲染与护栏校验",
-          "前推回测与实时 MAPE 评估",
-          "多智能体编排（LangGraph、自研 Synexia FSM）",
-          "专家标注与人机协同评估",
-        ],
+        title: "构建可信赖、落地式与可审计的 AI 系统",
+        sub: "为博士招生委员会、研究合作者与 AI 研发实验室而写。",
+        s1Title: "1. 研究愿景",
+        s1: "我的研究探讨多智能体架构与大语言模型如何支持高风险人类场景中的决策——从工业石化供应链到心理健康新型支持社区。随着 LLM 从开放式聊天助手转变为关键企业节点，概率式生成引入了不可接受的方差与幻觉风险。我设计与评估将基础模型与<strong>确定性治理、动态检索和人机协同验证</strong>相结合的系统架构，确保 AI 输出保持强大、可审计且与人类价值观一致。",
+        s2Title: "2. 方法论框架",
+        s2: "我的研究框架整合三条互补方法论：",
+        s2a: "<strong>治理优先的系统设计：</strong>通过有限状态机 (FSM) 预渲染，在 LLM 叙述前锁定业务关键数值与证据，并由确定性校验护栏强制执行。",
+        s2b: "<strong>混合上下文落地：</strong>将结构化企业事实（ERP 数据库、SQL 视图、时间序列预测）与非结构化证据通过语义 RAG 融合（ChromaDB、向量嵌入、实体链接）。",
+        s2c: "<strong>实证系统验证：</strong>通过针对锁定基线的前推 MAPE 回测、自动化 LLM-as-Judge 审计门禁和领域专家标注研究来评估可靠性。",
+        s3Title: "3. 未来方向",
+        s3: "我正在进行和规划的研究聚焦于三个核心前沿：",
+        s3a: "<strong>因果多智能体推理：</strong>扩展状态机编排器以执行反事实推理、时序前推回测和自纠错计划执行。",
+        s3b: "<strong>多模态与边缘上下文落地：</strong>将嵌入式传感器流（ESP32、IoT 硬件）与轻量级边缘模型集成，实现实时视觉与环境上下文落地。",
+        s3c: "<strong>人机协同决策动态：</strong>量化领域专家在安全关键工作流中与自主多智能体系统协作时的信任度、认知负荷与安全对齐。",
+        toolkitTitle: "方法论与技术工具箱",
       },
 
       skills: {
         eyebrow: "技术技能",
         title: "我使用的技能与技术",
-        sub: "按我日常工作的领域分类——从模型训练到生产级 LLM 基础设施。",
+        sub: "按我构建的系统组织——从智能体编排和检索基础设施到生产部署。",
       },
 
       exp: {

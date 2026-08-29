@@ -154,7 +154,7 @@
       ${highlights}
 
       ${block(t("lib.block.problem"), `<p>${esc(p.problem)}</p>`)}
-      ${block(t("lib.block.role"), `<p>${esc(p.roleDetail)}</p>`)}
+      ${block(t("lib.block.role"), p.roleDetail.includes("<p>") ? p.roleDetail : `<p>${esc(p.roleDetail)}</p>`)}
       ${
         p.architecture
           ? block(t("lib.block.architecture"), `<p>${esc(p.architecture)}</p>`)
@@ -307,9 +307,11 @@
     }, 250);
   }
 
-  // Click any in-detail image (hero or gallery screenshot) to open lightbox
+  // Click any in-detail image (hero, gallery, or fig) to open lightbox
   document.addEventListener("click", (e) => {
-    const img = e.target.closest(".pd-media img, .pd-gallery .pd-screenshot img");
+    const img = e.target.closest(
+      ".pd-media img, .pd-gallery .pd-screenshot img, .pd-fig img"
+    );
     if (!img) return;
     // Avoid hijacking clicks inside other interactive elements if any
     e.preventDefault();

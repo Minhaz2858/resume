@@ -77,32 +77,19 @@
 
   /* ---------- section renderers (language-aware) ---------- */
 
-  function renderStats() {
+  function renderPillars() {
     const D = window.I18N.getData();
-    const statsStrip = $("#stats-strip");
-    if (statsStrip && D.profile.stats) {
-      statsStrip.innerHTML = D.profile.stats
+    const pillarsList = $("#pillars-list");
+    if (pillarsList && D.profile.pillars) {
+      pillarsList.innerHTML = D.profile.pillars
         .map(
-          (s) => `
-          <div class="stat">
-            <div class="stat-num">${esc(s.num)}</div>
-            <div class="stat-label">${esc(s.label)}</div>
+          (p) => `
+          <div class="pillar-item">
+            <h4>${esc(p.title)}</h4>
+            <p>${esc(p.desc)}</p>
           </div>`
         )
         .join("");
-    }
-  }
-
-  function renderInterestsGoals() {
-    const D = window.I18N.getData();
-    const interestsList = $("#interests-list");
-    if (interestsList && D.profile.interests) {
-      interestsList.innerHTML = D.profile.interests.map((i) => `<li>${esc(i)}</li>`).join("");
-    }
-
-    const goalsList = $("#goals-list");
-    if (goalsList && D.profile.goals) {
-      goalsList.innerHTML = D.profile.goals.map((g) => `<li>${esc(g)}</li>`).join("");
     }
   }
 
@@ -140,9 +127,19 @@
               <span class="tl-period">${esc(e.period)}</span>
             </div>
             <p class="tl-location">${esc(e.location)}</p>
-            <ul>
-              ${e.points.slice(0, 4).map((p) => `<li>${esc(p)}</li>`).join("")}
-            </ul>
+            ${e.projects
+              ? e.projects
+                  .map(
+                    (pr) => `
+              <h4 class="tl-project-name">${esc(pr.name)}</h4>
+              <ul>
+                ${pr.points.map((p) => `<li>${esc(p)}</li>`).join("")}
+              </ul>`
+                  )
+                  .join("")
+              : `<ul>
+              ${e.points.map((p) => `<li>${esc(p)}</li>`).join("")}
+            </ul>`}
             ${e.tech && e.tech.length ? `<div class="chips tl-tech">${e.tech.map((tch) => `<span class="chip">${esc(tch)}</span>`).join("")}</div>` : ""}
           </div>`
         )
@@ -209,6 +206,18 @@
   }
 
   /* ---------- publications ---------- */
+
+  function renderRsToolkit() {
+    const D = window.I18N.getData();
+    const tbl = $("#rs-toolkit-table");
+    if (tbl && D.profile.rsToolkit) {
+      tbl.innerHTML =
+        `<thead><tr><th>Domain</th><th>Core Frameworks & Methodologies</th></tr></thead>` +
+        `<tbody>${D.profile.rsToolkit
+          .map((r) => `<tr><td><strong>${esc(r.domain)}</strong></td><td>${esc(r.tools)}</td></tr>`)
+          .join("")}</tbody>`;
+    }
+  }
 
   function renderPublications() {
     const D = window.I18N.getData();
@@ -328,11 +337,11 @@
 
   function renderAll() {
     renderFilters();
-    renderStats();
-    renderInterestsGoals();
+    renderPillars();
     renderSkills();
     renderExperience();
     renderProjects();
+    renderRsToolkit();
     renderPublications();
     renderEducation();
     renderCerts();
