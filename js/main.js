@@ -239,6 +239,7 @@
             <p class="paper-authors">${p.authors.map((a) =>
               a.me ? `<strong>${esc(a.name)}</strong>` : `<span>${esc(a.name)}</span>`
             ).join(", ")}</p>
+            ${p.impact ? `<p class="paper-impact">${esc(p.impact)}</p>` : ""}
             <p class="paper-venue">${esc(p.venueShort || p.venue)}</p>
             <div class="paper-detail">
               ${p.pages ? `<span>${esc(t("pub.pages"))} ${esc(p.pages)}</span>` : ""}

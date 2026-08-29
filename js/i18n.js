@@ -61,11 +61,11 @@
       },
 
       avail: {
-        textStrong: "Open to AI Engineering, AI Infrastructure & PhD Positions",
+        textStrong: "Seeking PhD positions (Fall 2027)",
         textRest:
-          " — Building multi-agent systems, deterministic guardrails, enterprise Agent Harness, and human-AI co-decision research.",
+          " — Human-AI co-decision, trustworthy LLM systems, and applied research in mental-health & high-stakes domains.",
         seeProjects: "See Projects",
-        industryCv: "Industry CV",
+        downloadCv: "Download CV (PDF)",
         researchSt: "Research Statement",
       },
 
@@ -234,10 +234,10 @@
       },
 
       avail: {
-        textStrong: "欢迎 AI 工程、AI 基础设施与博士研究岗位",
-        textRest: " ——构建多智能体系统、确定性护栏、企业级 Agent Harness，以及人机协同决策研究。",
+        textStrong: "寻求 2027 年秋季博士岗位",
+        textRest: " ——人机协同决策、可信赖 LLM 系统，以及在心理健康与高风险领域的应用研究。",
         seeProjects: "查看项目",
-        industryCv: "行业简历",
+        downloadCv: "下载简历 (PDF)",
         researchSt: "研究陈述",
       },
 
@@ -252,7 +252,7 @@
       rs: {
         eyebrow: "研究陈述",
         title: "构建可信赖、落地式与可审计的 AI 系统",
-        sub: "为博士招生委员会、研究合作者与 AI 研发实验室而写。",
+        sub: "",
         s1Title: "1. 研究愿景",
         s1: "我的研究探讨多智能体架构与大语言模型如何支持高风险人类场景中的决策——从工业石化供应链到心理健康新型支持社区。随着 LLM 从开放式聊天助手转变为关键企业节点，概率式生成引入了不可接受的方差与幻觉风险。我设计与评估将基础模型与<strong>确定性治理、动态检索和人机协同验证</strong>相结合的系统架构，确保 AI 输出保持强大、可审计且与人类价值观一致。",
         s2Title: "2. 方法论框架",

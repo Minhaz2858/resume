@@ -17,7 +17,7 @@ window.PORTFOLIO_ZH = {
     github: "https://github.com/Minhazul249602",
     linkedin: "https://www.linkedin.com/in/minhazul-islam-43b3a4221/",
     facebook: "https://www.facebook.com/minhazul.islam.827809",
-    cv: "assets/cv.pdf",
+    cv: "assets/Islam_Minhazul_CV.pdf",
     photo: "assets/profile.jpg",
     summary:
       "AI 工程师与算法工程师，拥有浙江大学工业设计工程硕士学位和云南大学计算机科学学士学位。我专注于生成式 AI 与 NLP——LLM、RAG、提示词工程、LangChain，以及基于 PyTorch 的 Transformer 微调（RoBERTa）。我构建端到端的 AI 系统，从模型开发到基于 FastAPI 的高并发生产部署，并拥有丰富的 AI 与硬件结合经验（Arduino、ESP32-CAM、传感器融合、边缘 AI）。",
@@ -27,15 +27,15 @@ window.PORTFOLIO_ZH = {
       "我乐于解决那些既需要深厚技术、又需要清晰用户视角的问题：让 LLM 扎根于证据、让 AI 输出可验证，并交付在真实负载下稳定运行的系统。",
     ],
     pillars: [
+      { title: "人机协同决策与 HCI", desc: "面向同伴支持写作辅助（心理健康社区）、生物反馈干预与情感计算的实证研究——发表于 ICEC 2025 与 HHME 2026 PCC。" },
       { title: "多智能体编排与 Harness 运行时", desc: "状态机执行（17 节点 LangGraph FSM）、规划优先回合规划、子智能体委派，以及带 Model Context Protocol (MCP) 桥接的自研 Harness Agent 运行时。" },
-      { title: "上下文工程与落地式 RAG", desc: "混合检索（ChromaDB 向量搜索 + 结构化 SQL 数据落地）、SafeContextGate 预算强制、负载溢出与长期语义记忆。" },
-      { title: "治理优先的系统安全", desc: "确定性 Python 校验层——预计算并锁定业务关键数据，在 LLM 叙述前强制执行 0% 幻觉率。" },
+      { title: "上下文工程与落地式 RAG", desc: "混合检索（ChromaDB 向量搜索 + 结构化 SQL 数据落地）、上下文预算管理与负载溢出、长期语义记忆。" },
+      { title: "治理优先的系统安全", desc: "确定性 Python 校验层——在 LLM 叙述前预计算并锁定业务关键数据；通过预渲染指标消除一类数值幻觉。" },
       { title: "沙箱执行与 LLMOps", desc: "Docker 隔离的技能执行（sandbox-python、sandbox-pptx）、LLM-as-judge 阻断式质量门禁、多供应商模型路由，以及 SSE 流式 API。" },
-      { title: "人机协同决策与 HCI", desc: "面向情感计算、生物反馈干预和心理健康新型支持工具的应用 NLP（ICEC 2025、HHME 2026）。" },
     ],
     rsToolkit: [
       { domain: "编排与运行时", tools: "LangGraph、自研 Synexia FSM、Harness Agent 运行时、Model Context Protocol (MCP)、ReAct / CoT 规划" },
-      { domain: "上下文与检索基础设施", tools: "混合向量 + SQL RAG、ChromaDB、BAAI/bge-m3、SafeContextGate 预算管理、上下文压缩" },
+      { domain: "上下文与检索基础设施", tools: "混合向量 + SQL RAG、ChromaDB、BAAI/bge-m3、上下文预算管理、上下文压缩" },
       { domain: "校验与评估", tools: "确定性 Python 护栏、预渲染、LLM-as-Judge 审计门禁、前推 MAPE 回测" },
       { domain: "生产 LLMOps 与基础设施", tools: "Docker 微服务（14 服务栈）、FastAPI、Redis、MinIO、SSE 流式、Prometheus/Grafana" },
       { domain: "机器学习与 NLP", tools: "PyTorch、Hugging Face Transformers、PEFT/LoRA、STL + 时间序列集成、RoBERTa / BERT 微调" },
@@ -55,13 +55,13 @@ window.PORTFOLIO_ZH = {
       items: [
         "LangGraph（17 节点 FSM）", "Agent Harness", "Model Context Protocol (MCP)",
         "规划优先回合规划", "子智能体工作流", "目标契约与自纠错",
-        "Hermes 控制层", "LLM-as-Judge 评估", "Tool/Skill/MCP 网关",
+        "控制与可观测性层", "LLM-as-Judge 评估", "Tool/Skill/MCP 网关",
       ],
     },
     {
       category: "上下文工程与检索基础设施",
       items: [
-        "SafeContextGate / Spilling", "混合向量 + SQL RAG", "ChromaDB / BAAI/bge-m3 嵌入",
+        "上下文预算与溢出管理", "混合向量 + SQL RAG", "ChromaDB / BAAI/bge-m3 嵌入",
         "确定性护栏", "输出校验", "上下文裁剪与隔离",
       ],
     },
@@ -315,7 +315,7 @@ window.PORTFOLIO_ZH = {
               <div class="pd-card"><h4>全栈仪表盘生成</h4><p>智能体从绑定的数据源生成完整 React 仪表盘。DB 无关的分析器在设计前检查真实数据，图表类型由数据形态决定；组件 SQL 在构建时验证；仪表盘通过 WebSocket 实时刷新。</p></div>
               <div class="pd-card"><h4>带审计的 PPT 流水线</h4><p>演示文稿先经过 HTML 设计阶段渲染，再由 LLM 裁判按来源引用规则审计，不合格文稿被拦截交付——幻觉幻灯片永远不会到达用户。市场类需求会基于项目知识库为文稿提供依据。</p></div>
               <div class="pd-card"><h4>MCP 客户端 + 服务端</h4><p>原生 MCP 客户端注册外部工具，MCP 服务端对外暴露 Zhanlu 能力。CAD 智能体通过 socket MCP 桥接驱动 Autodesk Fusion 360。</p></div>
-              <div class="pd-card"><h4>上下文窗口安全</h4><p>SafeContextGate 在每次 LLM 调用前进行预检——压缩历史记录、将超大数据载荷转移到数据指针层，无论使用哪个模型都保证上下文余量。</p></div>
+              <div class="pd-card"><h4>上下文窗口安全</h4><p>上下文预算检查在每次 LLM 调用前运行——压缩历史记录、将超大数据载荷转移到数据指针层，无论使用哪个模型都保证上下文余量。</p></div>
               <div class="pd-card"><h4>带故障切换的 LLM 路由</h4><p>多提供商路由 + 健康检查 + 自动回退。验证了本地 vLLM 服务（Qwen3-27B）与自定义工具调用解析器，与云端模型并行，客户可将数据保留在本地。</p></div>
             </div>
           `,

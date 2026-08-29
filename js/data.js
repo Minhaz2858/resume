@@ -15,7 +15,7 @@ window.PORTFOLIO = {
     github: "https://github.com/Minhazul249602",
     linkedin: "https://www.linkedin.com/in/minhazul-islam-43b3a4221/",
     facebook: "https://www.facebook.com/minhazul.islam.827809",
-    cv: "assets/cv.pdf",
+    cv: "assets/Islam_Minhazul_CV.pdf",
     photo: "assets/profile.jpg",
     summary:
       "AI Engineer and Algorithm Engineer with a Master of Industrial Design Engineering from Zhejiang University and a Bachelor of Computer Science from Yunnan University. I specialize in generative AI and NLP — LLMs, RAG, prompt engineering, LangChain, and Transformer fine-tuning (RoBERTa) with PyTorch. I build end-to-end AI systems, from model development to high-concurrency production deployment with FastAPI, and I bring hands-on experience in AI + hardware (Arduino, ESP32-CAM, sensor fusion, edge AI).",
@@ -25,15 +25,15 @@ window.PORTFOLIO = {
       "I enjoy solving problems where the answer requires both deep technical work and a clear view of the user: grounding LLMs in evidence, making AI output verifiable, and shipping systems that perform under real load.",
     ],
     pillars: [
+      { title: "Human-AI Co-Decision & HCI", desc: "Empirical research on peer-support writing assistance in mental-health communities, biofeedback interventions, and affective computing — published at ICEC 2025 and HHME 2026 PCC." },
       { title: "Multi-Agent Orchestration & Harness Runtime", desc: "State-machine execution (17-node LangGraph FSMs), plan-first turn planning, sub-agent delegation, and custom Harness Agent runtimes with Model Context Protocol (MCP) bridges." },
-      { title: "Context Engineering & Grounded RAG", desc: "Hybrid retrieval (ChromaDB vector search + structured SQL data grounding), SafeContextGate budget enforcement, payload spilling, and long-term semantic memory." },
-      { title: "Governance-First System Safety", desc: "Deterministic Python validation layers that pre-compute and lock business-critical data, enforcing a 0% hallucination rate before LLM narration." },
+      { title: "Context Engineering & Grounded RAG", desc: "Hybrid retrieval (ChromaDB vector search + structured SQL data grounding), context budget enforcement with payload spill management, and long-term semantic memory." },
+      { title: "Governance-First System Safety", desc: "Deterministic Python validation layers that pre-compute and lock business-critical data before LLM narration — eliminating a class of numerical hallucination by pre-rendering metrics." },
       { title: "Sandboxed Execution & LLMOps", desc: "Docker-isolated skill execution (sandbox-python, sandbox-pptx), LLM-as-a-judge blocking quality gates, multi-provider model routing, and SSE streaming APIs." },
-      { title: "Human-AI Co-Decision & HCI", desc: "Applied NLP for affective computing, biofeedback interventions, and peer-support tools in mental health (ICEC 2025, HHME 2026)." },
     ],
     rsToolkit: [
       { domain: "Orchestration & Runtimes", tools: "LangGraph, Custom Synexia FSM, Harness Agent Runtimes, Model Context Protocol (MCP), ReAct / CoT Planning" },
-      { domain: "Context & Retrieval Infra", tools: "Hybrid Vector + SQL RAG, ChromaDB, BAAI/bge-m3, SafeContextGate Budgeting, Context Compaction" },
+      { domain: "Context & Retrieval Infra", tools: "Hybrid Vector + SQL RAG, ChromaDB, BAAI/bge-m3, Context Budgeting, Context Compaction" },
       { domain: "Validation & Evaluation", tools: "Deterministic Python Guardrails, Pre-rendering, LLM-as-a-Judge Audit Gates, Walk-Forward MAPE Backtesting" },
       { domain: "Production LLMOps & Infra", tools: "Docker Microservices (14-service stacks), FastAPI, Redis, MinIO, SSE Streaming, Prometheus/Grafana" },
       { domain: "Machine Learning & NLP", tools: "PyTorch, Hugging Face Transformers, PEFT/LoRA, STL + Time-Series Ensembles, RoBERTa / BERT Fine-Tuning" },
@@ -53,13 +53,13 @@ window.PORTFOLIO = {
       items: [
         "LangGraph (17-Node FSM)", "Agent Harness", "Model Context Protocol (MCP)",
         "Plan-First Turn Planning", "Sub-Agent Workflows", "Goal Contracts & Self-Correction",
-        "Hermes Control Layer", "LLM-as-a-Judge Eval", "Tool/Skill/MCP Gateway",
+        "Control & Observability Layer", "LLM-as-a-Judge Eval", "Tool/Skill/MCP Gateway",
       ],
     },
     {
       category: "Context Engineering & Retrieval Infrastructure",
       items: [
-        "SafeContextGate / Spilling", "Hybrid Vector + SQL RAG", "ChromaDB / BAAI/bge-m3 Embeddings",
+        "Context Budget & Spill Management", "Hybrid Vector + SQL RAG", "ChromaDB / BAAI/bge-m3 Embeddings",
         "Deterministic Guardrails", "Output Validation", "Context Trimming & Isolation",
       ],
     },
@@ -241,7 +241,7 @@ window.PORTFOLIO = {
                       <span class="step">generate_report</span><span class="arr">→</span>
                       <span class="step">validation_agent</span>
                     </div>
-                    <div class="pd-arch-sub" style="margin-top:8px;color:var(--accent-strong);"><b>Hermes Control Layer</b></div>
+                    <div class="pd-arch-sub" style="margin-top:8px;color:var(--accent-strong);"><b>Control & Observability Layer</b></div>
                     <div class="pd-arch-sub">Plan · Tracing · Validation Gates · Presenter · Audit</div>
                   </div>
                 </div>
@@ -615,7 +615,7 @@ window.PORTFOLIO = {
               <div class="pd-card"><h4>Fullstack Dashboard Generation</h4><p>Agents generate complete React dashboards from bound datasources. A DB-agnostic profiler inspects real data before design, so chart types are driven by data shape; widget SQL is validated at build time; dashboards refresh live over WebSocket.</p></div>
               <div class="pd-card"><h4>Audited PPT Pipeline</h4><p>Decks render through an HTML design stage, are audited by an LLM judge with source-citation rules, and failed decks are blocked from delivery — hallucinated slides never reach users. Market intents ground decks in the project knowledge base.</p></div>
               <div class="pd-card"><h4>MCP Client + Server</h4><p>A native MCP client registers external tools, and an MCP server exposes Zhanlu capabilities. A CAD agent drives Autodesk Fusion 360 over a socket MCP bridge.</p></div>
-              <div class="pd-card"><h4>Context-Window Safety</h4><p>SafeContextGate checks every LLM call before it happens — compresses history and spills oversized tool payloads to a data-pointer layer, guaranteeing context headroom regardless of which model is serving.</p></div>
+              <div class="pd-card"><h4>Context-Window Safety</h4><p>A context budget check runs before every LLM call — compresses history and spills oversized tool payloads to a data-pointer layer, guaranteeing context headroom regardless of which model is serving.</p></div>
               <div class="pd-card"><h4>LLM Routing with Fallback</h4><p>Multi-provider routing with health checks and automatic fallback. Validated local vLLM serving (Qwen3-27B) with a custom tool-call parser alongside cloud models, so customers can keep data on-premise.</p></div>
             </div>
           `,
@@ -1234,6 +1234,7 @@ def recommend_candidates(req):
         { name: "Mengru Xue", me: false },
         { name: "Tasnim Afra", me: false },
       ],
+      impact: "Systematic review mapping psychologist-applied biomarkers (sleep, activity, mood) to bipolar-disorder state changes — informing digital-phenotyping designs for peer-support tools.",
       doi: "10.1007/978-3-032-02534-0_8",
       pages: "61–75",
       published: "27 August 2025",
@@ -1250,6 +1251,7 @@ def recommend_candidates(req):
         { name: "Mengru Xue", me: false },
         { name: "Minhazul Islam", me: true },
       ],
+      impact: "Systematic review of biofeedback interventions delivered through entertainment computing — identifying design patterns that improve engagement and clinical outcomes.",
       doi: "10.1007/978-3-032-02534-0_6",
       pages: "37–51",
       published: "27 August 2025",
@@ -1266,6 +1268,7 @@ def recommend_candidates(req):
         { name: "Mengru Xue", me: false },
         { name: "Tasnim Afra", me: false },
       ],
+      impact: "Within-subjects study (N=24): draft-grounded generation more than doubled suggestion adoption (33.3% → 75.6%) while preserving usability (SUS 86.98).",
       status: "PCC Oral Presentation · 17 August 2026",
       conferenceUrl: "https://hhme.ccf.org.cn/PCC_paper.html",
       doi: null,
@@ -1284,6 +1287,7 @@ def recommend_candidates(req):
         { name: "Mengru Xue", me: false },
         { name: "Minhazul Islam", me: true },
       ],
+      impact: "Comparative study across three response strategies identifies the conditions under which empathic responses outperform affect-neutral and cognitive-reappraisal framings for distressed users.",
       status: "PCC Oral Presentation · 17 August 2026",
       conferenceUrl: "https://hhme.ccf.org.cn/PCC_paper.html",
       doi: null,
@@ -1297,7 +1301,7 @@ def recommend_candidates(req):
     {
       degree: "Masters in Industrial Design Engineering",
       school: "Zhejiang University",
-      period: "Sep 2023 – Present",
+      period: "Sep 2023 – Dec 2026 (Expected)",
       location: "Zhejiang, China",
     },
     {
