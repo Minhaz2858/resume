@@ -65,7 +65,6 @@
         textRest:
           " — Building multi-agent systems, deterministic guardrails, enterprise Agent Harness, and human-AI co-decision research.",
         seeProjects: "See Projects",
-        industryCv: "Industry CV",
         researchSt: "Research Statement",
       },
 
@@ -237,7 +236,6 @@
         textStrong: "欢迎 AI 工程、AI 基础设施与博士研究岗位",
         textRest: " ——构建多智能体系统、确定性护栏、企业级 Agent Harness，以及人机协同决策研究。",
         seeProjects: "查看项目",
-        industryCv: "行业简历",
         researchSt: "研究陈述",
       },
 
