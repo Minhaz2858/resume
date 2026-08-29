@@ -1,1 +1,4 @@
 SPROUT/
+*.bak
+*.tmp
+.DS_Store
