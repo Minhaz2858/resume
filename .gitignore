@@ -1,4 +1,6 @@
 SPROUT/
+.codebuddy/
+.vscode/
 *.bak
 *.tmp
 .DS_Store
