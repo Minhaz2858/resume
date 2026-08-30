@@ -104,6 +104,9 @@ ul { list-style: none; }
   border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
 }
+.featured-fig { margin: 0; background: var(--card); border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow-sm); overflow: hidden; }
+.featured-fig img { display: block; border-radius: 0; border: none; box-shadow: none; }
+.featured-fig figcaption { font-size: 0.78rem; color: var(--text-muted); padding: 10px 14px; line-height: 1.5; background: var(--bg-alt); border-top: 1px solid var(--border); }
 .featured-content { display: flex; flex-direction: column; gap: 16px; }
 .featured-problem {
   font-size: 1rem;
