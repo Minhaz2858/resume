@@ -14,7 +14,7 @@ window.PORTFOLIO_ZH = {
     location: "中国浙江宁波",
     email: "minhaz1396@zju.edu.cn",
     phone: "+86 15990259205",
-    github: "https://github.com/Minhazul249602",
+    github: "https://github.com/Minhaz2858",
     linkedin: "https://www.linkedin.com/in/minhazul-islam-43b3a4221/",
     facebook: "https://www.facebook.com/minhazul.islam.827809",
     cv: "assets/Islam_Minhazul_CV.pdf",
@@ -724,7 +724,7 @@ def recommend_candidates(req):
         },
       ],
       links: [
-        { label: "GitHub 仓库", url: "https://github.com/Minhazul249602/SPROUT", external: true },
+        { label: "GitHub 仓库", url: "https://github.com/Minhaz2858/SPROUT", external: true },
         { label: "完整报告 (PDF)", url: "docs/sprout/Final_Report.pdf", external: false },
       ],
     },
@@ -869,7 +869,7 @@ def recommend_candidates(req):
         "通过相似度一致性以及对生成建议与用户阅读模式的定性检查，评估推荐质量。",
       stack: ["Python", "NumPy", "Pandas", "MongoDB", "Matplotlib", "Flask"],
       links: [
-        { label: "GitHub", url: "https://github.com/Minhazul249602/Product-Recommendation-System-Based-on-collaborative-algorithm/tree/main/20193290764%20Minhazul%20islam", external: true },
+        { label: "GitHub", url: "https://github.com/Minhaz2858/Product-Recommendation-System-Based-on-collaborative-algorithm/tree/main/20193290764%20Minhazul%20islam", external: true },
       ],
     },
     {
