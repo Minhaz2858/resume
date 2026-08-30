@@ -57,7 +57,7 @@ User added a `bepsbot/` resources folder containing the Springer LNCS LaTeX manu
 ### Final stack (17 items, added `BERT (768-dim)`, `More-Like-This (tf-idf)`, `LIWC-2015`)
 
 ### Final links
-- `GitHub` → `https://github.com/minhazulzju/BepsBot`
+- `GitHub` → `https://github.com/Minhaz2858/Bepsbot`
 - `HHME 2026 PCC Paper` → `https://hhme.ccf.org.cn/PCC_paper.html`
 - `Full Case Study` → `docs/bepsbot.html`
 
