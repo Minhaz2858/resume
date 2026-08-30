@@ -113,7 +113,7 @@ window.PORTFOLIO = {
         {
           name: "Project 2: Zhanlu — Enterprise AI Operating System",
           points: [
-            "Multi-tenant enterprise AI platform. 218K LOC Python backend + 68K LOC React frontend. 14-service Docker stack.",
+            "Multi-tenant enterprise AI platform.",
             "H::Agent Harness & Runtime",
             "Built the Synexia FSM (plan → act → observe → verify) with bounded re-planning, goal contracts, and deterministic confidence scoring.",
             "Implemented SafeContextGate: a pre-flight context budget estimator that runs before every LLM call, compresses history, spills oversized payloads to a data-pointer layer, and guarantees 25% context headroom — making context-window crashes structurally impossible regardless of model.",

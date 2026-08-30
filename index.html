@@ -252,62 +252,39 @@
     <section class="section section-academic" id="research-st">
       <div class="container">
         <span class="eyebrow" data-i18n="rs.eyebrow">Research Statement</span>
-        <h2 class="section-title" data-i18n="rs.title">Building Trustworthy, Grounded, and Auditable AI Systems</h2>
-        <p class="section-sub" data-i18n="rs.sub" style="display:none"></p>
+        <h2 class="section-title" data-i18n="rs.title">Trustworthy AI Systems for High-Stakes Decisions</h2>
 
         <div class="rs-grid">
           <div class="rs-main">
-            <h3 data-i18n="rs.s1Title">1. Research Vision</h3>
-            <p data-i18n="rs.s1" data-i18n-html>
-              My research investigates how multi-agent architectures and large language models can support
-              decision-making in high-stakes human contexts—ranging from industrial petrochemical supply
-              chains to mental health peer-support communities. As LLMs transition from open-ended chat
-              assistants to critical enterprise nodes, probabilistic generation introduces unacceptable
-              variance and hallucination risks. I design and evaluate system architectures that combine
-              foundation models with <strong>deterministic governance, dynamic retrieval, and
-              human-in-the-loop validation</strong> to ensure AI outputs remain capable, auditable, and
-              aligned with human values.
+            <p data-i18n="rs.p1" data-i18n-html>
+              I build AI systems where a wrong output carries real cost — petrochemical supply chains,
+              mental-health peer support, enterprise decision workflows. My work sits at the intersection
+              of multi-agent orchestration, deterministic governance, and human-AI co-decision: designing
+              architectures that make probabilistic models auditable and safe enough to deploy in production.
             </p>
-
-            <h3 data-i18n="rs.s2Title">2. Methodological Framework</h3>
-            <p data-i18n="rs.s2">My research framework integrates three complementary methodologies:</p>
-            <ul class="rs-method-list">
-              <li data-i18n="rs.s2a" data-i18n-html>
-                <strong>Governance-First System Design:</strong> Locking business-critical numbers
-                and evidence prior to LLM narration via finite-state machine (FSM) pre-rendering,
-                enforced by deterministic validation guardrails.
-              </li>
-              <li data-i18n="rs.s2b" data-i18n-html>
-                <strong>Hybrid Context Grounding:</strong> Fusing structured enterprise truth
-                (ERP databases, SQL views, time-series forecasts) with unstructured evidence
-                through semantic RAG (ChromaDB, vector embeddings, entity linking).
-              </li>
-              <li data-i18n="rs.s2c" data-i18n-html>
-                <strong>Empirical System Validation:</strong> Evaluating reliability through
-                walk-forward MAPE backtesting against locked baselines, automated LLM-as-a-Judge
-                audit gates, and domain-expert annotation studies.
-              </li>
-            </ul>
-
-            <h3 data-i18n="rs.s3Title">3. Future Directions</h3>
-            <p data-i18n="rs.s3">My ongoing and prospective research focuses on three core frontiers:</p>
-            <ul class="rs-method-list">
-              <li data-i18n="rs.s3a" data-i18n-html>
-                <strong>Causal Multi-Agent Reasoning:</strong> Extending state-machine orchestrators
-                to perform counterfactual reasoning, temporal walk-forward backtesting, and
-                self-correcting plan execution.
-              </li>
-              <li data-i18n="rs.s3b" data-i18n-html>
-                <strong>Multimodal & Edge Context Grounding:</strong> Integrating embedded sensor
-                streams (ESP32, IoT hardware) with lightweight edge models for real-time visual
-                and environmental context grounding.
-              </li>
-              <li data-i18n="rs.s3c" data-i18n-html>
-                <strong>Human-AI Co-Decision Dynamics:</strong> Quantifying trust, cognitive load,
-                and safety alignment when domain experts collaborate with autonomous multi-agent
-                systems in safety-critical workflows.
-              </li>
-            </ul>
+            <p data-i18n="rs.p2" data-i18n-html>
+              At Synexia AI, I solo-built EDIA and Zhanlu, two production multi-agent systems that taught
+              me where theory meets friction. EDIA's pre-rendering pipeline locks business-critical numbers
+              in pure Python before any LLM sees them — the model narrates, but never computes. Zhanlu's
+              SafeContextGate makes context-window crashes structurally impossible by enforcing headroom
+              before every call. These were engineering necessities that became research questions:
+              <em>When should we extract computation from generative models? How do we validate agent plans
+              without exploding latency? What does "trust" mean when the human is a domain expert, not a
+              casual user?</em>
+            </p>
+            <p data-i18n="rs.p3" data-i18n-html>
+              My master's thesis, BEPSBot, approached the same problem from the HCI side: a draft-grounded
+              writing assistant for bipolar-disorder peer-support communities, evaluated in a within-subjects
+              study (N=24, HHME 2026). The challenge was identical — generative suggestions are helpful
+              until they fabricate advice that carries clinical risk.
+            </p>
+            <p data-i18n="rs.p4" data-i18n-html>
+              What I want to do next: Move from building guardrails around black-box agents to understanding
+              the generative foundations that make those guardrails less necessary. I am particularly interested
+              in how diffusion-based policies and flow-matching architectures can produce reliable, auditable
+              decisions under distribution shift — and how my deployment experience in high-stakes industrial
+              and healthcare settings can inform which theoretical guarantees actually matter in practice.
+            </p>
           </div>
 
           <aside class="rs-side">
