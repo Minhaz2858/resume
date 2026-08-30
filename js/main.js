@@ -111,6 +111,29 @@
     }
   }
 
+  /* ---------- experience ---------- */
+
+  // Group a project's points into { headline, bullets[] } sections.
+  // A point starting with "H::" starts a new headline section; subsequent
+  // plain points become its bullets until the next "H::" or end of array.
+  function groupPoints(points) {
+    const groups = [];
+    let current = { headline: null, bullets: [] };
+    const flush = () => {
+      if (current.headline || current.bullets.length) groups.push(current);
+    };
+    for (const p of points) {
+      if (typeof p === "string" && p.startsWith("H::")) {
+        flush();
+        current = { headline: p.slice(3), bullets: [] };
+      } else {
+        current.bullets.push(p);
+      }
+    }
+    flush();
+    return groups;
+  }
+
   function renderExperience() {
     const D = window.I18N.getData();
     const expList = $("#experience-list");
@@ -130,16 +153,68 @@
             ${e.projects
               ? e.projects
                   .map(
-                    (pr) => `
+                    (pr) => {
+                      // A point starting with "Tech:" is a compact tech list —
+                      // split it on "·" and render as chips instead of a bullet.
+                      const techPoints = pr.points.filter((p) =>
+                        typeof p === "string" && p.startsWith("Tech:")
+                      );
+                      const otherPoints = pr.points.filter(
+                        (p) => !(typeof p === "string" && p.startsWith("Tech:"))
+                      );
+                      const techHTML = techPoints
+                        .map(
+                          (tp) =>
+                            `<div class="chips tl-tech">` +
+                            tp
+                              .slice(5)
+                              .split("·")
+                              .map((s) => s.trim())
+                              .filter(Boolean)
+                              .map((t) => `<span class="chip">${esc(t)}</span>`)
+                              .join("") +
+                            `</div>`
+                        )
+                        .join("");
+                      return `
               <h4 class="tl-project-name">${esc(pr.name)}</h4>
-              <ul>
-                ${pr.points.map((p) => `<li>${esc(p)}</li>`).join("")}
-              </ul>`
+              ${groupPoints(otherPoints).map((g) => g.headline
+                ? `<h5 class="tl-headline">${esc(g.headline)}</h5><ul>${g.bullets.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>`
+                : `<ul>${g.bullets.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>`
+              ).join("")}
+              ${techHTML}`;
+                    }
                   )
                   .join("")
-              : `<ul>
-              ${e.points.map((p) => `<li>${esc(p)}</li>`).join("")}
-            </ul>`}
+              : (() => {
+                  const techPoints = e.points.filter(
+                    (p) => typeof p === "string" && p.startsWith("Tech:")
+                  );
+                  const otherPoints = e.points.filter(
+                    (p) => !(typeof p === "string" && p.startsWith("Tech:"))
+                  );
+                  const techHTML = techPoints
+                    .map(
+                      (tp) =>
+                        `<div class="chips tl-tech">` +
+                        tp
+                          .slice(5)
+                          .split("·")
+                          .map((s) => s.trim())
+                          .filter(Boolean)
+                          .map((t) => `<span class="chip">${esc(t)}</span>`)
+                          .join("") +
+                        `</div>`
+                    )
+                    .join("");
+                  return `<ul>${otherPoints
+                    .map((p) =>
+                      p.startsWith("H::")
+                        ? `<li class="tl-headline">${esc(p.slice(3))}</li>`
+                        : `<li>${esc(p)}</li>`
+                    )
+                    .join("")}</ul>${techHTML}`;
+                })()}
             ${e.tech && e.tech.length ? `<div class="chips tl-tech">${e.tech.map((tch) => `<span class="chip">${esc(tch)}</span>`).join("")}</div>` : ""}
           </div>`
         )
@@ -377,16 +452,35 @@
   /* ---------- reveal on scroll ---------- */
 
   function revealOnScroll() {
-    const trigger = window.innerHeight - 40;
-    $$(".reveal").forEach((el) => {
-      if (!el.classList.contains("visible") && el.getBoundingClientRect().top < trigger) {
-        el.classList.add("visible");
-      }
-    });
+    const els = $$(".reveal");
+    if (!("IntersectionObserver" in window)) {
+      els.forEach((el) => el.classList.add("visible"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -40px 0px", threshold: 0 }
+    );
+    els.forEach((el) => io.observe(el));
+
+    // Safety net: if anything prevents IntersectionObserver from firing
+    // (e.g. a later JS error during renderAll), force-reveal any cards
+    // still hidden after 2.5s so content is never permanently invisible.
+    if (!revealOnScroll._safetyScheduled) {
+      revealOnScroll._safetyScheduled = true;
+      setTimeout(() => {
+        $$(".reveal:not(.visible)").forEach((el) => el.classList.add("visible"));
+      }, 2500);
+    }
   }
 
-  window.addEventListener("scroll", revealOnScroll, { passive: true });
-  window.addEventListener("resize", revealOnScroll, { passive: true });
   document.addEventListener("DOMContentLoaded", revealOnScroll);
 
   /* ---------- active nav highlight ---------- */

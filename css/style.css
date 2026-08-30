@@ -610,6 +610,7 @@ html[data-lang="zh"] body {
 .timeline-item .tl-project-name:first-of-type { margin-top: 8px; }
 .timeline-item ul li { color: var(--text-muted); font-size: 0.95rem; padding-left: 20px; position: relative; margin-bottom: 7px; }
 .timeline-item ul li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+.tl-headline { margin: 14px 0 6px; padding-left: 2px; font-weight: 700; font-size: 1rem; color: var(--text); }
 .tl-tech { margin-top: 12px; }
 
 /* ---------- Projects (home) ---------- */
