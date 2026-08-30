@@ -142,8 +142,25 @@ window.PORTFOLIO = {
       highlights: [
         { num: "90%", label: "latency cut — 90–478s → 30–45s" },
         { num: "3×3", label: "forecast grid: 3 horizons × 3 scenarios" },
+        { num: "1.4%", label: "best-case MAPE — SIS rubber forecast" },
         { num: "15", label: "specialized agents across 5 tiers" },
-        { num: "0", label: "hallucinated numbers reaching users" },
+      ],
+      forecastingHighlights: [
+        {
+          icon: "layers",
+          title: "Multi-horizon scenarios",
+          text: "3d · 7d · 30d × bear / base / bull — 9 scenarios per product, 19 product nodes covered.",
+        },
+        {
+          icon: "pulse",
+          title: "Adaptive policy",
+          text: "Bias correction + volatility scaling — every forecast adjusts based on the last 45 days of measured MAPE.",
+        },
+        {
+          icon: "shield",
+          title: "Auditable by design",
+          text: "5 supervisor gates + 7-day snapshot persistence — every published forecast is traceable end-to-end.",
+        },
       ],
       problem: "",
       roleDetail: "",
@@ -165,6 +182,85 @@ window.PORTFOLIO = {
               <div class="pd-card"><h4>Hallucinating Chatbots</h4><p>Generic LLMs invent price numbers, can't access real ERP data, and have no concept of source attribution.</p></div>
               <div class="pd-card"><h4>No Actionable Alerts</h4><p>Teams react to market shifts late. No system monitors thresholds and proactively notifies the right people.</p></div>
             </div>
+          `,
+        },
+        {
+          title: "Forecasting Engine",
+          body: `
+            <p class="pd-lead">The forecasting system produces <strong>3 horizons × 3 scenarios</strong> (3-day / 7-day / 30-day × bear / base / bull) for every product, with adaptive policy adjustments and bias correction from the last 45 days of measured accuracy.</p>
+
+            <div class="pd-fc-arch">
+              <div class="pd-fc-arch-step"><div class="pd-fc-arch-box"><div class="name">Data Ingestion</div><div class="desc">LZ Views · ERP Views · <code>market_prices</code></div></div></div>
+              <div class="pd-fc-arrow"></div>
+              <div class="pd-fc-arch-step"><div class="pd-fc-arch-box"><div class="name">Forecasting Engine</div><div class="desc">Ensemble (3d/7d) · STL (30d) · Baseline</div></div></div>
+              <div class="pd-fc-arrow"></div>
+              <div class="pd-fc-arch-step"><div class="pd-fc-arch-box"><div class="name">Orchestration</div><div class="desc">ERP KPI · Intelligence · Adaptive Policy</div></div></div>
+              <div class="pd-fc-arrow"></div>
+              <div class="pd-fc-arch-step"><div class="pd-fc-arch-box"><div class="name">Quality Gates</div><div class="desc">5 supervisor checks</div></div></div>
+              <div class="pd-fc-arrow"></div>
+              <div class="pd-fc-arch-step"><div class="pd-fc-arch-box"><div class="name">Snapshot Persistence</div><div class="desc">7-day TTL · canonical storage</div></div></div>
+            </div>
+
+            <div class="pd-fc-metrics">
+              <h3>Measured forecast accuracy by product</h3>
+              <p class="pd-fc-metrics-sub">MAPE from locked regression baselines · walk-forward backtests · as of latest backtest run</p>
+              <table class="pd-fc-table">
+                <thead><tr><th>Product</th><th>MAPE</th><th>Trust tier</th><th>Backtest window</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>SIS rubber</strong></td><td><span class="pd-fc-mape pd-fc-mape-great">1.4%</span></td><td><span class="pd-fc-tier pd-fc-tier-high">high</span></td><td>2026-01-15 → 2026-04-15 · 14-day step</td></tr>
+                  <tr><td><strong>Isoprene</strong></td><td><span class="pd-fc-mape pd-fc-mape-great">2.2%</span></td><td><span class="pd-fc-tier pd-fc-tier-high">high</span></td><td>2026-01-15 → 2026-04-15 · 14-day step</td></tr>
+                  <tr><td><strong>DCPD</strong></td><td><span class="pd-fc-mape pd-fc-mape-good">4.2%</span></td><td><span class="pd-fc-tier pd-fc-tier-high">high</span></td><td>2026-01-15 → 2026-04-15 · 14-day step</td></tr>
+                  <tr><td><strong>Cracked C5</strong></td><td><span class="pd-fc-mape pd-fc-mape-good">4.7%</span></td><td><span class="pd-fc-tier pd-fc-tier-high">high</span></td><td>2026-01-15 → 2026-04-15 · 14-day step</td></tr>
+                  <tr><td><strong>Styrene</strong></td><td><span class="pd-fc-mape pd-fc-mape-good">5.2%</span></td><td><span class="pd-fc-tier pd-fc-tier-medium">medium</span></td><td>2026-01-15 → 2026-04-15 · 14-day step</td></tr>
+                  <tr><td><strong>Piperylene</strong></td><td><span class="pd-fc-mape pd-fc-mape-good">6.1%</span></td><td><span class="pd-fc-tier pd-fc-tier-high">high</span></td><td>2026-01-15 → 2026-04-15 · 14-day step</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="pd-fc-ensemble">
+              <div class="pd-fc-col">
+                <h3>Short-term (3d / 7d)</h3>
+                <p>4-model ensemble with dynamic weight adjustment:</p>
+                <ul class="pd-fc-list">
+                  <li><strong>ARIMA(2,1,2)</strong> — per-product orders from <code>arima_orders.json</code></li>
+                  <li><strong>XGBoost</strong> — 22 features incl. Kimi exogenous regressors</li>
+                  <li><strong>LSTM</strong> — 2-layer, 32-hidden, 30-day lookback</li>
+                  <li><strong>Mean-reversion</strong> — pulls toward 20-day MA when deviation &gt; threshold</li>
+                </ul>
+                <p class="pd-fc-rule"><strong>Weight rules:</strong> naphtha cost-push → +XGBoost, post-holiday restart → +LSTM, short series → +XGBoost</p>
+              </div>
+              <div class="pd-fc-col">
+                <h3>Monthly (30d)</h3>
+                <p>4-layer STL forecaster with causal chain elasticities:</p>
+                <ul class="pd-fc-list">
+                  <li><strong>STL trend</strong> (40%) — <code>statsmodels</code> STL(period=7, robust=True)</li>
+                  <li><strong>Causal chain</strong> (35%) — naphtha ARIMA → tier-dampened elasticity</li>
+                  <li><strong>Seasonal rules</strong> — additive % from product table</li>
+                  <li><strong>Weekly nudge</strong> (±0.8% cap) — from intelligence signal</li>
+                </ul>
+                <p class="pd-fc-rule"><strong>Causal chain:</strong> naphtha (1.00) → cracked_c5 (0.82) → isoprene (0.75) → SIS (0.51)</p>
+              </div>
+            </div>
+
+            <div class="pd-fc-mechanisms">
+              <div class="pd-fc-mechanism">
+                <div class="pd-fc-mechanism-icon pd-fc-icon-policy"></div>
+                <h4>Adaptive Policy</h4>
+                <p>Bias correction + volatility scaling based on the last 45 days of measured forecast accuracy. Regime classification (high-volatility / strong-trend / steady-state) drives the volatility multiplier.</p>
+              </div>
+              <div class="pd-fc-mechanism">
+                <div class="pd-fc-mechanism-icon pd-fc-icon-gate"></div>
+                <h4>5 Supervisor Gates</h4>
+                <p>Every published forecast passes: (1) latest price available, (2) all horizons present, (3) scenario band sanity (bear ≤ base ≤ bull), (4) recent MAPE available or disclosed, (5) confidence matches recent accuracy.</p>
+              </div>
+              <div class="pd-fc-mechanism">
+                <div class="pd-fc-mechanism-icon pd-fc-icon-tier"></div>
+                <h4>Trust Tier System</h4>
+                <p>Per-product trust tiers (high / medium / directional / low) so users see honest uncertainty. High-skill products (SIS, IP, DCPD, C5-resin) get tighter bands; below-naive products get directional-only signals.</p>
+              </div>
+            </div>
+
+            <div class="pd-callout"><b>Production:</b> Serving Ecisco's commercial team on C5/C9 products with 19 product nodes, daily KPI integration from ERP, and automated weekly report generation. Every approved forecast is persisted as a snapshot with 7-day TTL for reproducibility and audit.</div>
           `,
         },
         {

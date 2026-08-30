@@ -160,6 +160,26 @@
       : `<div class="pc-media" style="display:flex;align-items:center;justify-content:center;background:var(--accent-soft)">
            <span style="font-size:.85rem;font-weight:600;color:var(--accent);letter-spacing:.02em">${esc(p.category)}</span>
          </div>`;
+    const forecastStrip = p.forecastingHighlights && p.forecastingHighlights.length
+      ? `<div class="forecast-strip">
+          <div class="forecast-strip-head">
+            <span class="forecast-strip-label">Forecasting Highlights</span>
+          </div>
+          <div class="forecast-strip-grid">
+            ${p.forecastingHighlights
+              .map(
+                (f) => `<div class="forecast-strip-item">
+                  <div class="forecast-strip-icon forecast-icon-${esc(f.icon)}"></div>
+                  <div class="forecast-strip-text">
+                    <h4>${esc(f.title)}</h4>
+                    <p>${esc(f.text)}</p>
+                  </div>
+                </div>`
+              )
+              .join("")}
+          </div>
+        </div>`
+      : "";
     return `
       <a class="project-card reveal" href="projects.html?p=${esc(p.id)}" style="text-decoration:none;color:inherit;${shown ? "" : "display:none"}">
         ${media}
@@ -167,6 +187,7 @@
           <span class="pc-tag">${esc(p.category)}</span>
           <h3>${esc(p.title)}</h3>
           <p class="pc-desc">${esc(p.short)}</p>
+          ${forecastStrip}
           <div class="pc-links">
             <span style="font-size:.85rem;font-weight:600;color:var(--accent)">${esc(t("proj.viewDetails"))}</span>
           </div>
