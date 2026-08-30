@@ -63,7 +63,12 @@
       avail: {
         textStrong: "Seeking PhD positions (Fall 2027)",
         textRest:
-          " — Human-AI co-decision, trustworthy LLM systems, and applied research in mental-health & high-stakes domains.",
+          " — Research Interests: Human-centered agentic AI, interactive systems for high-stakes decisions, and trustworthy language technologies.",
+        areas: `
+              <span class="avail-area"><strong>Human-AI Collaboration</strong> — Co-decision interfaces, authorship preservation, cognitive load in AI-mediated workflows</span>
+              <span class="avail-area"><strong>Agentic AI</strong> — Multi-agent orchestration, planning &amp; verification, tool-augmented language models</span>
+              <span class="avail-area"><strong>HAI for Decision-Making</strong> — Trustworthy systems for industrial and healthcare domains, uncertainty-aware generation</span>
+            `,
         seeProjects: "See Projects",
         downloadCv: "Download CV (PDF)",
         researchSt: "Research Statement",
@@ -84,7 +89,6 @@
         p1: "I build AI systems where a wrong output carries real cost — petrochemical supply chains, mental-health peer support, enterprise decision workflows. My work sits at the intersection of multi-agent orchestration, deterministic governance, and human-AI co-decision: designing architectures that make probabilistic models auditable and safe enough to deploy in production.",
         p2: "At Synexia AI, I built EDIA and Zhanlu, two production multi-agent systems that taught me where theory meets friction. EDIA's pre-rendering pipeline locks business-critical numbers in pure Python before any LLM sees them — the model narrates, but never computes. Zhanlu's SafeContextGate makes context-window crashes structurally impossible by enforcing headroom before every call. These were engineering necessities that became research questions: <em>When should we extract computation from generative models? How do we validate agent plans without exploding latency? What does &ldquo;trust&rdquo; mean when the human is a domain expert, not a casual user?</em>",
         p3: "My master's thesis, BEPSBot, approached the same problem from the HCI side: a draft-grounded writing assistant for bipolar-disorder peer-support communities, evaluated in a within-subjects study (N=24, HHME 2026). The challenge was identical — generative suggestions are helpful until they fabricate advice that carries clinical risk.",
-        p4: "What I want to do next: Move from building guardrails around black-box agents to understanding the generative foundations that make those guardrails less necessary. I am particularly interested in how diffusion-based policies and flow-matching architectures can produce reliable, auditable decisions under distribution shift — and how my deployment experience in high-stakes industrial and healthcare settings can inform which theoretical guarantees actually matter in practice.",
         toolkitTitle: "Methodological & Technical Toolkit",
       },
 
@@ -227,7 +231,12 @@
 
       avail: {
         textStrong: "寻求 2027 年秋季博士岗位",
-        textRest: " ——人机协同决策、可信赖 LLM 系统，以及在心理健康与高风险领域的应用研究。",
+        textRest: " ——研究方向：以人为中心的智能体 AI、高风险决策交互系统与可信语言技术。",
+        areas: `
+              <span class="avail-area"><strong>人机协同</strong> — 协同决策界面、创作权保留、AI 介导工作流中的认知负荷</span>
+              <span class="avail-area"><strong>智能体 AI</strong> — 多智能体编排、规划与验证、工具增强语言模型</span>
+              <span class="avail-area"><strong>决策 HAI</strong> — 工业与医疗领域的可信系统、不确定性感知生成</span>
+            `,
         seeProjects: "查看项目",
         downloadCv: "下载简历 (PDF)",
         researchSt: "研究陈述",
@@ -248,7 +257,6 @@
         p1: "我构建的 AI 系统中，错误的输出意味着真实的代价——石化供应链、心理健康同伴支持、企业决策流程。我的工作处于多智能体编排、确定性治理与人机协同决策的交汇点：设计让概率模型变得可审计、可安全部署的系统架构。",
         p2: "在 Synexia AI，我独立构建了 EDIA 和 Zhanlu 两套生产级多智能体系统，让我体会到理论与工程之间的摩擦。EDIA 的预渲染管线在任何 LLM 接触数据之前，用纯 Python 锁定业务关键数值——模型叙述，但从不计算。Zhanlu 的 SafeContextGate 在每次调用前强制保留上下文余量，从结构上杜绝上下文窗口崩溃。这些工程刚需变成了研究问题：<em>何时应将计算从生成模型中剥离？如何在不爆炸延迟的前提下验证智能体计划？当用户是领域专家而非普通用户时，&ldquo;信任&rdquo;意味着什么？</em>",
         p3: "我的硕士论文 BEPSBot 从 HCI 角度切入同一问题：一款面向双相情感障碍同伴支持社区的草稿锚定写作助手，通过组内被试研究评估（N=24，HHME 2026）。挑战是相同的——生成式建议在编造具有临床风险的内容之前是有帮助的。",
-        p4: "我接下来想做的：从为黑盒智能体构建护栏，转向理解使这些护栏变得不那么必要的生成式基础。我尤其关注基于扩散的策略与流匹配架构如何在分布偏移下产生可靠、可审计的决策——以及我在高风险工业与医疗场景中的部署经验如何指导哪些理论保证在实践中真正重要。",
         toolkitTitle: "方法论与技术工具箱",
       },
 
