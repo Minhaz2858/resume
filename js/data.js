@@ -201,6 +201,11 @@ window.PORTFOLIO = {
               <div class="pd-fc-arch-step"><div class="pd-fc-arch-box"><div class="name">Snapshot Persistence</div><div class="desc">7-day TTL · canonical storage</div></div></div>
             </div>
 
+            <figure class="pd-fig pd-fc-fig-wide">
+              <img src="assets/edia_forecast_workflow.png" alt="EDIA forecasting pipeline — end-to-end workflow from data ingestion to published forecast" />
+              <figcaption>End-to-end forecasting pipeline — 8 stages from raw market ingestion through ensemble modeling, quality gates, and snapshot persistence.</figcaption>
+            </figure>
+
             <div class="pd-fc-metrics">
               <h3>Measured forecast accuracy by product</h3>
               <p class="pd-fc-metrics-sub">MAPE from locked regression baselines · walk-forward backtests · as of latest backtest run</p>
@@ -215,6 +220,21 @@ window.PORTFOLIO = {
                   <tr><td><strong>Piperylene</strong></td><td><span class="pd-fc-mape pd-fc-mape-good">6.1%</span></td><td><span class="pd-fc-tier pd-fc-tier-high">high</span></td><td>2026-01-15 → 2026-04-15 · 14-day step</td></tr>
                 </tbody>
               </table>
+            </div>
+
+            <div class="pd-fc-output">
+              <h3>Live forecast output examples</h3>
+              <p class="pd-fc-output-sub">What the supervisor-validated forecast looks like in production — bear / base / bull bands, AI accuracy review of past 30 days, and trust tier badge.</p>
+              <div class="pd-fc-output-grid">
+                <figure class="pd-fig">
+                  <img src="assets/edia_forecast_crude_oil.png" alt="EDIA forecast chart — Crude Oil (Brent) 30-day bear/base/bull with 7.1% rise" />
+                  <figcaption><strong>Crude Oil (Brent)</strong> — 7d change <span style="color:#059669;font-weight:700">+7.1%</span> · 30d change <span style="color:#dc2626;font-weight:700">−14.6%</span> · Trust tier: <em>moderate</em></figcaption>
+                </figure>
+                <figure class="pd-fig">
+                  <img src="assets/edia_forecast_sis.png" alt="EDIA forecast chart — SIS Rubber 30-day bear/base/bull with directional-only signal" />
+                  <figcaption><strong>SIS Rubber (Baling 1105)</strong> — <span class="pd-fc-tier pd-fc-tier-medium">WATCH (low)</span> tier · 7d +5.8% · 30d −8.9% · Backtest MAPE 16.3% below naive</figcaption>
+                </figure>
+              </div>
             </div>
 
             <div class="pd-fc-ensemble">
