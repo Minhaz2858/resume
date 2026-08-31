@@ -9,18 +9,17 @@ window.PORTFOLIO_ZH = {
   profile: {
     name: "Minhazul Islam",
     monogram: "MI",
-    title: "人工智能工程师",
-    roleLine: "生成式 AI · LLM 智能体 · NLP · AI 系统工程",
+    title: "AI 系统研究者",
+    roleLine: "可信智能体 AI · 人机交互 · 可验证 AI 系统",
     location: "中国浙江宁波",
     email: "minhaz1396@zju.edu.cn",
     phone: "+86 15990259205",
     github: "https://github.com/Minhaz2858",
     linkedin: "https://www.linkedin.com/in/minhazul-islam-43b3a4221/",
-    facebook: "https://www.facebook.com/minhazul.islam.827809",
     cv: "assets/Islam_Minhazul_CV.pdf",
     photo: "assets/profile.jpg",
     summary:
-      "AI 工程师与算法工程师，拥有浙江大学工业设计工程硕士学位和云南大学计算机科学学士学位。我专注于生成式 AI 与 NLP——LLM、RAG、提示词工程、LangChain，以及基于 PyTorch 的 Transformer 微调（RoBERTa）。我构建端到端的 AI 系统，从模型开发到基于 FastAPI 的高并发生产部署，并拥有丰富的 AI 与硬件结合经验（Arduino、ESP32-CAM、传感器融合、边缘 AI）。",
+      "AI 系统研究者（浙江大学硕士在读），专注于可信智能体 AI、落地式决策智能与人机交互的交叉领域。我构建并研究通过结构化规划、工具使用落地、验证与人机监督来处理复杂决策的智能体系统——覆盖企业决策智能与 AI 介导的心理健康沟通。",
     bio: [
       "我将算法能力、工程严谨性与对用户的理解相结合，推动 AI 产品走完完整生命周期——从模型研究到系统部署。",
       "我的工作涵盖：面向生产级决策智能平台的多智能体 LLM 编排、面向心理健康支持的检索增强生成系统、面向领域打分的 Transformer 微调，以及面向无障碍场景的嵌入式 AI 原型。",
@@ -42,10 +41,10 @@ window.PORTFOLIO_ZH = {
       { domain: "边缘 AI 与嵌入式 HCI", tools: "Arduino、C/C++、ESP32-CAM、传感器融合、边缘 AI 原型" },
     ],
     stats: [
-      { num: "0", label: "幻觉数字触达用户（EDIA）" },
-      { num: "17", label: "节点 LangGraph FSM 编排器" },
-      { num: "5m→30s", label: "查询延迟缩短（EDIA）" },
-      { num: "4", label: "篇同行评审论文（ICEC 2025, HHME 2026）" },
+      { num: "0", label: "条 LLM 计算的数字触达用户（EDIA——LLM 只叙述、绝不计算）" },
+      { num: "17", label: "节点 LangGraph FSM 编排器（EDIA）" },
+      { num: "5m→30s", label: "端到端决策延迟——90–478s → 30–45s（EDIA）" },
+      { num: "2+2", label: "篇同行评审论文 + 会议报告（ICEC 2025, HHME 2026 PCC）" },
     ],
   },
 
@@ -77,7 +76,7 @@ window.PORTFOLIO_ZH = {
       category: "语言与 AI 开发工具",
       items: [
         "Python (Asyncio)", "C / C++", "SQL / JavaScript",
-        "PyTorch / Transformers", "Cursor / Claude Code", "Git / GitHub Actions CI/CD",
+        "PyTorch / Transformers", "Git / GitHub Actions CI/CD",
       ],
     },
   ],
@@ -94,7 +93,7 @@ window.PORTFOLIO_ZH = {
           points: [
             "多智能体编排：架构了 17 节点 LangGraph 状态机，在 5 个执行层级中协调 15 个专业智能体和 57 项原子技能，支持并行分支、顺序质量门禁和多轮会话状态。",
             "确定性护栏流水线：设计了预渲染流水线，在 LLM 叙述前锁定所有业务关键数值预测，配合 Python 校验引擎强制执行精确值合规、语言一致性和严格来源归属。",
-            "混合检索架构：将 ChromaDB 向量搜索与结构化 SQL 视图集成，融合非结构化市场情报与 ERP 历史数据，将 5 分钟决策流程缩短至 30 秒以内。",
+            "混合检索架构：将 ChromaDB 向量搜索与结构化 SQL 视图集成，融合非结构化市场情报与 ERP 历史数据，端到端决策延迟由 90–478 秒缩短至 30–45 秒区间。",
             "生产运维：部署了高并发 SSE 流式端点（FastAPI、Nginx、systemd）及多时间尺度时间序列预测模型（集成 + STL），配合自动化 MAPE 回测。",
           ],
         },
@@ -142,8 +141,9 @@ window.PORTFOLIO_ZH = {
       summary:
         "面向石化决策智能的生产级 AI 工程平台——为 C5/C9 商务团队提供多时间尺度价格预测、智能告警系统与因果决策支持。平台围绕一个 17 节点 LangGraph 状态机构建，在 5 个层级中编排 15 个专业智能体与 57 项原子技能，并配备确定性预渲染、护栏、ChromaDB RAG，以及一个在幻觉数字到达用户之前将其拦截的 Python 校验层。",
       highlights: [
-        { num: "90%", label: "延迟削减 — 90–478s → 30–45s" },
-        { num: "3×3", label: "预测网格：3 时间尺度 × 3 情景" },
+        { num: "90–478s → 30–45s", label: "端到端决策延迟——实测区间" },
+        { num: "0", label: "条 LLM 计算数字触达用户——LLM 只叙述、绝不计算" },
+        { num: "5×–10×", label: "分析师提问量提升——商务团队的定性信号" },
         { num: "1.4%", label: "最佳 MAPE — SIS 橡胶预测" },
         { num: "15", label: "覆盖 5 层级的专业智能体" },
       ],
@@ -219,7 +219,7 @@ window.PORTFOLIO_ZH = {
     {
       id: "zhanlu",
       title: "Zhanlu — 企业级 AI 智能体平台",
-      short: "多租户 AI 智能体平台，具备规划器规划、Harness 智能体、沙箱化工具调用、模型路由，以及带数据的 PPT 产物生成。",
+      short: "四项研究构想贯穿设计——受治理的智能体执行、有界多智能体委派、可验证输出、上下文安全的工具使用——具体实现为多租户 AI 智能体平台，配备规划器规划、Harness 智能体、沙箱化工具调用、模型路由与数据驱动 PPT 产物生成。",
       category: "AI 基础设施",
       period: "2025 – 2026",
       org: "Synexia AI（实习）——独立项目，由我完全自主设计、构建并交付",
@@ -342,14 +342,14 @@ window.PORTFOLIO_ZH = {
           body: `
             <p class="pd-lead">一次部署，服务所有部门。每个项目、智能体、数据源与知识库都归属于 Org / App / Workspace，并标记为公司级或个人级——市场部、研发、数据分析与 C5/C9 并排运行，数据严格隔离。</p>
             <div class="pd-cards">
-              <div class="pd-card"><h4>Org / App / Workspace 作用域</h4><p>每条资源记录都携带 org_id + app_id。公司级资源在整个组织内共享；个人级资源只属于所有者。从架构上杜绝跨租户数据泄露。</p></div>
+              <div class="pd-card"><h4>Org / App / Workspace 作用域</h4><p>每条资源记录都携带 org_id + app_id。公司级资源在整个组织内共享；个人级资源只属于所有者。租户作用域的资源访问通过资源级授权、数据源绑定和按调用策略检查来强制实施；数据库级 RLS（行级安全）是计划中的加固步骤。</p></div>
               <div class="pd-card"><h4>部门项目</h4><p>市场部、研发、数据分析、C5/C9、Global——每个团队作为独立项目运行，拥有自己的智能体、知识库与会话历史，在侧边栏以部门分组展示。</p></div>
               <div class="pd-card"><h4>按智能体的数据隔离</h4><p>每个智能体显式绑定数据源：只读访问模式、允许/阻止的表、允许的列与行级过滤。智能体在架构上无法看到绑定范围之外的数据。</p></div>
               <div class="pd-card"><h4>场景智能体</h4><p>用户从模板或空白创建专用智能体——客户支持、生产效率、研究助理、报告撰写——每个都拥有独立的模型路由、数据源、技能与 MCP 工具。</p></div>
               <div class="pd-card"><h4>按租户实时</h4><p>仪表盘通过 WebSocket 流式刷新实时数据，智能体运行通过 SSE 逐步流式推送——始终限定在所属租户范围内。</p></div>
               <div class="pd-card"><h4>治理与审计</h4><p>资源访问策略、受控共享，以及对每个受门禁操作的审计追踪——企业级问责能力。</p></div>
             </div>
-            <div class="pd-callout"><b>为何重要：</b>大多数 AI 演示只运行在单一租户中。Zhanlu 的多租户在数据库层强制实施——每条资源上的 org_id/app_id 作用域，加上列级与行级的智能体绑定——这正是企业平台在触碰生产数据前必须具备的能力。</div>
+            <div class="pd-callout"><b>为何重要：</b>大多数 AI 演示只运行在单一租户中。Zhanlu 通过资源级授权（每条资源的 org_id/app_id 作用域）、按调用策略检查和列级与行级的智能体绑定来强制多租户隔离；数据库级 RLS 是计划中的加固步骤。这正是企业平台在触碰生产数据前必须具备的隔离能力。</div>
           `,
         },
         {
@@ -370,26 +370,27 @@ window.PORTFOLIO_ZH = {
         },
       ],
       links: [
-        { label: "GitHub 仓库", url: "https://github.com/Minhaz2858/EDIA", external: true },
+        { label: "架构案例研究", url: "projects.html#zhanlu", external: false },
+        { label: "生产源码为闭源", url: null, external: false, note: true },
       ],
     },
     {
       id: "bepsbot",
       title: "BepsBot — AI 驱动的心理健康同伴支持平台",
-      short: "我在浙江大学的硕士论文研究——面向双相障碍同伴支持的双模式 LLM 写作助手（HHME 2026 PCC 口头报告 · Springer LNCS）。",
+      short: "浙江大学硕士论文研究——面向双相障碍同伴支持社区的草稿锚定 AI 写作助手。口头报告于 HHME 2026 PCC，浙江大学（2026）。",
       category: "生成式 AI",
       period: "2024 – 2025",
-      org: "浙江大学 · 硕士论文研究 · HHME 2026 PCC 口头报告 · Springer LNCS",
+      org: "浙江大学 · 硕士论文研究 · HHME 2026 PCC 口头报告",
       role: "硕士论文研究者 / AI 工程师",
       image: "assets/bepsbot_hero.png",
       video: "assets/bepsbot_demo.mp4",
       summary:
-        "我在浙江大学的硕士论文研究：面向双相障碍在线同伴支持社区的高质量回复双模式 AI 写作助手。AS（评估）模式基于 LIWC-2015 特征微调的 RoBERTa 回归模型实时给出 ES/IS 评分；RE（建议）模式在 48K 帖 r/bipolar 语料上做两阶段检索，返回 3 份语言学改写草稿。经 24 人被试内研究验证（SUS 88.0、κ=.78、IS F1=.62 / ES F1=.68），并以 PCC 口头报告形式发表于 HHME 2026。",
+        "浙江大学硕士论文研究：面向双相障碍在线同伴支持社区的草稿锚定 AI 写作助手。系统不从头生成回复，而是借助检索增强的真实样例，对同伴支持者的自有草稿做改写，同时保留其作者性。经 24 人被试内研究评估：建议采纳率从 33.3% 提升至 75.6%，SUS 平均 86.98（可用性保持），并配备生成前 / 生成后安全审核。口头报告于 HHME 2026 PCC，浙江大学。",
       highlights: [
         { num: "24", label: "被试 · 被试内研究" },
-        { num: "SUS 88.0", label: "优秀（Bangor 等）· 70.8% A 级" },
-        { num: "κ=.78", label: "编码员一致性 · 450 条金标准评论" },
-        { num: "IS .62 / ES .68", label: "F1 · 10 折 CV · 100 条留一验证 IS 65% / ES 75%" },
+        { num: "33.3% → 75.6%", label: "建议采纳率（超 2 倍）· 评估版研究系统" },
+        { num: "SUS 86.98", label: "可用性保持 · 评估版研究系统" },
+        { num: "前/后审核", label: "生成前 + 生成后安全审核 · fail-closed（评估版研究系统）" },
       ],
       problem:
         "在线双相障碍社区中的同伴支持者所写回复，可能无意中缺乏支持性、事实错误，甚至不安全。当时没有实时衡量支持质量的方法，也没有将生成式建议扎根于证据的手段，LLM 输出在临床高风险场景下存在幻觉与有害建议的风险。",
@@ -419,9 +420,9 @@ window.PORTFOLIO_ZH = {
         "解耦的 Flask + FastAPI 微服务架构，支持高并发",
       ],
       impact:
-        "SUS 达到 88.0（SD=11.4），70.8% 评为 A 级——显著高于 68 分的行业平均水平。14/24（58.3%）被试 ES 提升，15/24（62.5%）被试 IS 提升。T3 IS × T3 信心 Spearman rs=.552（p=.005，Bonferroni 校正）。任务完成时间从 T1（11.21 分钟）降至 T3（7.59 分钟），减少 32.3%。识别出三种用户行为模式——A 校验（26/39，66.7%）、B 选择性整合（8/39，20.5%）、C 完全替换（5/39，12.8%，涉及自主性顾虑）。以 PCC 口头报告发表于 HHME 2026（Springer LNCS 在投）。",
+        "评估版研究系统（草稿锚定、生成前/生成后安全审核）：24 名被试参与的建议采纳率从 33.3% 提升至 75.6%，SUS 平均 86.98，信心与满意度均保持完整；并归纳出关于声音保留的用户行为模式。口头报告于 HHME 2026 PCC，浙江大学。",
       evaluation:
-        "ES/IS 预测在 SVM、多项式逻辑回归、随机森林、XGBoost 与微调 RoBERTa 之间进行基准对比（10 折 CV；IS F1=.62、ES F1=.68；100 条交叉验证：IS 65%、ES 75%）。内容改动由 2 名独立编码员标注（Cohen's κ=.78，substantial 级）。用户研究：24 被试、3 个写作任务（Latin square 平衡）、5 点 Likert 信心与满意度、SUS 88.0（优秀级），以及 15–25 分钟半结构化退出访谈。通过 HHME 2026 PCC 口头报告与 Springer LNCS 稿件获得验证。",
+        "评估版研究系统（草稿锚定、生成前/生成后安全审核）：24 人被试内研究（3 个写作任务，Latin square 平衡），采集 SUS（均值 86.98）、5 点 Likert 信心与满意度以及 15–25 分钟半结构化退出访谈；评分编码由 2 名独立编码员按量表标注（Cohen's κ=.78，substantial 级）。早期原型构建（Elasticsearch + BERT 检索）报告 SUS 88.0，ES/IS F1=.62/.68（基线对比：SVM / MLR / Random Forest / XGBoost / 微调 RoBERTa）。通过 HHME 2026 PCC 口头报告获得验证，浙江大学。",
       stack: [
         "Python", "Flask", "FastAPI", "PyTorch", "RoBERTa", "BERT (768-dim)",
         "LangChain", "DeepSeek LLM", "Sentence Transformers", "ChromaDB", "RAG",
@@ -498,7 +499,7 @@ def recommend_candidates(req):
             <p class="pd-lead">同一个模型（deepseek-chat，经 OpenAI SDK 调用），两个精心设计的任务、两种刻意不同的温度——创意生成 0.7，确定性审核 0.0。</p>
             <div class="pd-cards">
               <div class="pd-card"><h4>LLM · 两个任务</h4><p>生成（temp 0.7）负责改写草稿；审核（temp 0.0）负责安全判定。"只返回文本"让 LLM 输出保持干净、可直接交给 UI。</p></div>
-              <div class="pd-card"><h4>双重审核</h4><p>每条推荐两次审核：生成前的输入闸门 + 生成后的并行逐候选审核——最多 4 次审核调用 + 3 次生成，分两波线程池完成。API 出错时采取 fail-open 策略，保证审核服务故障不会阻断正常流量。</p></div>
+              <div class="pd-card"><h4>双重审核（原型构建）</h4><p><em>原型构建（Elasticsearch + BERT 流水线，HHME 2026 投稿）：</em>每条推荐两次审核——生成前的输入闸门 + 生成后的并行逐候选审核——最多 4 次审核调用 + 3 次生成，分两波线程池完成。<em>评估版研究系统（草稿锚定、生成前/生成后安全审核）：</em>默认 fail-closed——审核失败时内容不通过；安全在生成前与每个候选生成后都被检查。</p></div>
               <div class="pd-card"><h4>RAG · 两代实现</h4><p>当前代码库采用 ChromaDB RAG 流水线；HHME 2026 论文记录的是更早的两阶段 Elasticsearch + BERT 流水线。原则一致——生成之前先用真实示例做依据。</p></div>
             </div>
           `,
@@ -1014,13 +1015,13 @@ def recommend_candidates(req):
     {
       degree: "工业设计工程硕士",
       school: "浙江大学",
-      period: "2023 年 9 月 – 至今",
+      period: "2023 年 9 月 – 2026 年 12 月（预期）",
       location: "中国浙江",
     },
     {
       degree: "计算机科学与技术学士",
       school: "云南大学",
-      period: "2019 – 2023",
+      period: "2019 年 9 月 – 2023 年 6 月",
       location: "中国昆明",
     },
   ],
@@ -1059,7 +1060,7 @@ def recommend_candidates(req):
   achievements: [
     {
       title: "联合国技术银行 — 2023 全球青年人才计划",
-      text: "从全球顶尖青年设计师中脱颖而出，入选联合国重点培养项目，作品在创新 3D 设计与工程解决方案方面获得认可。项目课程聚焦先进设计与可持续发展目标的结合，相关内容被联合国技术银行官方网站收录。",
+      text: "入选联合国技术银行 2023 年全球青年人才计划——一项聚焦技术、设计与可持续发展的国际设计教育项目。",
       link: "https://www.un.org/technologybank/news/global-youth-talent-empower-design-new-era-admission-international-design-education-program",
     },
   ],

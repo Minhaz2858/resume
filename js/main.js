@@ -226,6 +226,7 @@
 
   const filterBar = $("#filter-bar");
   const projectsGrid = $("#projects-grid");
+  const earlierProjectsGrid = $("#earlier-projects-grid");
   let activeFilter = null;
 
   function projectCard(p, filter) {
@@ -286,7 +287,17 @@
     // normalize it to null so every card matches instead of requiring p.category === "All".
     const allLabel = D.projectFilters ? D.projectFilters[0] : null;
     const filter = activeFilter === allLabel ? null : activeFilter;
-    projectsGrid.innerHTML = D.projects.map((p) => projectCard(p, filter)).join("");
+    // Featured Work section only shows featured projects (Zhanlu, EDIA, BepsBot).
+    const featured = (D.projects || []).filter((p) => p.featured);
+    projectsGrid.innerHTML = featured.map((p) => projectCard(p, filter)).join("");
+    revealOnScroll();
+  }
+
+  function renderEarlierProjects() {
+    const D = window.I18N.getData();
+    if (!earlierProjectsGrid || !D.projects) return;
+    const earlier = (D.projects || []).filter((p) => !p.featured);
+    earlierProjectsGrid.innerHTML = earlier.map((p) => projectCard(p, null)).join("");
     revealOnScroll();
   }
 
@@ -438,6 +449,7 @@
     renderSkills();
     renderExperience();
     renderProjects();
+    renderEarlierProjects();
     renderRsToolkit();
     renderPublications();
     renderEducation();
@@ -486,7 +498,7 @@
   /* ---------- active nav highlight ---------- */
 
   const navLinks = $$("#nav-links a");
-  const sections = ["about", "research-st", "skills", "experience", "projects", "research", "education", "contact"]
+  const sections = ["about", "research-st", "publications", "projects", "experience", "skills", "education", "earlier-projects", "contact"]
     .map((id) => document.getElementById(id))
     .filter(Boolean);
 

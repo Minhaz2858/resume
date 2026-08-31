@@ -7,18 +7,17 @@ window.PORTFOLIO = {
   profile: {
     name: "Minhazul Islam",
     monogram: "MI",
-    title: "AI Engineer · AI Infrastructure Engineer",
-    roleLine: "LLM Agents · AI Infrastructure · MLOps · NLP · AI Systems Engineering",
+    title: "AI Systems Researcher",
+    roleLine: "Trustworthy Agentic AI · Human-AI Interaction · Verifiable AI Systems",
     location: "Ningbo, Zhejiang, China",
     email: "minhaz1396@zju.edu.cn",
     phone: "+86 15990259205",
     github: "https://github.com/Minhaz2858",
     linkedin: "https://www.linkedin.com/in/minhazul-islam-43b3a4221/",
-    facebook: "https://www.facebook.com/minhazul.islam.827809",
     cv: "assets/Islam_Minhazul_CV.pdf",
     photo: "assets/profile.jpg",
     summary:
-      "AI Engineer and Algorithm Engineer with a Master of Industrial Design Engineering from Zhejiang University and a Bachelor of Computer Science from Yunnan University. I specialize in generative AI and NLP — LLMs, RAG, prompt engineering, LangChain, and Transformer fine-tuning (RoBERTa) with PyTorch. I build end-to-end AI systems, from model development to high-concurrency production deployment with FastAPI, and I bring hands-on experience in AI + hardware (Arduino, ESP32-CAM, sensor fusion, edge AI).",
+      "AI Systems Researcher (M.Eng. candidate, Zhejiang University) working at the intersection of trustworthy agentic AI, grounded decision intelligence, and human-AI interaction. I build and study agentic systems that make complex decisions through structured planning, grounded tool use, verification, and human oversight — spanning enterprise decision intelligence and AI-mediated mental-health communication.",
     bio: [
       "I combine algorithmic capability with engineering rigor and user understanding to drive AI products through the full lifecycle — from model research to system deployment.",
       "My work spans multi-agent LLM orchestration for production decision-intelligence platforms, retrieval-augmented generation systems for mental-health support, Transformer fine-tuning for domain-specific scoring, and embedded AI prototypes for accessibility.",
@@ -40,10 +39,10 @@ window.PORTFOLIO = {
       { domain: "Edge AI & Embedded HCI", tools: "Arduino, C/C++, ESP32-CAM, Sensor Fusion, Edge AI Prototyping" },
     ],
     stats: [
-      { num: "0", label: "hallucinated numbers reaching users (EDIA)" },
-      { num: "17", label: "node LangGraph FSM orchestrator" },
-      { num: "5m→30s", label: "query latency reduction (EDIA)" },
-      { num: "4", label: "peer-reviewed publications (ICEC 2025, HHME 2026)" },
+      { num: "0", label: "LLM-computed numbers reaching users (EDIA — LLM narrates, never calculates)" },
+      { num: "17", label: "node LangGraph FSM orchestrator (EDIA)" },
+      { num: "5m→30s", label: "end-to-end decision latency — 90–478s → 30–45s (EDIA)" },
+      { num: "2+2", label: "peer-reviewed papers + conference presentations (ICEC 2025, HHME 2026 PCC)" },
     ],
   },
 
@@ -75,7 +74,7 @@ window.PORTFOLIO = {
       category: "Languages & AI Development Tools",
       items: [
         "Python (Asyncio)", "C / C++", "SQL / JavaScript",
-        "PyTorch / Transformers", "Cursor / Claude Code", "Git / GitHub Actions CI/CD",
+        "PyTorch / Transformers", "Git / GitHub Actions CI/CD",
       ],
     },
   ],
@@ -103,7 +102,7 @@ window.PORTFOLIO = {
             "H::Forecasting MLOps",
             "Deployed a multi-horizon ensemble (ARIMA + XGBoost + LSTM + STL) with dynamic weight adjustment based on market regime and diagnosis signal.",
             "Built walk-forward MAPE backtesting with locked baselines, adaptive bias correction, and an Honesty Gate that auto-downgrades to conservative forecasts when model uncertainty exceeds thresholds.",
-            "Reduced end-to-end decision workflow latency 90% via intent-driven query planning and parallel SQL fetching.",
+            "Reduced end-to-end decision-workflow latency from 90–478s to 30–45s via intent-driven query planning and parallel SQL fetching.",
             "H::Production Operations",
             "Deployed on FastAPI + Nginx + systemd with SSE streaming endpoints, JWT auth, and health monitoring.",
             "Ran on a dual-LLM security architecture: local Qwen 3.5 (A10 GPU, Ollama) sanitizes sensitive ERP data before any external model receives a briefing.",
@@ -157,6 +156,7 @@ window.PORTFOLIO = {
   projects: [
     {
       id: "edia",
+      featured: true,
       title: "EDIA — Enterprise Decision Intelligence Agent",
       short: "Solo-built AI infrastructure that turned 5-minute queries into 30-second decisions for petrochemical teams — 17-node LangGraph orchestrator, multi-model forecasting, and a dual-LLM security architecture that keeps ERP data on-premise.",
       category: "AI Infrastructure",
@@ -318,7 +318,7 @@ window.PORTFOLIO = {
             <div class="pd-highlights">
               <div class="pd-highlight"><div class="ph-num">77 → 2–5</div><div class="ph-label">SQL round-trips — intent planning generates focused queries</div></div>
               <div class="pd-highlight"><div class="ph-num">180K → 200</div><div class="ph-label">rows fetched — parallel fetch targets only what's needed</div></div>
-              <div class="pd-highlight"><div class="ph-num">0</div><div class="ph-label">hallucinated numbers — pre-rendering locks metrics before LLM access</div></div>
+              <div class="pd-highlight"><div class="ph-num">0</div><div class="ph-label">LLM-computed numbers reaching users — pre-rendering locks metrics before LLM access</div></div>
             </div>
             <div class="pd-pipeline">
               <div class="pd-pipe-step"><div class="pd-pipe-box"><div class="name">User Query</div></div></div>
@@ -543,9 +543,9 @@ window.PORTFOLIO = {
           title: "Impact: Before & After",
           body: `
             <div class="pd-highlights">
-              <div class="pd-highlight"><div class="ph-num">90%</div><div class="ph-label">latency reduction — 90–478s → 30–45s</div></div>
-              <div class="pd-highlight"><div class="ph-num">10×</div><div class="ph-label">increase in analyst question volume</div></div>
-              <div class="pd-highlight"><div class="ph-num">0</div><div class="ph-label">hallucinated numbers reaching users</div></div>
+              <div class="pd-highlight"><div class="ph-num">90–478s → 30–45s</div><div class="ph-label">end-to-end decision latency — raw measured range</div></div>
+              <div class="pd-highlight"><div class="ph-num">0</div><div class="ph-label">LLM-computed numbers reaching users — LLM narrates, never calculates</div></div>
+              <div class="pd-highlight"><div class="ph-num">5×–10×</div><div class="ph-label">analyst question volume — qualitative signal reported by commercial team</div></div>
               <div class="pd-highlight"><div class="ph-num">19</div><div class="ph-label">products covered by forecast engine</div></div>
             </div>
             <table class="pd-table">
@@ -555,7 +555,7 @@ window.PORTFOLIO = {
               <tr><td>SQL round-trips</td><td>77</td><td>2–5</td></tr>
               <tr><td>Rows fetched</td><td>~180,000</td><td>50–200</td></tr>
               <tr><td>Number hallucinations</td><td>Common</td><td>Architecturally blocked</td></tr>
-              <tr><td>Analyst adoption</td><td>Baseline</td><td>10× increase in daily queries</td></tr>
+              <tr><td>Analyst adoption</td><td>Baseline</td><td>5×–10× increase in daily queries (qualitative signal)</td></tr>
             </table>
           `,
         },
@@ -633,7 +633,7 @@ window.PORTFOLIO = {
                   <li><b>MLOps pipeline</b> — Champion model registry, continuous backtesting, MAPE bias correction, regression guard</li>
                   <li><b>Model serving</b> — Ollama local + external routing + automatic fallback on API failure</li>
                   <li><b>Data pipelines</b> — 4 source groups → ETL → canonical <code>market_prices</code> → 19-product service map</li>
-                  <li><b>Performance engineering</b> — 90% latency reduction via intent planning, parallel SQL, pre-rendering, SSE streaming</li>
+                  <li><b>Performance engineering</b> — end-to-end latency reduced from 90–478s to 30–45s via intent planning, parallel SQL, pre-rendering, SSE streaming</li>
                   <li><b>Observability</b> — Hermes request tracing, DB fingerprints, cache invalidation, health endpoints</li>
                   <li><b>Security & privacy</b> — Dual-LLM PII sanitization, JWT auth, role-aware escalation, audit logging</li>
                 </ul>
@@ -645,8 +645,9 @@ window.PORTFOLIO = {
     },
     {
       id: "zhanlu",
+      featured: true,
       title: "Zhanlu — Enterprise AI Operating System",
-      short: "Multi-tenant AI agent platform with Planner planning, Harness Agents, sandboxed tool calling, model routing, and PPT-with-data artifact generation.",
+      short: "Four research ideas anchor the design — governed agent execution, bounded multi-agent delegation, verifiable outputs, and context-safe tool use — implemented as a multi-tenant AI agent platform with Planner planning, Harness Agents, sandboxed tool calling, model routing, and PPT-with-data artifact generation.",
       category: "AI Infrastructure",
       period: "2025 – 2026",
       org: "Synexia AI (Internship) — Solo project, designed, built, and shipped entirely by me",
@@ -769,14 +770,14 @@ window.PORTFOLIO = {
           body: `
             <p class="pd-lead">One deployment, every department. Every project, agent, datasource, and knowledge base is scoped to an Org / App / Workspace and marked company-wide or personal — so Marketing, R&D, Data Analysis, and C5/C9 run side-by-side with strict data isolation.</p>
             <div class="pd-cards">
-              <div class="pd-card"><h4>Org / App / Workspace Scoping</h4><p>Every resource row carries org_id + app_id. Company resources are shared across the org; personal resources stay with their owner. No cross-tenant data leaks by construction.</p></div>
+              <div class="pd-card"><h4>Org / App / Workspace Scoping</h4><p>Every resource row carries org_id + app_id. Company resources are shared across the org; personal resources stay with their owner. Tenant-scoped resource access is enforced through resource-level authorization, datasource bindings, and per-call policy checks; database-level RLS is a planned hardening step.</p></div>
               <div class="pd-card"><h4>Department Projects</h4><p>Marketing, R&D, Data Analysis, C5/C9, Global — each team runs as its own project with its own agents, knowledge bases, and conversation history, visible in the sidebar as department groups.</p></div>
               <div class="pd-card"><h4>Per-Agent Data Isolation</h4><p>Each agent binds datasources explicitly: read-only access mode, allowed / blocked tables, allowed columns, and row filters. An agent literally cannot see data outside its binding.</p></div>
               <div class="pd-card"><h4>Scenario Agents</h4><p>Users create purpose-built agents from templates or scratch — Customer Support, Production Efficiency, Research Assistant, Report Writer — each with its own model route, datasources, skills, and MCP tools.</p></div>
               <div class="pd-card"><h4>Realtime, Per Tenant</h4><p>Dashboards stream live data over WebSocket and agent runs stream step-by-step over SSE — always scoped to the tenant that owns them.</p></div>
               <div class="pd-card"><h4>Governance & Audit</h4><p>Resource access policies, controlled sharing, and an audit trail on every gated action — enterprise-ready accountability.</p></div>
             </div>
-            <div class="pd-callout"><b>Why this matters:</b> Most AI demos work in one tenant. Zhanlu's multi-tenancy is enforced at the database layer — org_id/app_id scoping on every resource plus column- and row-level agent bindings — which is exactly what an enterprise platform needs before it can touch production data.</div>
+            <div class="pd-callout"><b>Why this matters:</b> Most AI demos work in one tenant. Zhanlu enforces multi-tenancy through resource-level authorization (org_id / app_id scoping on every resource), per-call policy checks, and column- and row-level agent bindings; database-level row-level security is a planned hardening step. That is the isolation an enterprise platform needs before it can touch production data.</div>
           `,
         },
         {
@@ -797,26 +798,28 @@ window.PORTFOLIO = {
         },
       ],
       links: [
-        { label: "GitHub Repository", url: "https://github.com/Minhaz2858/EDIA", external: true },
+        { label: "Architecture Case Study", url: "projects.html#zhanlu", external: false },
+        { label: "Production source is proprietary", url: null, external: false, note: true },
       ],
     },
     {
       id: "bepsbot",
+      featured: true,
       title: "BepsBot — AI-Powered Mental Health Peer Support Platform",
-      short: "My master's thesis research at ZJU — a dual-mode LLM writing assistant for bipolar-disorder peer support (HHME 2026 PCC, Springer LNCS).",
+      short: "Master's thesis research at ZJU — a draft-grounded AI writing assistant for bipolar-disorder peer support. Oral presentation at HHME 2026 PCC, Zhejiang University (2026).",
       category: "Generative AI",
       period: "2024 – 2025",
-      org: "Zhejiang University · Master's Thesis Research · HHME 2026 PCC Oral · Springer LNCS",
+      org: "Zhejiang University · Master's Thesis Research · HHME 2026 PCC Oral Presentation",
       role: "Master's Thesis Researcher / AI Engineer",
       image: "assets/bepsbot_hero.png",
       video: "assets/bepsbot_demo.mp4",
       summary:
-        "My master's thesis research at Zhejiang University: a production-grade dual-mode AI writing assistant for online peer support in bipolar-disorder communities. AS (Assessment) mode provides real-time ES/IS scoring with a fine-tuned RoBERTa regressor grounded in LIWC-2015 features. RE (Recommendation) mode performs a 2-stage retrieval over a 48K-comment r/bipolar pool and returns 3 linguistically transformed drafts. Validated through a 24-participant within-subjects study (SUS 88.0, κ=.78, IS F1=.62 / ES F1=.68) and presented as a PCC Oral at HHME 2026.",
+        "My master's thesis research at Zhejiang University: a draft-grounded AI writing assistant for online peer support in bipolar-disorder communities. Rather than generating responses from scratch, it uses retrieval-grounded examples to transform a supporter's own draft while preserving authorship. Validated through a 24-participant within-subjects study: suggestion adoption increased from 33.3% to 75.6%, with a mean SUS of 86.98 (usability preserved) and pre/post safety screening. Presented as a PCC Oral at HHME 2026, Zhejiang University.",
       highlights: [
         { num: "24", label: "participants · within-subjects study" },
-        { num: "SUS 88.0", label: "Excellent (Bangor et al.) · 70.8% Grade A" },
-        { num: "κ=.78", label: "inter-coder agreement · 450 gold-standard comments" },
-        { num: "IS .62 / ES .68", label: "F1 · 10-fold CV · 100-comment holdout IS 65% / ES 75%" },
+        { num: "33.3% → 75.6%", label: "suggestion adoption (more than 2×) · evaluated research system" },
+        { num: "SUS 86.98", label: "usability preserved · evaluated research system" },
+        { num: "Pre/Post", label: "safety screening · fail-closed (evaluated research system)" },
       ],
       problem:
         "Peer supporters in online bipolar-disorder communities write replies that can be unintentionally unsupportive, factually wrong, or unsafe. There was no real-time way to measure support quality, no way to ground generative suggestions in evidence, and LLM outputs risked hallucinations and harmful suggestions in a high-stakes clinical context.",
@@ -846,9 +849,9 @@ window.PORTFOLIO = {
         "Decoupled Flask + FastAPI microservice architecture for high concurrency",
       ],
       impact:
-        "Achieved SUS 88.0 (SD=11.4) with 70.8% Grade A — substantially above the 68-point industry average. 14/24 (58.3%) participants improved on ES, 15/24 (62.5%) on IS. T3 IS × T3 confidence Spearman rs=.552 (p=.005, Bonferroni-corrected). Task completion dropped 32.3% from T1 (11.21 min) to T3 (7.59 min). Identified 3 user-pattern archetypes — Pattern A Validation (26/39, 66.7%), Pattern B Selective Integration (8/39, 20.5%), Pattern C Full Replacement (5/39, 12.8%, raises autonomy concerns). Presented as PCC Oral at HHME 2026 (Springer LNCS in review).",
+        "Evaluated research system (draft-grounded, pre/post safety screening): suggestion adoption increased from 33.3% to 75.6% across 24 participants, mean SUS 86.98 with confidence and satisfaction preserved; full pattern analysis of voice-preservation archetypes. Presented as PCC Oral at HHME 2026, Zhejiang University.",
       evaluation:
-        "ES/IS predictions benchmarked against expert labels across SVM, Multinomial Logistic Regression, Random Forest, XGBoost, and the fine-tuned RoBERTa (10-fold CV; IS F1=.62, ES F1=.68; 100-comment cross-verification: IS 65%, ES 75%). Content changes coded by 2 independent coders (κ=.78, substantial). User study: 24 participants, 3 writing tasks (counterbalanced Latin square), 5-point Likert confidence + satisfaction, SUS 88.0 (Excellent), and 15–25 min semi-structured exit interviews. Validated through a PCC Oral presentation at HHME 2026 and a Springer LNCS manuscript.",
+        "Evaluated research system (draft-grounded, pre/post safety screening): 24-participant within-subjects study (3 writing tasks, counterbalanced Latin square) with SUS (mean 86.98), 5-point Likert confidence + satisfaction, and 15–25 min semi-structured exit interviews; 2 independent coders on the coding rubric (Cohen's κ=.78, substantial). Earlier prototype build (Elasticsearch + BERT retrieval, pre-rendering label) reported SUS 88.0 with ES/IS F1=.62/.68 across SVM / MLR / Random Forest / XGBoost / fine-tuned RoBERTa. Validated through a PCC Oral presentation at HHME 2026, Zhejiang University.",
       stack: [
         "Python", "Flask", "FastAPI", "PyTorch", "RoBERTa", "BERT (768-dim)",
         "LangChain", "DeepSeek LLM", "Sentence Transformers", "ChromaDB", "RAG",
@@ -925,7 +928,7 @@ def recommend_candidates(req):
             <p class="pd-lead">One model (deepseek-chat via OpenAI SDK), two engineered jobs with deliberately different temperatures — creative generation at 0.7, deterministic moderation at 0.0.</p>
             <div class="pd-cards">
               <div class="pd-card"><h4>LLM · Two jobs</h4><p>Generation (temp 0.7) rewrites drafts; moderation (temp 0.0) decides safety. "Return ONLY the text" keeps LLM output clean for the UI.</p></div>
-              <div class="pd-card"><h4>Double moderation</h4><p>Two passes per recommendation: an input gate before generation + a parallel per-candidate gate after — up to 4 moderation calls + 3 generations in two thread-pool waves. Fail-open on API errors so moderation never blocks valid traffic during an outage.</p></div>
+              <div class="pd-card"><h4>Double moderation (prototype build)</h4><p><em>Prototype build (Elasticsearch + BERT pipeline, HHME 2026 submission):</em> two passes per recommendation — an input gate before generation plus a parallel per-candidate gate after — up to 4 moderation calls + 3 generations in two thread-pool waves. <em>Evaluated research system (draft-grounded, pre/post safety screening):</em> fail-closed by default — when moderation fails, content does not pass through; safety is evaluated before generation and per candidate after generation.</p></div>
               <div class="pd-card"><h4>RAG · Two generations</h4><p>The current codebase ships a ChromaDB RAG pipeline; the HHME 2026 paper documents the earlier two-stage Elasticsearch + BERT pipeline. Same principle — prove it with examples before you generate.</p></div>
             </div>
           `,
@@ -1018,6 +1021,7 @@ def recommend_candidates(req):
     },
     {
       id: "sprout",
+      featured: false,
       title: "SPROUTH — Shape-changing Meditation Device",
       short: "Bio-inspired shape-changing device that helps students transform fear of failure into growth mindset (5-person team, ITDP course).",
       category: "Embedded & IoT",
@@ -1174,6 +1178,7 @@ def recommend_candidates(req):
     },
     {
       id: "inventor",
+      featured: false,
       title: "Autodesk Inventor API — Parametric CAD Automation",
       short: "Python system that drives Autodesk Inventor models from key dimensions.",
       category: "Automation",
@@ -1222,6 +1227,7 @@ def recommend_candidates(req):
     },
     {
       id: "inclusivevision",
+      featured: false,
       title: "InclusiveVision — Smart Glasses for the Visually Impaired",
       short: "Wearable ultrasonic obstacle-detection glasses with voice alerts.",
       category: "Embedded & IoT",
@@ -1270,6 +1276,7 @@ def recommend_candidates(req):
     },
     {
       id: "recommendation",
+      featured: false,
       title: "Product Recommendation System — Collaborative Filtering",
       short: "Matrix-factorization recommendations on the goodbooks-10k dataset.",
       category: "Machine Learning",
@@ -1318,6 +1325,7 @@ def recommend_candidates(req):
     },
     {
       id: "iot-attendance",
+      featured: false,
       title: "IoT-based Smart Attendance System with Face Recognition",
       short: "Contact-free ESP32-CAM attendance with secure IoT-cloud storage.",
       category: "Embedded & IoT",
@@ -1378,7 +1386,7 @@ def recommend_candidates(req):
         { name: "Mengru Xue", me: false },
         { name: "Tasnim Afra", me: false },
       ],
-      impact: "Systematic review mapping psychologist-applied biomarkers (sleep, activity, mood) to bipolar-disorder state changes — informing digital-phenotyping designs for peer-support tools.",
+      impact: "Qualitative interview study with seven mental-health professionals identifying physiological, behavioral, and psychosocial signals relevant to longitudinal bipolar-disorder monitoring — informing a clinician-centered multimodal AI framework.",
       doi: "10.1007/978-3-032-02534-0_8",
       pages: "61–75",
       published: "27 August 2025",
@@ -1443,15 +1451,15 @@ def recommend_candidates(req):
 
   education: [
     {
-      degree: "Masters in Industrial Design Engineering",
+      degree: "M.Eng. in Industrial Design Engineering",
       school: "Zhejiang University",
       period: "Sep 2023 – Dec 2026 (Expected)",
       location: "Zhejiang, China",
     },
     {
-      degree: "Bachelor in Computer Science and Technology",
+      degree: "B.Eng. in Computer Science and Technology",
       school: "Yunnan University",
-      period: "2019 – 2023",
+      period: "Sep 2019 – Jun 2023",
       location: "Kunming, China",
     },
   ],
@@ -1489,8 +1497,8 @@ def recommend_candidates(req):
 
   achievements: [
     {
-      title: "United Nations Technology Bank — Global Youth Talent Program 2023",
-      text: "Selected among top young designers worldwide for a prestigious UN program, recognized for innovative 3D design and engineering solutions. Participated in a curriculum focused on bridging advanced design with sustainable development goals. Featured on the official UN Technology Bank website.",
+      title: "United Nations Technology Bank — Global Youth Talent Program, 2023",
+      text: "Selected for the United Nations Technology Bank Global Youth Talent Program (2023), an international design-education initiative focused on technology, design, and sustainable development.",
       link: "https://www.un.org/technologybank/news/global-youth-talent-empower-design-new-era-admission-international-design-education-program",
     },
   ],

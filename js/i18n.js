@@ -15,9 +15,9 @@
   var UI = {
     en: {
       meta: {
-        title: "Minhazul Islam — AI Systems Engineer & Applied Researcher",
+        title: "Minhazul Islam — AI Systems Researcher | Trustworthy Agentic AI & Human-AI Interaction",
         description:
-          "AI Systems Engineer building auditable multi-agent architectures, deterministic guardrails, and enterprise RAG platforms. M.E. from Zhejiang University, publications at ICEC 2025.",
+          "AI Systems Researcher (M.Eng. candidate, Zhejiang University) working on trustworthy agentic AI, grounded decision intelligence, and human-AI interaction. Publications at ICEC 2025 and HHME 2026 PCC.",
         libTitle: "Project Library — Minhazul Islam",
         libDescription:
           "Comprehensive details on all of Minhazul Islam's AI, ML, and embedded systems projects.",
@@ -26,9 +26,11 @@
       nav: {
         about: "About",
         research: "Research",
+        publications: "Publications",
+        projects: "Featured Work",
+        earlier: "Earlier Projects",
         skills: "Skills",
         experience: "Experience",
-        projects: "Projects",
         education: "Education",
         contact: "Contact",
         home: "Home",
@@ -39,8 +41,9 @@
         researchSt: "Research Statement",
         skills: "Skills",
         experience: "Experience",
-        projects: "Projects",
+        projects: "Featured Work",
         publications: "Publications",
+        earlier: "Earlier Projects",
         education: "Education",
         achievements: "Achievements",
         contact: "Contact",
@@ -51,11 +54,11 @@
       },
 
       hero: {
-        kicker: "M.E. Student, Zhejiang University | B.S. in Computer Science, Yunnan University",
-        role: "AI Systems Engineer & Applied Researcher",
+        kicker: "M.Eng. Candidate, Zhejiang University · B.Eng., Yunnan University",
+        role: "AI Systems Researcher | Trustworthy Agentic AI & Human-AI Interaction",
         summary:
-          "Building auditable multi-agent architectures, deterministic guardrails, and enterprise agent runtimes. Researching human-AI co-decision and grounded RAG systems across high-stakes industrial & healthcare domains.",
-        viewProjects: "View My Projects",
+          "I build and study agentic AI systems that make complex decisions through structured planning, grounded tool use, verification, and human oversight. My work spans enterprise decision intelligence (EDIA, Zhanlu) and AI-mediated mental-health communication (BEPSBot).",
+        viewProjects: "View Featured Work",
         downloadCv: "Download CV",
         contactMe: "Contact Me",
       },
@@ -76,45 +79,51 @@
 
       about: {
         eyebrow: "About Me",
-        title: "Engineer & Researcher at the Intersection of AI Systems, Product, and Impact",
-        p1: "I design and deploy the full lifecycle of trustworthy AI products: bridging model research and fine-tuning (Transformers, PEFT/LoRA) with robust orchestration, context engineering, deterministic validation, and high-concurrency production infrastructure.",
-        p2: "Combining a Master's in Industrial Design Engineering from Zhejiang University with a Bachelor's in Computer Science from Yunnan University, I build AI systems that are not just capable models, but <strong>reliable, auditable software platforms</strong>. My work spans enterprise multi-agent architectures (Zhanlu, EDIA), published affective computing research, and edge AI/IoT hardware.",
-        pillarsTitle: "Core Systems & Research Pillars",
+        title: "Researcher and Engineer in Trustworthy AI Systems",
+        p1: "I am an M.Eng. candidate at Zhejiang University (M.Eng. in Industrial Design Engineering) with a B.Eng. in Computer Science from Yunnan University, working on three tightly connected research questions.",
+        p2: "My work is grounded in production systems I built end-to-end at Synexia AI — <strong>EDIA</strong> (a 17-node LangGraph decision-intelligence platform for petrochemical forecasting) and <strong>Zhanlu</strong> (a governed multi-agent runtime with bounded delegation, verifiable outputs, and context-safe tool use) — and in empirical human-subjects research through my master's thesis, <strong>BEPSBot</strong> (a draft-grounded AI writing assistant for bipolar-disorder peer support, evaluated in a 24-participant within-subjects study, HHME 2026 PCC).",
+        pillarsTitle: "Three Research Threads",
       },
 
       rs: {
         eyebrow: "Research Statement",
-        title: "Trustworthy AI Systems for High-Stakes Decisions",
+        title: "Trustworthy Agentic AI, Grounded Decision Intelligence, and Human-AI Collaboration",
         sub: "",
-        p1: "I build AI systems where a wrong output carries real cost — petrochemical supply chains, mental-health peer support, enterprise decision workflows. My work sits at the intersection of multi-agent orchestration, deterministic governance, and human-AI co-decision: designing architectures that make probabilistic models auditable and safe enough to deploy in production.",
-        p2: "At Synexia AI, I built EDIA and Zhanlu, two production multi-agent systems that taught me where theory meets friction. EDIA's pre-rendering pipeline locks business-critical numbers in pure Python before any LLM sees them — the model narrates, but never computes. Zhanlu's SafeContextGate makes context-window crashes structurally impossible by enforcing headroom before every call. These were engineering necessities that became research questions: <em>When should we extract computation from generative models? How do we validate agent plans without exploding latency? What does &ldquo;trust&rdquo; mean when the human is a domain expert, not a casual user?</em>",
-        p3: "My master's thesis, BEPSBot, approached the same problem from the HCI side: a draft-grounded writing assistant for bipolar-disorder peer-support communities, evaluated in a within-subjects study (N=24, HHME 2026). The challenge was identical — generative suggestions are helpful until they fabricate advice that carries clinical risk.",
+        p1: "I build and study agentic AI systems that make complex decisions through structured planning, grounded tool use, verification, and human oversight. My work spans enterprise decision intelligence and AI-mediated mental-health communication — three tightly connected threads.",
+        p2: "<strong>Trustworthy agentic AI</strong> (Zhanlu). A governed multi-agent runtime where every plan is constructed, every tool call is permission-filtered and policy-checked, and every output is verified before reaching users. The research question: <em>how should execution be bounded so that probabilistic models become auditable enough to deploy in production?</em>",
+        p3: "<strong>Grounded decision intelligence</strong> (EDIA) <strong>and human-AI collaboration in sensitive domains</strong> (BEPSBot). On the decision side, EDIA pre-computes every business-critical number in deterministic Python before any LLM sees it — the model narrates, never calculates. On the human-AI side, BEPSBot preserves authorship by retrieving grounded examples and transforming a supporter's own draft; a within-subjects study (N=24) showed suggestion adoption rise from 33.3% to 75.6% with SUS 86.98.",
         toolkitTitle: "Methodological & Technical Toolkit",
       },
 
       skills: {
-        eyebrow: "Technical Skills",
-        title: "Skills & technologies I work with",
-        sub: "Organized by the systems I build — from agent orchestration and retrieval infrastructure to production deployment.",
+        eyebrow: "Technical & Research Methods",
+        title: "Skills organised by research and engineering domain",
+        sub: "Grouped from agent systems and language technologies to systems engineering and research methodology.",
       },
 
       exp: {
-        eyebrow: "Experience",
-        title: "Professional experience",
-        sub: "Roles where I designed, built, and deployed production AI systems.",
+        eyebrow: "Research Experience",
+        title: "Research and applied engineering experience",
+        sub: "Roles where I designed, built, and evaluated AI systems end-to-end.",
       },
 
       proj: {
-        eyebrow: "Featured Projects",
-        title: "Selected projects",
-        sub: "From multi-agent LLM infrastructure to embedded assistive devices — each project solved a real problem end-to-end.",
+        eyebrow: "Featured Work",
+        title: "Selected research and AI systems",
+        sub: "Three flagship systems anchoring my PhD trajectory: a draft-grounded writing assistant, an enterprise decision-intelligence platform, and a governed multi-agent runtime.",
         viewAll: "View all projects in the Project Library",
         viewDetails: "View full details →",
         all: "All",
       },
 
+      earlier: {
+        eyebrow: "Earlier Projects",
+        title: "Earlier engineering work",
+        sub: "Selected earlier engineering projects — CAD automation, assistive hardware, IoT, recommendation systems.",
+      },
+
       pub: {
-        eyebrow: "Research & Publications",
+        eyebrow: "Publications & Presentations",
         published: "Published",
         presented: "Presented",
         pages: "Pages",
@@ -122,21 +131,21 @@
       },
 
       edu: {
-        eyebrow: "Education & Certifications",
-        title: "Education and professional training",
-        certsTitle: "Certifications",
+        eyebrow: "Education",
+        title: "Education",
+        certsTitle: "Additional Training",
       },
 
       ach: {
-        eyebrow: "Achievements",
-        title: "Awards & accomplishments",
+        eyebrow: "Awards",
+        title: "Selected awards",
       },
 
       contact: {
         eyebrow: "Contact",
-        title: "Let's build something together",
+        title: "Get in touch",
         getInTouch: "Get in touch",
-        text: "I'm open to AI engineering roles, research collaborations, and interesting projects. Reach out any time.",
+        text: "I am seeking PhD opportunities for Fall 2027 in trustworthy agentic AI, human-AI interaction, and grounded LLM systems. I welcome research collaborations in these areas.",
         nameLabel: "Name",
         namePh: "Your name",
         emailLabel: "Email",
@@ -185,9 +194,9 @@
 
     zh: {
       meta: {
-        title: "明哈祖尔·伊斯兰 — 人工智能工程师作品集",
+        title: "明哈祖尔·伊斯兰 — AI 系统研究者 | 可信智能体 AI 与人机交互",
         description:
-          "专注于生成式 AI、LLM 智能体、RAG 与生产级 AI 系统的人工智能工程师。浙江大学硕士，ICEC 2025 论文作者。",
+          "AI 系统研究者（浙江大学硕士在读），专注于可信智能体 AI、落地式决策智能与人机交互。ICEC 2025 论文作者，HHME 2026 PCC 报告人。",
         libTitle: "项目库 — 明哈祖尔·伊斯兰",
         libDescription: "明哈祖尔·伊斯兰所有 AI、机器学习与嵌入式系统项目的详细介绍。",
       },
@@ -195,9 +204,11 @@
       nav: {
         about: "关于我",
         research: "研究",
+        publications: "论文",
+        projects: "代表项目",
+        earlier: "早期项目",
         skills: "技能",
         experience: "经历",
-        projects: "项目",
         education: "教育",
         contact: "联系",
         home: "首页",
@@ -208,8 +219,9 @@
         researchSt: "研究陈述",
         skills: "技能",
         experience: "经历",
-        projects: "项目",
+        projects: "代表项目",
         publications: "论文",
+        earlier: "早期项目",
         education: "教育",
         achievements: "荣誉成就",
         contact: "联系",
@@ -220,11 +232,11 @@
       },
 
       hero: {
-        kicker: "浙江大学硕士 | 云南大学计算机科学学士",
-        role: "AI 系统工程师与应用研究者",
+        kicker: "浙江大学硕士在读 · 云南大学工学学士",
+        role: "AI 系统研究者 | 可信智能体 AI 与人机交互",
         summary:
-          "构建可审计的多智能体架构、确定性护栏与企业级智能体运行时。研究高风险工业与医疗场景中的人机协同决策与落地式 RAG 系统。",
-        viewProjects: "查看我的项目",
+          "我构建并研究通过结构化规划、工具使用落地、验证与人机监督来处理复杂决策的智能体系统——覆盖企业决策智能（EDIA、Zhanlu）与 AI 介导的心理健康沟通（BEPSBot）。",
+        viewProjects: "查看代表项目",
         downloadCv: "下载简历",
         contactMe: "联系我",
       },
@@ -244,45 +256,51 @@
 
       about: {
         eyebrow: "关于我",
-        title: "AI 系统、产品与影响力交汇处的工程师与研究者",
-        p1: "我设计并部署可信赖 AI 产品的完整生命周期：从模型研究与微调（Transformers、PEFT/LoRA）到健壮的编排、上下文工程、确定性校验，以及高并发生产基础设施。",
-        p2: "浙江大学工业设计工程硕士 + 云南大学计算机科学学士。我构建的不仅是能力强大的模型，更是<strong>可靠、可审计的软件平台</strong>。我的工作覆盖企业级多智能体架构（Zhanlu、EDIA）、已发表的情感计算研究，以及边缘 AI/IoT 硬件。",
-        pillarsTitle: "核心系统与研究支柱",
+        title: "可信 AI 系统中的研究者与工程师",
+        p1: "我是浙江大学工业设计工程硕士研究生、云南大学计算机科学与技术工学学士，围绕三个紧密相连的研究问题展开工作。",
+        p2: "我的工作根植于在 Synexia AI 端到端构建的生产系统——<strong>EDIA</strong>（面向石化预测的 17 节点 LangGraph 决策智能平台）与<strong>Zhanlu</strong>（受治理的多智能体运行时，配备有界委派、可验证输出与上下文安全的工具使用），以及硕士论文中的人因实证研究——<strong>BEPSBot</strong>（面向双相障碍同伴支持的草稿锚定 AI 写作助手，已在 24 人被试内研究中评估，口头报告于 HHME 2026 PCC）。",
+        pillarsTitle: "三条研究主线",
       },
 
       rs: {
         eyebrow: "研究陈述",
-        title: "面向高风险决策的可信赖 AI 系统",
+        title: "可信智能体 AI、落地式决策智能与人机协同",
         sub: "",
-        p1: "我构建的 AI 系统中，错误的输出意味着真实的代价——石化供应链、心理健康同伴支持、企业决策流程。我的工作处于多智能体编排、确定性治理与人机协同决策的交汇点：设计让概率模型变得可审计、可安全部署的系统架构。",
-        p2: "在 Synexia AI，我独立构建了 EDIA 和 Zhanlu 两套生产级多智能体系统，让我体会到理论与工程之间的摩擦。EDIA 的预渲染管线在任何 LLM 接触数据之前，用纯 Python 锁定业务关键数值——模型叙述，但从不计算。Zhanlu 的 SafeContextGate 在每次调用前强制保留上下文余量，从结构上杜绝上下文窗口崩溃。这些工程刚需变成了研究问题：<em>何时应将计算从生成模型中剥离？如何在不爆炸延迟的前提下验证智能体计划？当用户是领域专家而非普通用户时，&ldquo;信任&rdquo;意味着什么？</em>",
-        p3: "我的硕士论文 BEPSBot 从 HCI 角度切入同一问题：一款面向双相情感障碍同伴支持社区的草稿锚定写作助手，通过组内被试研究评估（N=24，HHME 2026）。挑战是相同的——生成式建议在编造具有临床风险的内容之前是有帮助的。",
+        p1: "我构建并研究通过结构化规划、工具使用落地、验证与人机监督来处理复杂决策的智能体 AI 系统。研究覆盖企业决策智能与 AI 介导的心理健康沟通——三个紧密相连的研究主线。",
+        p2: "<strong>可信智能体 AI</strong>（Zhanlu）：受治理的多智能体运行时——每个计划都被构造、每个工具调用都经过权限过滤与策略检查、每个输出在触达用户前都被验证。研究问题：<em>如何约束执行，让概率模型变得可审计、可安全部署到生产？</em>",
+        p3: "<strong>落地式决策智能</strong>（EDIA）<strong>与人机协同（敏感领域）</strong>（BEPSBot）。在决策侧，EDIA 在任何 LLM 看到数据前用纯 Python 预计算并锁定业务关键数值——模型只叙述、绝不计算。在人机协同侧，BEPSBot 通过检索真实样例改写支持者自己的草稿来保留作者性；24 人被试内研究显示，建议采纳率从 33.3% 提升至 75.6%，SUS 86.98。",
         toolkitTitle: "方法论与技术工具箱",
       },
 
       skills: {
-        eyebrow: "技术技能",
-        title: "我使用的技能与技术",
-        sub: "按我构建的系统组织——从智能体编排和检索基础设施到生产部署。",
+        eyebrow: "技术与研究方法",
+        title: "按研究与工程领域组织的技能",
+        sub: "从智能体系统、语言技术到系统工程与研究方法论。",
       },
 
       exp: {
-        eyebrow: "工作经历",
-        title: "职业经历",
-        sub: "那些我设计、构建并部署生产级 AI 系统的岗位。",
+        eyebrow: "研究经历",
+        title: "研究与工程经历",
+        sub: "我端到端设计、构建并评估 AI 系统的岗位。",
       },
 
       proj: {
-        eyebrow: "精选项目",
-        title: "代表项目",
-        sub: "从多智能体 LLM 基础设施到嵌入式辅助设备——每个项目都端到端地解决了一个真实问题。",
+        eyebrow: "代表项目",
+        title: "代表研究与 AI 系统",
+        sub: "支撑我博士路径的三套旗舰系统：一款草稿锚定写作助手、一套企业决策智能平台、一个受治理的多智能体运行时。",
         viewAll: "查看项目库中的全部项目",
         viewDetails: "查看详情 →",
         all: "全部",
       },
 
+      earlier: {
+        eyebrow: "早期项目",
+        title: "早期工程项目",
+        sub: "精选早期工程项目——CAD 自动化、辅助硬件、IoT、推荐系统。",
+      },
+
       pub: {
-        eyebrow: "研究与论文",
+        eyebrow: "论文与会议报告",
         published: "发表于",
         presented: "报告于",
         pages: "页码",
@@ -290,22 +308,21 @@
       },
 
       edu: {
-        eyebrow: "教育与证书",
-        title: "教育与专业培训",
-        certsTitle: "证书",
+        eyebrow: "教育",
+        title: "教育",
+        certsTitle: "其他培训",
       },
 
       ach: {
-        eyebrow: "荣誉成就",
-        title: "奖项与成就",
-        note: "部分条目为占位符——请提供详细信息，我会为您补充。",
+        eyebrow: "奖项",
+        title: "精选奖项",
       },
 
       contact: {
         eyebrow: "联系我",
-        title: "让我们一起创造",
+        title: "保持联系",
         getInTouch: "保持联系",
-        text: "我欢迎 AI 工程职位、研究合作和有趣的项目，随时联系我。",
+        text: "我寻求 2027 年秋季博士岗位，研究方向为可信智能体 AI、人机交互与落地式 LLM 系统。欢迎相关方向的研究合作。",
         nameLabel: "姓名",
         namePh: "您的姓名",
         emailLabel: "邮箱",
