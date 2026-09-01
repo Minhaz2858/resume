@@ -783,7 +783,7 @@ window.PORTFOLIO = {
         {
           title: "CAD Agent: Natural-Language 3D Modeling in Fusion 360",
           body: `
-            <p class="pd-lead">Most agents write text. This one builds things. CAD Agent takes natural-language requests — "build an M6 screw", "make the bracket taller" — and drives Autodesk Fusion 360 over a live socket MCP bridge to create real 3D models, parameter by parameter.</p>
+            <p class="pd-lead">Most agents write text. This one builds things. CAD Agent takes natural-language requests — "build an M6 screw" — and drives Autodesk Fusion 360 over a live socket MCP bridge to create real 3D models, parameter by parameter.</p>
             <video src="assets/cad_agent_demo.mp4" controls preload="metadata" muted playsinline></video>
             <div class="pd-cards">
               <div class="pd-card"><h4>Build / Query / Ambiguous</h4><p>The agent classifies intent before touching Fusion: BUILD creates or changes geometry, QUERY answers from the live scene without rebuilding, AMBIGUOUS asks instead of guessing — it never substitutes a part the user didn't ask for.</p></div>
