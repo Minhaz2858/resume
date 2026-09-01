@@ -369,10 +369,6 @@ window.PORTFOLIO_ZH = {
           `,
         },
       ],
-      links: [
-        { label: "架构案例研究", url: "projects.html#zhanlu", external: false },
-        { label: "生产源码为闭源", url: null, external: false, note: true },
-      ],
     },
     {
       id: "bepsbot",

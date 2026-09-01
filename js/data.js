@@ -797,10 +797,6 @@ window.PORTFOLIO = {
           `,
         },
       ],
-      links: [
-        { label: "Architecture Case Study", url: "projects.html#zhanlu", external: false },
-        { label: "Production source is proprietary", url: null, external: false, note: true },
-      ],
     },
     {
       id: "bepsbot",
