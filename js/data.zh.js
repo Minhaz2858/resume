@@ -98,18 +98,50 @@ window.PORTFOLIO_ZH = {
           ],
         },
         {
-          name: "项目 2：Zhanlu — 企业级多智能体 AI 平台",
+          name: "项目 2：Zhanlu — 企业 AI 智能体基础设施",
           points: [
-            "平台架构：独立设计并部署了 11 服务容器化架构（FastAPI、PostgreSQL、Redis、MinIO），支持多租户工作空间隔离和 OAuth2/JWT 安全认证。",
-            "沙箱执行与 Agent Harness 核心：构建了 4 个专用沙箱执行运行时（Python / PPTX / WebApp / Office），将动态代码执行与核心系统隔离；并配备自研 Harness Agent 运行时（plan → act → verify FSM），拥有 100+ 工具注册表、按智能体允许/拒绝过滤，以及 8 种智能体原型（general-purpose、explore、plan、worker、verification、data_agent、forecast_agent、report_agent）。",
-            "动态模型与工具网关：企业级模型/工具/MCP 网关，配备分层按任务模型路由、供应商熔断/故障转移、Fernet 加密 API 密钥存储、原生 MCP 客户端 + OAuth，以及完整访问审计日志。",
+            "面向构建与运行受治理、使用工具的 AI 智能体的多租户平台。",
+            "作为 Synexia AI 实习期间的独立 AI 平台工程项目完成。",
+            "H::Agent Harness 与运行时",
+            "构建自定义 Synexia FSM，涵盖结构化的计划、行动、观察与验证阶段，带迭代预算、目标契约、工具循环检测、持久化执行状态与确定性置信度评分。",
+            "实现调用前上下文预算控制：估算 token 用量、压缩会话历史、将超大工具结果外部化，以降低跨模型上限的上下文溢出失败。",
+            "设计持久化的 Plan DAG 表示，覆盖类型化的工具、技能、NL2SQL 与沙箱节点。已批准的节点目前串行执行；通用并行 DAG 执行仍是后续工作。",
+            "为程序化与委托的智能体运行实现基于检查点的恢复。主会话路径目前使用独立的运行时循环。",
+            "H::动态数据智能",
+            "设计基于能力的架构：Harness 暴露授权的 SourceDescriptor，由活跃智能体判断哪些数据源和工具与请求相关。",
+            "消除了隐式默认数据库选择、首选数据源兜底、关键词到数据源路由、按数据源的业务规则与自动查询全部数据源的行为。",
+            "构建结构化执行路径：",
+            "意图 → 数据源发现 → 候选表 → GroundedPlan → SQL 编译与校验 → 数据库执行 → CanonicalResultSet",
+            "添加确定性时间解释、指标契约、单位校验、结果粒度控制与数据源来源，支撑有依据的业务数据回答。",
+            "围绕跨智能体一致性不变量进行设计：相同的语义请求、授权数据源范围与时间上下文，应产出相同的 GroundedPlan 与规范化结果。",
+            "H::工具注册与 MCP 集成",
+            "构建基于装饰器的工具注册表，带函数模式规范化与按角色的工具过滤。在特定已验证版本中，注册表包含 144 个工具定义。",
+            "实现 MCP 客户端与服务端集成，带受控的外部工具访问与 OAuth 支持。",
+            "添加供应商健康追踪、熔断行为、回退路由与加密的供应商密钥存储。",
+            "开发 CAD 智能体，通过 MCP 兼容桥接控制 Autodesk Fusion 360，使用带类型的参数化建模操作与几何校验。",
+            "H::沙箱执行与安全",
+            "面向 Python、PPTX、Web 应用与办公文档工作负载构建任务专用 Docker 沙箱镜像，配置内存、CPU、进程、输出与执行时长限制。",
+            "通过 worker 与 Redis 队列及事件流隔离沙箱任务提交。",
+            "设计数据源中介执行，使沙箱产物工作流可在受控数据输入上运行，而不接触原始数据源凭证。",
+            "为结构化 Harness 执行实现工具允许/拒绝清单、策略决策、租户感知资源范围与只追加审计记录。",
+            "全栈仪表盘生成目前在后端服务内运行，仍是隔离例外。",
+            "H::评估与输出验证",
+            "为数据源选择、时间解释、SQL 语义、授权、工具循环限制、结果一致性与失败恢复构建回归场景。",
+            "使用确定性校验与 LLM 辅助的评分规则实现自动化产物质量检查。",
+            "未通过配置产物检查的输出可以被扣留或标记为失败；基于 LLM 的评估被视为质量信号，而非产物不含幻觉的证明。",
+            "添加覆盖模型调用、工具活动、重试、延迟、token 用量、策略决策与运行状态的执行追踪。",
+            "验证目前记录质量与置信度信号；完整的自动反思与重规划循环仍是后续工作。",
+            "H::上下文工程与记忆",
+            "实现分层历史压缩与语义去重，以控制重复或低价值上下文。",
+            "构建分层工具结果处理：单结果上限、超大载荷外部存储，以及模型上下文内的指针替换。",
+            "添加项目级记忆、语义检索与基于向量的知识访问。",
+            "使用渐进式能力披露，使智能体获得相关的工具与技能摘要，而不必将完整目录加载进每个提示。",
           ],
         },
       ],
       tech: [
         "LangGraph", "Agent Harness", "ChromaDB", "FastAPI", "SSE Streaming",
-        "LLM 护栏", "多时间尺度预测", "MAPE / 回测",
-        "MCP 网关", "模型路由", "Docker", "systemd", "nginx",
+        "LLM 护栏", "MCP 网关", "模型路由", "Docker",
       ],
     },
     {
@@ -218,95 +250,191 @@ window.PORTFOLIO_ZH = {
     },
     {
       id: "zhanlu",
-      title: "Zhanlu — 企业级 AI 智能体平台",
-      short: "四项研究构想贯穿设计——受治理的智能体执行、有界多智能体委派、可验证输出、上下文安全的工具使用——具体实现为多租户 AI 智能体平台，配备规划器规划、Harness 智能体、沙箱化工具调用、模型路由与数据驱动 PPT 产物生成。",
+      title: "Zhanlu（湛卢）：企业 AI 智能体平台",
+      short: "Agent Harness · RAG · Skills 与 MCP · 自动化 · LLMOps——用户创建和配置 Agent，接入授权数据库与上传文档，通过对话开展数据分析、生成业务看板和办公文档，并设置定时任务。",
       category: "AI 基础设施",
       period: "2025 – 2026",
-      org: "Synexia AI（实习）——独立项目，由我完全自主设计、构建并交付",
-      role: "AI 平台 / 全栈工程师（实习 · 独立）",
+      org: "Synexia AI——实习 · 独立项目",
+      role: "AI 平台工程师 · 实习",
       image: "assets/zhanlu_dashboard.png",
       video: null,
       summary:
-        "一个完全由我自主构建的生产级多租户 AI 智能体平台。用户创建项目（App）与智能体，从精选注册表中挑选能力，并与一个委托给各领域 Harness 智能体的主智能体对话。规划器以受治理的 Plan DAG 进行规划，通过工具/技能/MCP 网关路由工具调用，按智能体与按组织应用模型路由，在隔离的 Docker 沙箱（sandbox-python、sandbox-pptx、sandbox-office、sandbox-webapp）中执行代码，并生成真实的商务产物——包括数据驱动的 PPT 演示文稿——经过校验、存储并内联预览。平台以 14 个服务的 Docker 技术栈部署，包含 PostgreSQL、Redis、MinIO、Prometheus 与 Grafana。当前构建已超越 MVP：计划优先的回合规划（turn planning）将每一步智能体执行实时推送到聊天界面；智能体可从绑定的实时数据源生成全栈仪表盘（WebSocket 刷新）；PPT 流水线由 LLM 裁判审计并拦截不合格演示文稿；原生 MCP 客户端/服务端可接入与暴露外部工具。",
+        "Zhanlu 是面向企业的 AI 智能体平台。用户可以创建和配置 Agent，接入授权数据库与上传文档，通过对话开展数据分析、生成业务看板和办公文档，并设置定时任务。在 Synexia AI 实习期间，我独立负责 Agent 配置与执行组件、文档检索、结构化数据分析、Skills/MCP 工具集成、上下文与记忆管理、模型路由及前后端开发。平台支持外部 LLM API 与经过验证的本地模型接入，并提供执行控制、沙箱任务和评估工具。",
       highlights: [
-        { num: "7", label: "层企业架构（身份 → Planner → Harness → 记忆 → 执行 → 平台 → 基础设施）" },
-        { num: "14", label: "个 Docker 技术栈容器服务" },
-        { num: "Harness", label: "智能体运行时——规划-执行循环、沙箱化工具调用、按智能体配置的模型路由" },
-        { num: "8+", label: "个入门 Harness 智能体（财务、报告、仪表盘、数据分析、文档、合规、小程序、评审）" },
-        { num: "15+", label: "项入门技能，覆盖 PPT、DOCX、HTML、仪表盘、Markdown、小程序、受治理 NL2SQL 与 DataSnapshot" },
+        { num: "构建智能体", label: "配置指令、模型、知识、工具与可复用技能。" },
+        { num: "连接企业数据", label: "查询授权数据库，并从上传文档中检索证据。" },
+        { num: "自动化业务任务", label: "为智能体运行设置定时任务，并查看执行历史与结果。" },
+        { num: "交付可用产物", label: "生成看板与业务文档，带版本历史与内联预览。" },
       ],
       problem:
-        "企业需要真正可以部署的 AI 智能体：用户需要能创建自己的项目（App），从真实能力中组装自己的智能体，但每一步都必须保持受治理。原始工具选择器会泄露实现细节；持有原始凭证的智能体会造成安全与审计缺口；多智能体系统需要一致的编排；生成的文件应是有版本管理的商务产物（Markdown、仪表盘、数据驱动的 PowerPoint），而非聊天附件；代码执行必须被安全隔离。需要一套沙箱运行时来承载代码技能与数据驱动的产物生成，同时不暴露宿主或任何企业凭证。",
+        "项目要解决的问题是：让业务用户通过可配置的智能体使用公司文档、数据库和工具，同时保持授权、可追溯与执行控制。原始工具选择器会泄露实现细节；持有原始凭证的智能体会造成安全与审计缺口；生成的文件应是有版本管理的商务产物而非聊天附件；代码执行必须被隔离——同时，活跃智能体仍需按请求判断哪些数据源和工具是相关的。",
       roleDetail:
-        `<p>独立设计并部署了<strong>11 服务容器化平台</strong>：FastAPI 后端、PostgreSQL + Redis + MinIO 状态存储，以及<strong>4 个专用沙箱执行运行时</strong>（Python / PPTX / WebApp / Office），将动态代码执行与核心系统隔离。</p>
-        <p><strong>Agent Harness 与编排：</strong>构建自研 FSM 智能体运行时（plan → act → verify 阶段），配备 100+ 工具注册表、按智能体允许/拒绝工具过滤、迭代预算与工具循环护栏。实现了 swarm 层级——8 种智能体原型（general-purpose、explore、plan、worker、verification、data_agent、forecast_agent、report_agent），支持团队创建、并行生成、消息传递与重试/升级编排。</p>
-        <p><strong>动态模型与工具网关：</strong>企业级网关，配备分层按任务模型路由、供应商熔断/故障转移、Fernet 加密 API 密钥存储、原生 MCP 客户端 + OAuth，以及完整访问审计日志。</p>
-        <p><strong>数据执行：</strong>NL2SQL 数据智能体，配备自动模式发现、ChromaDB 语义检索目录，以及多数据源（MySQL/PostgreSQL）绑定。</p>
-        <p><strong>产物流水线：</strong>机构级 PPTX 生成（auto-plan → render → audit → polish）、全栈实时仪表盘（SSE 流式，4 种设计语言）、多时间尺度销售预测与 MAPE 评分和回测校验。</p>
-        <p><strong>安全与可靠性：</strong>LLM 护栏、路径/URL 安全、OSV + Tirith 依赖扫描、SSE 流式运行可观测性，以及按应用多租户隔离（独立内存、数据库绑定、状态）。</p>`,
-      architecture:
-        "七层结构，接入统一治理流水线：(1) 企业交互与身份层，产出密封的 RequestEnvelope；(2) 规划器认知核心——一个带七个能力引擎（目标、上下文、规划、推理、决策、反思、学习）的受治理 plan-act-observe 状态机，围绕可替换 LLM 构建，向系统其余部分暴露 Plan DAG；(3) Harness 智能体运行时——每个智能体都是 Harness 智能体，具备必需确认、风险层级、模型路由、沙箱要求、缺失权限模式、危险副作用清单，以及 ready/warning/blocked 状态；(4) 记忆与知识（DataSnapshot 与精选存储）；(5) 执行层——沙箱化的工作流 / 自动化 / 产物 / 通知 / 审批执行，sandbox-worker 是唯一允许创建临时 Docker 沙箱的服务；(6) 平台服务——模型路由策略、提示词版本管理、策略评估、确认风险等级、预算限制、追踪与 AI 治理注册表；(7) Docker / PostgreSQL / Redis / MinIO 基础设施。所有工具调用都经过工具/技能/MCP 网关——智能体不直接调用 MCP，技能不经网关不调用 MCP，模型永远看不到完整工具目录。",
-      algorithm:
-        "规划器是唯一的认知控制器。对每个用户请求，它将意图转换为类型化 TaskSpec，从记忆与 DataSnapshot 组装项目隔离的上下文，并构建经过校验的 Plan DAG。每个 Plan 节点通过工具/技能/MCP 网关过滤——该网关执行权限过滤 → 模式校验 → 策略评估 → 执行——并将 ObservationRecord 写回审计追踪。工具调用有边界：智能体只能看到其有权调用的工具与技能，绝看不到完整的 MCP 目录。模型路由按智能体与按组织执行：受限数据要求已批准的模型路径，昂贵路由触发确认门禁，按组织的模型供应商密钥可锁定专用部署。数据流有门禁：每次数据库调用都经过数据源网关并产生不可变的 DataSnapshot——沙箱永远不会收到原始凭证。代码与产物技能（包括带数据的 pptx 生成）在 sandbox-worker 中运行，后者流式传输 stdout/stderr 事件、校验输出、通过后端持久化产物，并在任务完成时销毁容器。",
-      methodology: [
-        "在动后端之前先梳理现有 UI 文件树与组件结构。",
-        "添加 FastAPI 骨架、PostgreSQL 模式（事实来源）、Redis（队列、锁、事件）与配置。",
-        "添加多租户 Org/App/Workspace 模型，带 JWT 认证（访问 + 刷新、OTP 注册）与按会话隐私。",
-        "添加 Harness 智能体数据模型：必需确认、风险层级、模型路由、沙箱要求、缺失权限与缺失模式追踪、危险副作用清单，以及 ready/warning/blocked 状态。",
-        "添加能力注册表——用户选择高层能力而非原始技能——由入门智能体（财务、报告、仪表盘、数据分析、文档、合规、小程序、评审）与入门技能支撑。",
-        "添加数据源连接器与按智能体的数据源绑定；所有读取都经过数据源网关并产生不可变的 DataSnapshot。",
-        "将规划器构建为 plan-act-observe 状态机，带 Plan DAG 记录、策略门禁与 ObservationRecord 审计条目。",
-        "添加技能注册表与斜杠 / 操作选择器，用于内联技能使用；用户创建的技能在评审与批准前保持不受信。",
-        "构建工具/技能/MCP 网关：权限过滤 → 模式校验 → 策略评估 → 执行，并带审计日志。智能体与技能绝不直接调用 MCP。",
-        "将 sandbox-worker 实现为唯一持有 Docker socket 的服务，配备专用 sandbox-python、sandbox-pptx、sandbox-office 与 sandbox-webapp 容器。",
-        "构建数据驱动的 PPT 产物流程：报告智能体以 DataSnapshot 为输入，在 sandbox-pptx 中调用 pptx 生成技能；输出经过校验、以产物形式存储并内联预览。",
-        "实现 Markdown、HTML、仪表盘、DOCX 与小程序产物生成器，带版本化存储与权限校验的内联预览 API。",
-        "为聊天 UI 实现实时执行时间线事件流，使每个计划步骤都可观测。",
-        "部署完整 14 服务 Docker 技术栈：backend、worker、sandbox-worker、postgres、redis、minio + minio-init、sandbox-python、sandbox-office、sandbox-pptx、sandbox-webapp、prometheus、grafana。",
-      ],
-      features: [
-        "多租户 Org / App / Workspace 隔离，带按会话隐私与按智能体的数据源 / 技能 / MCP 绑定",
-        "用户可创建项目（App）与 Harness 智能体，再从精选注册表选择高层能力（系统智能体与用户创建智能体并存）",
-        "规划器认知核心，带七个能力引擎：目标、上下文、规划、推理、决策、反思、学习",
-        "Plan DAG 执行，带审批门禁、重试 / 超时隔离与多轮会话状态",
-        "Harness 智能体运行时：每个智能体都是 Harness 智能体，具备明确的必需确认、风险层级、模型路由、沙箱要求，以及 ready / warning / blocked 状态",
-        "按智能体模型路由——受限数据要求已批准的路径，昂贵路径触发确认，按组织的模型供应商密钥可锁定专用部署",
-        "工具/技能/MCP 网关：智能体不直接调用 MCP；每次调用前强制权限过滤、模式校验、策略评估与审计",
-        "带隔离 Docker 执行与临时文件系统的 sandbox-worker——唯一可挂载 Docker socket 的服务",
-        "面向 Python、PPT、Office 与 Web 应用工作负载的专用沙箱容器（sandbox-python、sandbox-pptx、sandbox-office、sandbox-webapp）",
-        "数据驱动的 PPT 生成：报告智能体以 DataSnapshot 为输入，在 sandbox-pptx 中调用 pptx 生成技能，产出带版本管理的商务演示文稿",
-        "Markdown、HTML、PPT、DOCX、仪表盘与小程序的产物流水线，每项都经校验并作为版本化 Artifact 存储，带内联预览 API",
-        "数据源网关与不可变 DataSnapshot——智能体通过 DataSnapshot 读取数据，沙箱永远不会收到原始凭证",
-        "能力注册表 + 斜杠 / 操作选择器，用于内联技能使用；用户创建的技能在评审与批准前保持不受信",
-        "实时执行时间线事件流式传输到聊天 UI，使每个计划步骤都可观测",
-        "邮箱 / 密码认证 + OTP 注册、JWT 访问令牌（15 分钟）+ 刷新令牌（30 天，SHA-256 哈希）",
-        "限流的认证端点与登出时访问令牌 JTI 加入黑名单",
-        "完整 14 服务 Docker 技术栈：backend、worker、sandbox-worker、postgres、redis、minio + minio-init、sandbox-python、sandbox-office、sandbox-pptx、sandbox-webapp、prometheus、grafana",
-      ],
-      impact:
-        "交付了生产级 AI 智能体平台，将原始 LLM 能力转变为受治理的企业服务。用户现在可以创建自己的项目（App），从精选能力注册表组装自己的 Harness 智能体，并依靠规划器在工具调用、模型路由与沙箱执行之间规划——包括接收真实 DataSnapshot 并输出带版本管理商务产物的数据驱动 PPT 生成。每一步都由工具/技能/MCP 网关把关，每次数据库读取都是不可变 DataSnapshot，每次代码运行都在临时沙箱中，每个动作都可审计。",
-      evaluation:
-        "对照 MVP 测试清单进行了端到端验证：现有 UI 集成、多租户 Org/App/Workspace 设置、用户创建项目与 Harness 智能体、能力选择、中央数据源连接器与智能体专属数据源绑定、规划器FSM聊天、工具/技能/MCP 网关路由、沙箱化执行（sandbox-worker + 专用沙箱容器）、Markdown / HTML / PPT / DOCX / 仪表盘产物生成、内联预览卡片、实时执行时间线、PostgreSQL + Redis，以及完整 Docker 技术栈。第二阶段加固——rootless Docker、Docker socket 代理、gVisor、专用沙箱主机——已记录为后续工作。",
-      stack: [
-        "FastAPI", "React (Vite)", "PostgreSQL", "Redis", "MinIO",
-        "Docker", "Docker Compose", "Prometheus", "Grafana",
-        "规划器FSM (7 capability engines)", "Plan DAG",
-        "Harness Agent Runtime", "Tool / Skill / MCP Gateway",
-        "Model Routing (per-agent, per-org)", "Sandbox Worker",
-        "Sandbox Containers (pptx, python, office, webapp)",
-        "Datasource Gateway + DataSnapshots",
-        "JWT Auth (access + refresh)", "OTP",
-        "PPT / DOCX / HTML / Dashboard / Markdown / Mini-App Generation",
-      ],
+        `<h3 class="pd-subh">我的贡献</h3>
+        <p>在 Synexia AI 实习期间，我独立负责 Agent 配置与执行组件、文档检索、结构化数据分析、Skills/MCP 工具集成、上下文与记忆管理、模型路由及前后端开发。</p>
+        <p>主要贡献包括：</p>
+        <ul>
+          <li>构建 Agent Builder 与运行时：智能体指令、模型路由、数据/知识绑定、工具、有界循环、委托运行与持久化状态。</li>
+          <li>实现文档 RAG：上传、解析、分块、本地向量化、ChromaDB 索引、带来源引用的检索，以及索引失败状态。</li>
+          <li>开发结构化业务数据路径：<code>GroundedPlan → 校验后 SQL → CanonicalResultSet</code>，含确定性时间解析、指标契约、查询校验与结果粒度控制。</li>
+          <li>集成 Skills 与 MCP：发现、路由、渐进加载、参数校验、权限过滤与外部工具连接。</li>
+          <li>构建上下文与记忆：项目级语义召回、历史压缩、上下文预算与大型工具结果的引用。</li>
+          <li>添加自动化与产物：定时智能体执行、运行历史，以及带版本历史与预览检查的看板/文档生成。</li>
+          <li>集成模型服务：vLLM/Qwen3-27B 接入验证、模型路由与供应商回退——基于 FastAPI、React、PostgreSQL、Redis、MinIO 与容器化 worker。</li>
+        </ul>`,
+      architecture: "",
+      algorithm: "",
+      methodology: [],
+      features: [],
+      impact: "",
+      evaluation: "",
+      stack: [],
       sections: [
+        {
+          title: "核心设计不变量",
+          body: `
+            <div class="pd-callout" style="font-size:1.02rem;border-left-width:5px;padding:18px 20px;"><b>数据源与工具的选择权归活跃智能体所有。</b>Harness 暴露授权的 SourceDescriptor 与能力清单，由活跃智能体决定使用哪些数据源与工具。Zhanlu 不使用隐式首选数据库、默认数据源、关键词到数据源的路由、按数据源的业务规则，或自动查询全部数据源的行为。</div>
+          `,
+        },
+        {
+          title: "我构建了什么——能力到实现的映射",
+          body: `
+            <p class="pd-lead">七项能力，每一项都对应其背后的工程实现，以及用户可见的证据。</p>
+            <div class="pd-cards">
+              <div class="pd-card"><h4>Agent Builder 与运行时</h4><p><b>工程：</b>智能体指令、模型路由、数据/知识绑定、工具、有界循环、委托运行、持久化状态。<b>证据：</b>一份完成的智能体配置，以及一次使用其所选能力的运行。</p></div>
+              <div class="pd-card"><h4>文档 RAG</h4><p><b>工程：</b>上传、解析、分块、本地向量化、ChromaDB 索引、检索、来源引用与索引失败状态。<b>证据：</b>上传的文档、一个问题、检索到的证据与带引用的回答。</p></div>
+              <div class="pd-card"><h4>结构化业务数据分析</h4><p><b>工程：</b>授权 SourceDescriptor、活跃智能体的数据源选择、模式感知规划、SQL 编译/校验、时间与聚合检查。<b>证据：</b>一个问题、选中的数据源、编译后的查询、返回的行与可追溯的回答。</p></div>
+              <div class="pd-card"><h4>Skills 与 MCP</h4><p><b>工程：</b>发现、路由、渐进加载、参数校验、权限过滤、外部工具连接。<b>证据：</b>一次技能/工具调用及其参数与输出；下方的 Fusion 360 CAD 集成是具体实例。</p></div>
+              <div class="pd-card"><h4>上下文与记忆</h4><p><b>工程：</b>项目级语义召回、历史压缩、上下文预算、大型工具结果的引用。<b>证据：</b>一个多轮任务，展示保留了哪些上下文以及大型结果如何保持可用。</p></div>
+              <div class="pd-card"><h4>自动化与产物</h4><p><b>工程：</b>定时智能体执行、运行历史、进度、生成的看板/文档、版本历史、预览与下载检查。<b>证据：</b>一份配置好的定时任务、一次完成的运行及其产物。</p></div>
+              <div class="pd-card"><h4>模型集成与评估</h4><p><b>工程：</b>vLLM/Qwen3-27B 接入验证、模型路由、供应商回退、可配置的产物检查、回归测试、运行追踪。<b>证据：</b>配置信息，以及显示所测行为的带日期评估或追踪记录。</p></div>
+            </div>
+          `,
+        },
+        {
+          title: "一个代表性工作流",
+          body: `
+            <p class="pd-lead">一条端到端路径：业务用户针对绑定数据提问，并收到经过检查、带版本的输出。</p>
+            <ol class="pd-steps">
+              <li><b>请求。</b>用户在聊天界面中，针对一个绑定的数据库询问上个月的销售分解。</li>
+              <li><b>数据源选择。</b>Harness 暴露授权的 SourceDescriptor；活跃智能体选择相关数据源（不使用默认数据源）。</li>
+              <li><b>规划。</b>智能体在授权候选表上产出结构化 GroundedPlan；确定性 SQL 编译器与校验器对照真实模式、权限与成本预算进行检查。</li>
+              <li><b>执行。</b>校验后的查询在真实数据源上运行；结果捕获为 CanonicalResultSet，携带数据源、查询计划、时间与血缘来源。</li>
+              <li><b>叙述与产物。</b>智能体以有依据的数字叙述结果，并在被要求时生成看板或文档——经过校验、作为版本化 Artifact 存储、可内联预览。</li>
+              <li><b>检查。</b>配置的产物检查评估输出；未通过配置标准的输出可以被扣留或标记为失败。</li>
+            </ol>
+            <div class="pd-callout"><b>发布的数字结论以数据库结果为依据，而非接受未经支持模型计算的数字。</b>结构化数据运行保留数据源、时间上下文、查询计划与结果来源。基于 DataSnapshot 的工作流额外为沙箱产物生成提供不可变输入。</div>
+          `,
+        },
+        {
+          title: "架构——运行时、数据、工具、状态、执行",
+          body: `
+            <p class="pd-lead">七层结构，每层对应一类失败模式。结构化数据路径运行在相同运行时之上：LLM 从授权候选中选择意图与结构，确定性组件进行编译、校验与执行，数据库返回结果，答案附带来源。</p>
+            <h3 class="pd-subh">分层运行时</h3>
+            <ol class="pd-steps">
+              <li><b>交互与身份</b>——带作用域与策略的密封 <code>RequestEnvelope</code>。</li>
+              <li><b>规划器 FSM</b>——围绕可替换 LLM 的 plan-act-observe 状态机；产出 Plan DAG 并记录规划、行动、观察与验证信号。验证目前影响评估与置信度报告；自动反思与重规划尚未完成。</li>
+              <li><b>Harness 智能体运行时</b>——程序化与委托的智能体运行使用结构化 Harness，具备必需确认、风险层级、模型路由、沙箱要求、缺失权限模式、危险副作用清单与 ready / warning / blocked 状态。主聊天路径目前使用独立的执行循环，正在迁移到相同的运行时契约。</li>
+              <li><b>记忆与知识</b>——文档 RAG（ChromaDB + 本地向量）与带来源的项目级隔离上下文。</li>
+              <li><b>执行层</b>——sandbox-worker 是唯一持有 Docker socket 的服务；为选定工作负载提供专用 sandbox-python / sandbox-pptx / sandbox-office / sandbox-webapp 容器。</li>
+              <li><b>平台服务</b>——模型路由、提示词版本管理、策略评估、确认风险等级、预算限制、追踪、治理注册表。</li>
+              <li><b>基础设施</b>——Docker Compose，包含后端应用、状态服务、监控、worker 与任务专用沙箱运行时。</li>
+            </ol>
+            <h3 class="pd-subh">工具 / 技能 / MCP 网关</h3>
+            <p>经过结构化 Harness 路由的调用，在到达工具或 MCP 服务器之前，会经过权限过滤、模式校验、策略评估与执行控制。模型看到的是过滤后的工具目录，而非完整的 MCP 目录。部分遗留会话路径仍使用其原有分发流程。</p>
+            <h3 class="pd-subh">文档 RAG</h3>
+            <p>上传的文档经过解析、分块与本地向量化后进入 ChromaDB 索引。检索结合语义与关键词搜索，并叠加知识库访问策略过滤；回答携带来源引用。索引失败会以显式状态呈现，而非静默缺口。</p>
+            <h3 class="pd-subh">结构化数据流水线</h3>
+            <div class="pd-pipeline">
+              <div class="pd-pipe-step"><div class="pd-pipe-box"><div class="name">用户请求</div><div class="desc">在聊天界面输入的自然语言问题</div></div></div>
+              <div class="pd-pipe-arrow"></div>
+              <div class="pd-pipe-step"><div class="pd-pipe-box"><div class="name">意图与时间解析</div><div class="desc">活跃智能体产出结构化意图；确定性时间解析处理支持的表达式（今天、上个月、YTD、显式日期范围）；残余歧义返回给智能体以澄清</div></div></div>
+              <div class="pd-pipe-arrow"></div>
+              <div class="pd-pipe-step"><div class="pd-pipe-box"><div class="name">授权数据源发现</div><div class="desc">Harness 只暴露智能体被允许看到的 SourceDescriptor</div></div></div>
+              <div class="pd-pipe-arrow"></div>
+              <div class="pd-pipe-step"><div class="pd-pipe-box"><div class="name">确定性候选表</div><div class="desc">确定性索引器将模式缩小到候选表与列</div></div></div>
+              <div class="pd-pipe-arrow"></div>
+              <div class="pd-pipe-step"><div class="pd-pipe-box"><div class="name">LLM 查询规划器</div><div class="desc">LLM 产出引用授权表、列与连接的结构化 GroundedPlan</div></div></div>
+              <div class="pd-pipe-arrow"></div>
+              <div class="pd-pipe-step"><div class="pd-pipe-box"><div class="name">确定性 SQL 编译与校验</div><div class="desc">计划对照真实模式、权限与成本预算进行编译与校验</div></div></div>
+              <div class="pd-pipe-arrow"></div>
+              <div class="pd-pipe-step"><div class="pd-pipe-box"><div class="name">数据库执行</div><div class="desc">查询在真实数据源上执行并记录审计日志</div></div></div>
+              <div class="pd-pipe-arrow"></div>
+              <div class="pd-pipe-step"><div class="pd-pipe-box"><div class="name">带来源的 CanonicalResultSet</div><div class="desc">结果捕获数据源、查询计划、时间与血缘</div></div></div>
+              <div class="pd-pipe-arrow"></div>
+              <div class="pd-pipe-step"><div class="pd-pipe-box"><div class="name">可选叙述呈现</div><div class="desc">当需要自然语言表述时，LLM 对 CanonicalResultSet 进行叙述</div></div></div>
+              <div class="pd-pipe-arrow"></div>
+            </div>
+            <h3 class="pd-subh">多租户</h3>
+            <p>应用层授权以 <code>org_id</code> 与 <code>app_id</code> 及按调用查询过滤器限定资源范围；按智能体的数据源绑定控制只读访问、允许的表/列与行级过滤。数据库级行级安全与额外隔离测试仍是计划中的加固工作。</p>
+          `,
+        },
+        {
+          title: "评估证据",
+          body: `
+            <p class="pd-lead">针对固定提交的结构化数据 Harness 受控验收运行。这些不是通用准确率分数，而是下列场景的金丝雀（canary）结果。</p>
+            <table class="pd-table">
+              <tr><th>评估项</th><th>结果</th><th>范围</th></tr>
+              <tr><td>多数据源金丝雀验收</td><td>10 / 10 通过</td><td>受控金丝雀智能体与项目</td></tr>
+              <tr><td>运行时强制数据源事件</td><td>0</td><td>金丝雀验收运行</td></tr>
+              <tr><td>隐式数据源选择</td><td>0</td><td>金丝雀验收运行</td></tr>
+              <tr><td>运行时强制工具事件</td><td>0</td><td>金丝雀验收运行</td></tr>
+              <tr><td>运行时强制智能体事件</td><td>0</td><td>金丝雀验收运行</td></tr>
+              <tr><td>代表性销售查询端到端</td><td>约 11 秒</td><td>单次观测运行，非基准测试</td></tr>
+            </table>
+            <p class="pd-sub" style="color:var(--text-muted);font-size:0.85rem;margin-top:8px;">
+              <b>测试日期：</b>2026-04 · <b>提交：</b>内部提交，可按需提供脱敏输出 · <b>环境：</b>单主机 staging，绑定一个金丝雀数据源 · <b>场景：</b>数据源选择矩阵（3 数据源 × 3 意图类别）、查询校验矩阵（10 个生成计划）、重试/循环终止（3 例）。
+            </p>
+          `,
+        },
+        {
+          title: "实现状态与剩余工作",
+          body: `
+            <p class="pd-lead">Harness 声称防御某一失败模式时，均列出对应控制及其当前状态。"已实现"表示控制已接入运行时并有测试覆盖；"部分"表示路径存在但有已知缺口；"计划中"表示设计存在但未实现。</p>
+            <table class="pd-table">
+              <tr><th>失败模式</th><th>控制</th><th>状态</th></tr>
+              <tr><td>默认数据源选择</td><td>仅授权 SourceDescriptor</td><td>金丝雀验证</td></tr>
+              <tr><td>错误或越权 SQL</td><td>GroundedPlan 与确定性校验器</td><td>已实现</td></tr>
+              <tr><td>幻觉数字</td><td>带来源的 CanonicalResultSet</td><td>已实现（结构化数据路径）</td></tr>
+              <tr><td>重复或失控的工具调用</td><td>迭代预算与工具循环护栏</td><td>已实现</td></tr>
+              <tr><td>未授权工具</td><td>Harness 允许/拒绝过滤与网关</td><td>已实现（Harness 路径）</td></tr>
+              <tr><td>凭证暴露到沙箱</td><td>数据源网关与 DataSnapshot</td><td>已实现（快照支撑的流程）</td></tr>
+              <tr><td>无审计的副作用</td><td>ObservationRecord 审计追踪</td><td>已实现（网关路径）</td></tr>
+              <tr><td>跨租户访问</td><td>应用级作用域与按智能体数据源绑定</td><td>已实现；数据库级 RLS 待做</td></tr>
+              <tr><td>不安全的生成代码</td><td>专用沙箱容器</td><td>部分——仪表盘生成是进程内例外</td></tr>
+              <tr><td>静默上下文溢出</td><td>每次模型调用前的上下文预算检查</td><td>已实现；分词器覆盖有限</td></tr>
+              <tr><td>流无终止事件</td><td>SSE 终止协议</td><td>部分——前端看门狗待做</td></tr>
+              <tr><td>未验证的 PPT 输出</td><td>渲染 + 自动审计 + 失败拦截</td><td>部分——LLM 裁判无法保证检出</td></tr>
+              <tr><td>自动化结构化恢复</td><td>分类有界重试</td><td>部分——LLM 重新生成的恢复仍可能</td></tr>
+              <tr><td>并行多智能体执行</td><td>Fork / join 运行时</td><td>计划中</td></tr>
+              <tr><td>反思与重规划</td><td>VERIFY 状态机</td><td>计划中——目前仅记录</td></tr>
+            </table>
+            <h3 class="pd-subh" style="margin-top:18px;">剩余工作</h3>
+            <ul>
+              <li>主聊天循环与结构化 Harness 仍是两条独立执行路径；迁移进行中。</li>
+              <li>Plan DAG 执行为串行；并行分支已规划但未实现。</li>
+              <li>VERIFY 尚未执行自动重规划。</li>
+              <li>通用 swarm fork / join 编排未实现；平台支持主/子智能体委托。</li>
+              <li>A2A 推送更新、产物流式与多轮协商不完整。</li>
+              <li>仪表盘生成是进程内沙箱例外。</li>
+              <li>针对无终止事件流的前端看门狗。</li>
+            </ul>
+            <h3 class="pd-subh" style="margin-top:12px;">安全加固（独立轨道）</h3>
+            <ul>
+              <li>在应用级作用域之上的数据库级行级安全。</li>
+              <li>sandbox-worker 的 rootless Docker 与 Docker socket 代理。</li>
+              <li>基于 gVisor 的沙箱容器。</li>
+              <li>带网络出口控制的专用隔离沙箱主机。</li>
+            </ul>
+          `,
+        },
         {
           title: "实机运行：平台工作实况",
           body: `
-            <p class="pd-lead">以下截图来自正在运行的系统——不是原型图。每个界面都是连接了真实数据的线上平台。</p>
+            <p class="pd-lead">来自运行中系统的截图——不是原型图。</p>
             <div class="pd-gallery">
               <figure class="pd-screenshot">
                 <img src="assets/zhanlu_chat.png" alt="Zhanlu 主智能体聊天" />
-                <figcaption>主智能体聊天——计划优先的回合规划将每一步执行以实时清单形式推送到界面</figcaption>
+                <figcaption>主智能体聊天——智能体流式推送计划步骤与回答的会话界面</figcaption>
               </figure>
               <figure class="pd-screenshot">
                 <img src="assets/zhanlu_dashboard.png" alt="Zhanlu 智能体生成的全栈实时仪表盘" />
@@ -318,54 +446,42 @@ window.PORTFOLIO_ZH = {
               </figure>
               <figure class="pd-screenshot">
                 <img src="assets/zhanlu_agent_builder.png" alt="Zhanlu Agent Builder" />
-                <figcaption>智能体构建器——从模板或空白创建场景智能体，各自拥有独立的模型路由、数据源、技能与 MCP 工具</figcaption>
+                <figcaption>智能体构建器——欢迎界面与现有智能体快捷入口</figcaption>
               </figure>
             </div>
           `,
         },
         {
-          title: "今日已上线：超越 MVP 的生产能力",
+          title: "技术栈",
           body: `
-            <p class="pd-lead">平台持续演进。在原有架构之上，当前版本已交付 MVP 阶段仅有雏形的生产级系统：</p>
-            <div class="pd-cards">
-              <div class="pd-card"><h4>回合规划（计划优先）</h4><p>每个请求在执行前先生成计划——turn planner 将计划步骤以 SSE 事件流式推送到聊天界面，形成可见清单，用户能在执行前看到智能体将要做什么；步骤完成由真实工具证据驱动，而非 LLM 自述。</p></div>
-              <div class="pd-card"><h4>全栈仪表盘生成</h4><p>智能体从绑定的数据源生成完整 React 仪表盘。DB 无关的分析器在设计前检查真实数据，图表类型由数据形态决定；组件 SQL 在构建时验证；仪表盘通过 WebSocket 实时刷新。</p></div>
-              <div class="pd-card"><h4>带审计的 PPT 流水线</h4><p>演示文稿先经过 HTML 设计阶段渲染，再由 LLM 裁判按来源引用规则审计，不合格文稿被拦截交付——幻觉幻灯片永远不会到达用户。市场类需求会基于项目知识库为文稿提供依据。</p></div>
-              <div class="pd-card"><h4>MCP 客户端 + 服务端</h4><p>原生 MCP 客户端注册外部工具，MCP 服务端对外暴露 Zhanlu 能力。CAD 智能体通过 socket MCP 桥接驱动 Autodesk Fusion 360。</p></div>
-              <div class="pd-card"><h4>上下文窗口安全</h4><p>上下文预算检查在每次 LLM 调用前运行——压缩历史记录、将超大数据载荷转移到数据指针层，无论使用哪个模型都保证上下文余量。</p></div>
-              <div class="pd-card"><h4>带故障切换的 LLM 路由</h4><p>多提供商路由 + 健康检查 + 自动回退。验证了本地 vLLM 服务（Qwen3-27B）与自定义工具调用解析器，与云端模型并行，客户可将数据保留在本地。</p></div>
-            </div>
+            <p class="pd-lead">运行时及其构建所用的库。</p>
+            <ul>
+              <li><b>后端：</b>FastAPI · Python · PostgreSQL · Redis · MinIO · JWT 认证 · OTP 注册。</li>
+              <li><b>智能体运行时：</b>规划器 FSM · Plan DAG · Harness 智能体运行时 · 工具/技能/MCP 网关 · 按智能体与按组织的模型路由。</li>
+              <li><b>数据路径：</b>数据源网关 · 不可变 DataSnapshot · ChromaDB 语义目录 · 自动模式发现 · <code>GroundedPlan → 校验后 SQL → CanonicalResultSet</code>。</li>
+              <li><b>执行：</b>Sandbox Worker · sandbox-python / sandbox-pptx / sandbox-office / sandbox-webapp 容器 · 临时文件系统 · 流式 stdout / stderr。</li>
+              <li><b>产物：</b>PPT · DOCX · HTML · 看板 · Markdown · 小程序生成，带版本化存储与内联预览 API。</li>
+              <li><b>前端：</b>React (Vite) · SSE 步骤流式 · WebSocket 实时看板 · 计划优先的回合规划界面。</li>
+              <li><b>基础设施：</b>Docker Compose，包含后端应用、状态服务、worker 与任务专用沙箱运行时；已实现请求/运行日志与追踪，Prometheus/Grafana 监控栈按其已验证的部署状态标注。</li>
+              <li><b>已验证本地 LLM：</b>vLLM 服务 Qwen3-27B，配自定义工具调用解析器。</li>
+            </ul>
           `,
         },
         {
-          title: "企业级多租户：一个平台，覆盖整个企业",
+          title: "CAD 智能体——向不同领域的扩展",
           body: `
-            <p class="pd-lead">一次部署，服务所有部门。每个项目、智能体、数据源与知识库都归属于 Org / App / Workspace，并标记为公司级或个人级——市场部、研发、数据分析与 C5/C9 并排运行，数据严格隔离。</p>
-            <div class="pd-cards">
-              <div class="pd-card"><h4>Org / App / Workspace 作用域</h4><p>每条资源记录都携带 org_id + app_id。公司级资源在整个组织内共享；个人级资源只属于所有者。租户作用域的资源访问通过资源级授权、数据源绑定和按调用策略检查来强制实施；数据库级 RLS（行级安全）是计划中的加固步骤。</p></div>
-              <div class="pd-card"><h4>部门项目</h4><p>市场部、研发、数据分析、C5/C9、Global——每个团队作为独立项目运行，拥有自己的智能体、知识库与会话历史，在侧边栏以部门分组展示。</p></div>
-              <div class="pd-card"><h4>按智能体的数据隔离</h4><p>每个智能体显式绑定数据源：只读访问模式、允许/阻止的表、允许的列与行级过滤。智能体在架构上无法看到绑定范围之外的数据。</p></div>
-              <div class="pd-card"><h4>场景智能体</h4><p>用户从模板或空白创建专用智能体——客户支持、生产效率、研究助理、报告撰写——每个都拥有独立的模型路由、数据源、技能与 MCP 工具。</p></div>
-              <div class="pd-card"><h4>按租户实时</h4><p>仪表盘通过 WebSocket 流式刷新实时数据，智能体运行通过 SSE 逐步流式推送——始终限定在所属租户范围内。</p></div>
-              <div class="pd-card"><h4>治理与审计</h4><p>资源访问策略、受控共享，以及对每个受门禁操作的审计追踪——企业级问责能力。</p></div>
-            </div>
-            <div class="pd-callout"><b>为何重要：</b>大多数 AI 演示只运行在单一租户中。Zhanlu 通过资源级授权（每条资源的 org_id/app_id 作用域）、按调用策略检查和列级与行级的智能体绑定来强制多租户隔离；数据库级 RLS 是计划中的加固步骤。这正是企业平台在触碰生产数据前必须具备的隔离能力。</div>
-          `,
-        },
-        {
-          title: "CAD 智能体：用自然语言在 Fusion 360 中完成 3D 建模",
-          body: `
-            <p class="pd-lead">大多数智能体只写文字，这个智能体真正「造东西」。CAD 智能体接收自然语言请求——「建一个 M6 螺丝」、「把支架加高」——通过实时 socket MCP 桥接驱动 Autodesk Fusion 360，逐步创建真实的 3D 参数化模型。</p>
+            <p class="pd-lead">大多数智能体只写文字，这个智能体真正「造东西」。CAD 智能体接收自然语言请求——「建一个 M6 螺丝」——通过实时 socket MCP 桥接驱动 Autodesk Fusion 360，逐步创建真实的 3D 参数化模型。</p>
+            <p>本节刻意放在最后。CAD 智能体是同一 Harness 的<em>扩展</em>，而非主线故事。它复用规划器、工具/技能/MCP 网关、沙箱 worker 与审计追踪，将它们应用到不同的领域：设计工程。</p>
             <video src="assets/cad_agent_demo.mp4" controls preload="metadata" muted playsinline></video>
             <div class="pd-cards">
-              <div class="pd-card"><h4>构建 / 查询 / 歧义识别</h4><p>智能体在触碰 Fusion 之前先判断意图：BUILD 创建或修改几何，QUERY 直接根据实时场景回答而不重建，AMBIGUOUS 提问而非猜测——绝不会替换用户未要求的零件。</p></div>
+              <div class="pd-card"><h4>构建 / 查询 / 歧义识别</h4><p>智能体在触碰 Fusion 之前先判断意图：BUILD 创建或修改几何，QUERY 直接根据实时场景回答而不重建，AMBIGUOUS 提问而非猜测——不会替换用户未要求的零件。</p></div>
               <div class="pd-card"><h4>目标锁定 + 待办规划</h4><p>每次构建都以一行目标声明开始，然后是待办计划——每个子部件一个待办——随着几何落地逐步勾选。与平台其余部分一样采用计划优先。</p></div>
               <div class="pd-card"><h4>细粒度工具 + 原生兜底</h4><p>经过验证的、带类型的 Fusion 操作（草图、拉伸、圆角、倒角、孔）覆盖大多数工作；revolve、loft、sweep、mirror 与阵列等操作由原始 adsk Python 处理。</p></div>
-              <div class="pd-card"><h4>实时场景感知</h4><p>fusion360_info 重新读取实时模型——实体、草图、平面、特征与参数——让智能体对照现实校准而非猜测；它从不通过清空重建来"恢复"。</p></div>
-              <div class="pd-card"><h4>持久画布</h4><p>模型在多轮对话中始终保留在 Fusion 画布上。更新就地修改同一几何——在正确高度添加草图、联合/切割拉伸——绝不抹掉用户的工作。</p></div>
+              <div class="pd-card"><h4>实时场景感知</h4><p>fusion360_info 重新读取实时模型——实体、草图、平面、特征与参数——让智能体对照现实校准而非猜测。</p></div>
+              <div class="pd-card"><h4>持久画布</h4><p>模型在多轮对话中始终保留在 Fusion 画布上。更新就地修改同一几何——在正确高度添加草图、联合/切割拉伸——不会抹掉用户的工作。</p></div>
               <div class="pd-card"><h4>公司级智能体</h4><p>作为公司资源预置在智能体目录中，组织内任何团队都可以创建设计自动化智能体，并获得与其他智能体相同的隔离与审计。</p></div>
             </div>
-            <div class="pd-callout"><b>为何重要：</b>这是完整的闭环——自然语言 → 智能体规划 → 经过验证的工具调用 → 专业 CAD 工具中的真实参数化几何。与数据智能体相同的 harness、路由、网关与审计机制，应用到完全不同的领域：设计工程。</div>
+            <div class="pd-callout"><b>为何重要：</b>与数据智能体相同的 harness、路由、网关与审计机制，应用到设计工程。自然语言 → 智能体规划 → 经过验证的工具调用 → 专业 CAD 工具中的真实参数化几何。</div>
           `,
         },
       ],

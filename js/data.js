@@ -664,36 +664,36 @@ window.PORTFOLIO = {
     {
       id: "zhanlu",
       featured: true,
-      title: "Zhanlu — Reliable, Governed Infrastructure for Enterprise AI Agents",
-      short: "A multi-tenant agent platform designed for dynamic work across authorized databases, documents, tools and skills. The active agent determines intent, source selection and execution strategy, while the harness enforces scope, safety, provenance, budgets and observable state.",
+      title: "Zhanlu: Enterprise AI Agent Platform",
+      short: "Agent Harness · RAG · Skills & MCP · Automation · LLMOps — users configure agents, connect authorized databases and uploaded documents, and use conversations to analyze data, create dashboards, generate business documents, and schedule tasks.",
       category: "AI Infrastructure",
       period: "2025 – 2026",
-      org: "Synexia AI (Internship) — Solo project",
-      role: "Solo AI Platform Engineer · Internship",
+      org: "Synexia AI — Internship, Solo Project",
+      role: "AI Platform Engineer · Internship",
       image: "assets/zhanlu_dashboard.png",
       video: null,
       summary:
-        "Zhanlu is a multi-tenant agent platform designed for dynamic work across authorized databases, documents, tools and skills. The active agent determines intent, source selection and execution strategy, while the harness enforces scope, provenance, budgets and observable state. I designed and implemented the architecture, the agent execution controls, the structured-data path, the sandbox integrations, the observability layer and the full-stack product interfaces.",
+        "Zhanlu is an enterprise AI agent platform where users configure agents, connect authorized databases and uploaded documents, and use conversations to analyze data, create dashboards, generate business documents, and schedule tasks. As the sole developer during my Synexia AI internship, I built the agent configuration and execution components, document retrieval, structured-data analysis, Skills/MCP integrations, context and memory management, model routing, and full-stack interfaces. The platform combines hosted LLM APIs with validated local model-serving integrations and includes execution controls, sandboxed workloads, and evaluation tooling.",
       highlights: [
-        { num: "Dynamic", label: "Multi-source execution across authorized heterogeneous sources" },
-        { num: "Deterministic", label: "Structured-data path: GroundedPlan → validated SQL → CanonicalResultSet" },
-        { num: "Policy-gated", label: "Tool and source access enforced at the runtime boundary" },
-        { num: "Traceable", label: "Plan-step events, traces and explicit terminal states" },
+        { num: "Build agents", label: "Configure instructions, models, knowledge, tools, and reusable skills." },
+        { num: "Connect enterprise data", label: "Query authorized databases and retrieve evidence from uploaded documents." },
+        { num: "Automate business tasks", label: "Schedule agent runs and inspect execution history and results." },
+        { num: "Deliver usable outputs", label: "Generate dashboards and business documents with version history and inline previews." },
       ],
       problem:
-        "Tool-using AI agents are easy to demonstrate, but much harder to operate reliably against enterprise systems. In production they hallucinate numbers, leak credentials into sandbox processes, call tools they have no business calling, run untrusted generated code on the host, run away in unbounded loops, silently overflow the context window, perform side-effects without audit, and read across tenant boundaries. Enterprise buyers reject agents for those failure modes — not for the conversation quality. Zhanlu is a structured attempt to give each failure mode a named, testable control.",
+        "The project problem was enabling business users to work with company documents, databases, and tools through configurable agents, while maintaining authorization, traceability, and execution controls. Raw tool pickers leak implementation details; agents holding raw credentials create security and audit gaps; generated files need to be versioned business artifacts rather than chat attachments; code execution must be isolated — and the active agent still needs to decide, per request, which sources and tools are relevant.",
       roleDetail:
         `<h3 class="pd-subh">My contribution</h3>
-        <p>As the solo AI Platform Engineer on the internship project, I designed and implemented the platform architecture, agent execution controls, structured-data path, sandbox integrations, observability, and full-stack product interfaces.</p>
+        <p>As the sole developer during my Synexia AI internship, I designed and implemented the agent configuration and execution components, document retrieval, structured-data analysis, Skills/MCP integrations, context and memory management, model routing, and full-stack interfaces.</p>
         <p>My primary contributions included:</p>
         <ul>
-          <li>Building a capability-based architecture for dynamic access to authorized heterogeneous sources.</li>
-          <li>Developing the <code>GroundedPlan → validated SQL → CanonicalResultSet</code> execution path.</li>
-          <li>Implementing deterministic temporal parsing, metric contracts, query validation and result-grain controls.</li>
-          <li>Building bounded agent execution with iteration budgets, tool-loop detection and classified retries.</li>
-          <li>Adding tenant-aware resource scope, policy decisions and audit records.</li>
-          <li>Integrating FastAPI, React, PostgreSQL, Redis, MinIO and containerized workers.</li>
-          <li>Creating regression scenarios for source selection, query semantics, authorization and result consistency.</li>
+          <li>Building the Agent Builder and runtime: agent instructions, model routes, data/knowledge bindings, tools, bounded loops, delegated runs, and persisted state.</li>
+          <li>Implementing document RAG: upload, parsing, chunking, local embeddings, ChromaDB indexing, retrieval with source references, and indexing failure states.</li>
+          <li>Developing the structured business-data path: <code>GroundedPlan → validated SQL → CanonicalResultSet</code> with deterministic temporal parsing, metric contracts, query validation and result-grain controls.</li>
+          <li>Integrating Skills and MCP: discovery, routing, progressive loading, parameter validation, permission filtering, and external tool connections.</li>
+          <li>Building context and memory: project-scoped semantic recall, history compression, context budgeting, and references to large tool results.</li>
+          <li>Adding automation and artifacts: scheduled agent execution, run history, and generated dashboards/documents with version history and preview checks.</li>
+          <li>Integrating model serving: vLLM/Qwen3-27B integration validation, model routes, and provider fallback — on top of FastAPI, React, PostgreSQL, Redis, MinIO and containerized workers.</li>
         </ul>`,
       architecture: "",
       algorithm: "",
@@ -710,7 +710,37 @@ window.PORTFOLIO = {
           `,
         },
         {
-          title: "Architecture — Harness and Structured-Data Pipeline",
+          title: "What I Built — Capability to Implementation",
+          body: `
+            <p class="pd-lead">Seven capabilities, each mapped to the engineering behind it and the evidence a user can see.</p>
+            <div class="pd-cards">
+              <div class="pd-card"><h4>Agent Builder and runtime</h4><p><b>Engineering:</b> agent instructions, model routes, data/knowledge bindings, tools, bounded loops, delegated runs, persisted state. <b>Evidence:</b> a completed agent configuration and a run that uses its selected capabilities.</p></div>
+              <div class="pd-card"><h4>Document RAG</h4><p><b>Engineering:</b> upload, parsing, chunking, local embeddings, ChromaDB indexing, retrieval, source references, and indexing failure states. <b>Evidence:</b> an uploaded document, a question, retrieved evidence, and a cited answer.</p></div>
+              <div class="pd-card"><h4>Structured business-data analysis</h4><p><b>Engineering:</b> authorized SourceDescriptors, active-agent source choice, schema-aware planning, SQL compilation/validation, temporal and aggregation checks. <b>Evidence:</b> a question, chosen source, compiled query, returned rows, and a traceable answer.</p></div>
+              <div class="pd-card"><h4>Skills and MCP</h4><p><b>Engineering:</b> discovery, routing, progressive loading, parameter validation, permission filtering, external tool connections. <b>Evidence:</b> a skill/tool invocation with its parameters and output; the Fusion 360 CAD integration below is a concrete example.</p></div>
+              <div class="pd-card"><h4>Context and memory</h4><p><b>Engineering:</b> project-scoped semantic recall, history compression, context budgeting, references to large tool results. <b>Evidence:</b> a multi-turn task showing what context is retained and how a large result remains available.</p></div>
+              <div class="pd-card"><h4>Automation and artifacts</h4><p><b>Engineering:</b> scheduled agent execution, run history, progress, generated dashboards/documents, version history, preview and download checks. <b>Evidence:</b> a configured schedule, a completed run, and its resulting artifact.</p></div>
+              <div class="pd-card"><h4>Model integrations and evaluation</h4><p><b>Engineering:</b> vLLM/Qwen3-27B integration validation, model routes, provider fallback, configurable artifact checks, regression tests, run traces. <b>Evidence:</b> configuration plus a dated evaluation or trace showing the tested behavior.</p></div>
+            </div>
+          `,
+        },
+        {
+          title: "A Representative Workflow",
+          body: `
+            <p class="pd-lead">One end-to-end path: a business user asks a question against bound data and receives a checked, versioned output.</p>
+            <ol class="pd-steps">
+              <li><b>Request.</b> The user asks, in the chat UI, for last month's sales breakdown against a bound database.</li>
+              <li><b>Source selection.</b> The harness exposes the authorized SourceDescriptors; the active agent selects the relevant source (no default source is used).</li>
+              <li><b>Plan.</b> The agent produces a structured GroundedPlan over the authorized candidate tables; the deterministic SQL compiler and validator check it against the real schema, permissions, and cost budget.</li>
+              <li><b>Execution.</b> The validated query runs against the live source; the result is captured as a CanonicalResultSet with source, query-plan, time, and lineage provenance.</li>
+              <li><b>Narration and artifact.</b> The agent narrates the result with grounded numbers, and — when asked — generates a dashboard or document that is validated, stored as a versioned Artifact, and previewed inline.</li>
+              <li><b>Checks.</b> Configured artifact checks assess the output; outputs that fail configured criteria can be withheld or marked as failed.</li>
+            </ol>
+            <div class="pd-callout"><b>Published numeric claims are grounded in database results rather than accepted from unsupported model calculation.</b> Structured data runs preserve source, temporal context, query-plan and result provenance. DataSnapshot-backed workflows additionally provide immutable inputs for sandboxed artifact generation.</div>
+          `,
+        },
+        {
+          title: "Architecture — Runtime, Data, Tools, State, Execution",
           body: `
             <p class="pd-lead">Seven layers, each tied to a failure mode. The structured-data path runs on top of the same runtime: the LLM picks intent and structure from authorized candidates, deterministic components compile, validate and execute, the database returns the result, and provenance is attached to the answer.</p>
             <h3 class="pd-subh">Layered runtime</h3>
@@ -718,13 +748,15 @@ window.PORTFOLIO = {
               <li><b>Interaction &amp; Identity</b> — sealed <code>RequestEnvelope</code> with scope and policy.</li>
               <li><b>Planner FSM</b> — plan-act-observe state machine around a swappable LLM; emits Plan DAGs and records planning, action, observation and verification signals. Verification currently affects evaluation and confidence reporting; automatic reflection and replanning remain incomplete.</li>
               <li><b>Harness Agent Runtime</b> — programmatic and delegated agent runs use the structured harness with required-confirmations, risk tier, model route, sandbox requirement, missing-permission schema, dangerous-side-effect list, and ready / warning / blocked status. The primary conversational path currently uses a separate execution loop and is being migrated toward the same runtime contract.</li>
-              <li><b>Memory &amp; Knowledge</b> — project-isolated context with provenance.</li>
+              <li><b>Memory &amp; Knowledge</b> — document RAG (ChromaDB + local embeddings) and project-isolated context with provenance.</li>
               <li><b>Execution Layer</b> — sandbox-worker is the only Docker-socket-bearing service; dedicated sandbox-python / sandbox-pptx / sandbox-office / sandbox-webapp containers for selected workloads.</li>
               <li><b>Platform Services</b> — model routing, prompt versioning, policy evaluation, confirmation risk levels, budget limits, traces, governance registries.</li>
               <li><b>Infrastructure</b> — Docker Compose with the backend application, state services, monitoring, workers and task-specific sandbox runtimes.</li>
             </ol>
             <h3 class="pd-subh">Tool / Skill / MCP Gateway</h3>
             <p>Calls routed through the structured harness pass through permission filtering, schema validation, policy evaluation, and execution controls before reaching a tool or MCP server. The model sees a filtered tool catalog, not the full MCP directory. Some legacy conversational paths still use their existing dispatch flow.</p>
+            <h3 class="pd-subh">Document RAG</h3>
+            <p>Uploaded documents go through parsing, chunking, and local embedding before ChromaDB indexing. Retrieval combines semantic and keyword search with knowledge-base access-policy filtering, and answers carry source references. Indexing failures surface as explicit states rather than silent gaps.</p>
             <h3 class="pd-subh">Structured-data pipeline</h3>
             <div class="pd-pipeline">
               <div class="pd-pipe-step"><div class="pd-pipe-box"><div class="name">User Request</div><div class="desc">Natural-language question entered in the chat UI</div></div></div>
@@ -746,22 +778,12 @@ window.PORTFOLIO = {
               <div class="pd-pipe-step"><div class="pd-pipe-box"><div class="name">Optional Narrative Presentation</div><div class="desc">LLM narrates the CanonicalResultSet when natural-language framing is requested</div></div></div>
               <div class="pd-pipe-arrow"></div>
             </div>
-            <div class="pd-callout"><b>Published numeric claims are grounded in database results rather than accepted from unsupported model calculation.</b> Structured data runs preserve source, temporal context, query-plan and result provenance. DataSnapshot-backed workflows additionally provide immutable inputs for sandboxed artifact generation.</div>
+            <h3 class="pd-subh">Tenancy</h3>
+            <p>Application-level authorization scopes resources with <code>org_id</code> and <code>app_id</code> and per-call query filters; per-agent datasource bindings control read-only access, allowed tables/columns, and row filters. Database-level row-level security and additional isolation testing remain planned hardening work.</p>
           `,
         },
         {
-          title: "Three Engineering Contributions",
-          body: `
-            <p class="pd-lead">Three pieces of work that I think are the actual contribution of this project — beyond "an agent platform".</p>
-            <div class="pd-cards">
-              <div class="pd-card"><h4>1. Capability-based source and tool dispatch</h4><p>Replaced implicit and keyword-routed selection by exposing <code>SourceDescriptors</code> and <code>Capabilities</code> to the agent. The harness provides a bounded set; the agent chooses. The chosen sources and tools are recorded for audit.</p></div>
-              <div class="pd-card"><h4>2. Structured-data execution path</h4><p><code>GroundedPlan → validated SQL → CanonicalResultSet</code>, with deterministic temporal parsing, metric contracts, query validation and result-grain controls. The active agent selects intent and structure from authorized candidates; deterministic components compile, validate and execute against the real source.</p></div>
-              <div class="pd-card"><h4>3. Bounded delegated execution with classified retries</h4><p>Iteration budgets, tool-loop detection and classified retries in the structured harness. Tool errors, invalid SQL, provider latency and interrupted streams terminate with explicit states; bounded recovery (structured alternatives, not regenerated LLM calls) remains roadmap work.</p></div>
-            </div>
-          `,
-        },
-        {
-          title: "Three Verified Results",
+          title: "Evaluation Evidence",
           body: `
             <p class="pd-lead">A controlled acceptance run of the structured-data harness, recorded against a pinned commit. These are not general accuracy scores; they are canary results for the scenarios listed below.</p>
             <table class="pd-table">
@@ -779,7 +801,7 @@ window.PORTFOLIO = {
           `,
         },
         {
-          title: "Failure-Control Matrix",
+          title: "Implementation Status and Remaining Work",
           body: `
             <p class="pd-lead">Where the harness claims to defend a failure, the control and its current status are listed. "Implemented" means the control is wired into the runtime and exercised by tests; "Partial" means a path exists but has a known gap; "Planned" means the design exists but is not implemented.</p>
             <table class="pd-table">
@@ -789,10 +811,9 @@ window.PORTFOLIO = {
               <tr><td>Hallucinated numbers</td><td>CanonicalResultSet with provenance</td><td>Implemented on structured-data path</td></tr>
               <tr><td>Repeated or runaway tool calls</td><td>Iteration budgets and tool-loop guard</td><td>Implemented</td></tr>
               <tr><td>Unauthorized tools</td><td>Harness allow / deny filtering and gateway</td><td>Implemented on harness path</td></tr>
-              <tr><td>Unauthorized MCP servers</td><td>Gateway-mediated MCP registration</td><td>Implemented on harness path</td></tr>
               <tr><td>Credential exposure to sandboxes</td><td>Datasource Gateway and DataSnapshots</td><td>Implemented for snapshot-backed flows</td></tr>
               <tr><td>Side-effects without audit</td><td>ObservationRecord audit trail</td><td>Implemented on gateway path</td></tr>
-              <tr><td>Cross-tenant access</td><td>Application-level scoping with <code>org_id</code> / <code>app_id</code> and per-agent datasource bindings</td><td>Implemented; database-level RLS pending</td></tr>
+              <tr><td>Cross-tenant access</td><td>Application-level scoping and per-agent datasource bindings</td><td>Implemented; database-level RLS pending</td></tr>
               <tr><td>Unsafe generated code</td><td>Dedicated sandbox containers</td><td>Partial — dashboard generation is an in-process exception</td></tr>
               <tr><td>Silent context overflow</td><td>Context budget check before each model call</td><td>Implemented; tokenizer-coverage limited</td></tr>
               <tr><td>Stream without terminal event</td><td>SSE terminal protocol</td><td>Partial — frontend watchdog pending</td></tr>
@@ -801,22 +822,17 @@ window.PORTFOLIO = {
               <tr><td>Parallel multi-agent execution</td><td>Fork / join runtime</td><td>Planned</td></tr>
               <tr><td>Reflection and replanning</td><td>VERIFY state machine</td><td>Planned — currently records only</td></tr>
             </table>
-          `,
-        },
-        {
-          title: "Current Limitations",
-          body: `
-            <p class="pd-lead">Zhanlu is in production but is not finished. These are the open items, stated honestly.</p>
-            <div class="pd-cards">
-              <div class="pd-card"><h4>Main chat loop and structured harness remain separate execution paths</h4><p>Programmatic and delegated runs use the harness; the primary conversational loop uses a separate dispatcher and is being migrated.</p></div>
-              <div class="pd-card"><h4>Plan DAG execution is serial</h4><p>Plan nodes currently execute one at a time. Parallel branches are planned but not implemented.</p></div>
-              <div class="pd-card"><h4>VERIFY does not yet perform automatic replanning</h4><p>Verification currently affects evaluation and confidence reporting; automatic reflection and replanning remain incomplete.</p></div>
-              <div class="pd-card"><h4>Full swarm fork / join orchestration is not implemented</h4><p>The platform defines agent archetypes and capability-based delegation; general parallel swarm execution remains roadmap work.</p></div>
-              <div class="pd-card"><h4>A2A push updates, artifact streaming and multi-turn negotiation are incomplete</h4><p>The conversational surface currently relies on request / response and SSE for step events; richer push and negotiation protocols are planned.</p></div>
-              <div class="pd-card"><h4>Dashboard generation is an in-process sandbox exception</h4><p>Python, office-document, PPTX and selected web-app workloads execute in dedicated sandbox containers; full-stack dashboard generation currently runs within the backend service.</p></div>
-              <div class="pd-card"><h4>Frontend watchdog for streams without a terminal event</h4><p>The SSE protocol defines explicit progress and terminal events. A frontend watchdog and recovery when a stream closes without a terminal event remain pending.</p></div>
-            </div>
-            <h3 class="pd-subh" style="margin-top:18px;">Security hardening (separate track)</h3>
+            <h3 class="pd-subh" style="margin-top:18px;">Remaining work</h3>
+            <ul>
+              <li>Main chat loop and structured harness remain separate execution paths; migration is in progress.</li>
+              <li>Plan DAG execution is serial; parallel branches are planned but not implemented.</li>
+              <li>VERIFY does not yet perform automatic replanning.</li>
+              <li>General swarm fork / join orchestration is not implemented; the platform supports main/sub-agent delegation.</li>
+              <li>A2A push updates, artifact streaming and multi-turn negotiation are incomplete.</li>
+              <li>Dashboard generation is an in-process sandbox exception.</li>
+              <li>Frontend watchdog for streams that close without a terminal event.</li>
+            </ul>
+            <h3 class="pd-subh" style="margin-top:12px;">Security hardening (separate track)</h3>
             <ul>
               <li>Database-level row-level security on top of application-level scoping.</li>
               <li>Rootless Docker and Docker socket proxy for sandbox-worker.</li>
@@ -828,11 +844,11 @@ window.PORTFOLIO = {
         {
           title: "In Action: The Platform at Work",
           body: `
-            <p class="pd-lead">Screenshots from the live platform — not mockups. Each view below is the running system with real bound data.</p>
+            <p class="pd-lead">Screenshots from the live platform — not mockups.</p>
             <div class="pd-gallery">
               <figure class="pd-screenshot">
                 <img src="assets/zhanlu_chat.png" alt="Zhanlu main agent chat" />
-                <figcaption>Main agent chat — plan-first turn planning streams every agent step as a live checklist</figcaption>
+                <figcaption>Main agent chat — the conversation surface where agents stream plan steps and answers</figcaption>
               </figure>
               <figure class="pd-screenshot">
                 <img src="assets/zhanlu_dashboard.png" alt="Zhanlu agent-generated live dashboard" />
@@ -844,26 +860,9 @@ window.PORTFOLIO = {
               </figure>
               <figure class="pd-screenshot">
                 <img src="assets/zhanlu_agent_builder.png" alt="Zhanlu Agent Builder" />
-                <figcaption>Agent Builder — create scenario agents from templates or scratch, each with its own model route, datasources, skills, and MCP tools</figcaption>
+                <figcaption>Agent Builder — welcome screen with existing agent shortcuts</figcaption>
               </figure>
             </div>
-          `,
-        },
-        {
-          title: "Additional Platform Capabilities",
-          body: `
-            <p class="pd-lead">Real engineering work that supports the harness, but not central to the failure-control story.</p>
-            <ul>
-              <li><b>Turn Planning (Plan-First).</b> Plan-step events streamed over SSE to the chat UI as a visible checklist; step completion is driven by tool evidence rather than model claims.</li>
-              <li><b>Fullstack Dashboard Generation.</b> Agents generate React dashboards from bound datasources; a DB-agnostic profiler inspects real data before design; widget SQL is validated at build time; dashboards refresh over WebSocket.</li>
-              <li><b>Audited PPT Pipeline.</b> Decks render through an HTML design stage, are audited by an LLM judge with source-citation rules, and outputs that fail configured checks can be blocked before delivery.</li>
-              <li><b>MCP Client + Server.</b> Native MCP client registers external tools; MCP server exposes Zhanlu capabilities (used by the CAD Agent extension below).</li>
-              <li><b>Context-Window Safety.</b> Context budget check before each model call — estimates budget, compacts history, and externalizes oversized tool payloads.</li>
-              <li><b>LLM Routing with Fallback.</b> Multi-provider routing with health checks and automatic fallback. Validated local vLLM serving (Qwen3-27B) with a custom tool-call parser alongside cloud models.</li>
-              <li><b>Tenant-Scoped Resources.</b> Application-level authorization with <code>org_id</code> and <code>app_id</code> and per-call query filters; company / personal resource flags.</li>
-              <li><b>Artifact Library.</b> Markdown, HTML, PPT, DOCX, dashboard and mini-app generators, each validated and stored as a versioned Artifact with inline preview APIs.</li>
-              <li><b>Auth &amp; Session.</b> Email / password with OTP registration, JWT access + refresh tokens, rate-limited endpoints and JTI blacklisting on logout.</li>
-            </ul>
           `,
         },
         {
@@ -877,22 +876,8 @@ window.PORTFOLIO = {
               <li><b>Execution:</b> Sandbox Worker · sandbox-python / sandbox-pptx / sandbox-office / sandbox-webapp containers · ephemeral filesystems · streamed stdout / stderr.</li>
               <li><b>Artifacts:</b> PPT · DOCX · HTML · Dashboard · Markdown · Mini-App generation with versioned storage and inline preview APIs.</li>
               <li><b>Frontend:</b> React (Vite) · SSE step streaming · WebSocket live dashboards · plan-first turn planner UI.</li>
-              <li><b>Infrastructure:</b> Docker Compose with the backend application, state services, monitoring, workers and task-specific sandbox runtimes · Prometheus · Grafana.</li>
+              <li><b>Infrastructure:</b> Docker Compose with the backend application, state services, workers and task-specific sandbox runtimes; request/run logging and tracing implemented, with the Prometheus/Grafana monitoring stack per its verified deployment status.</li>
               <li><b>Validated Local LLM:</b> vLLM serving Qwen3-27B with a custom tool-call parser.</li>
-            </ul>
-          `,
-        },
-        {
-          title: "Enterprise Multi-Tenancy — Notes",
-          body: `
-            <p class="pd-lead">Tenancy is enforced at the application layer today, with database-level row-level security planned as the hardening step.</p>
-            <ul>
-              <li>Resources carry <code>org_id</code> and <code>app_id</code>; company / personal resource flags control sharing.</li>
-              <li>Per-agent datasource bindings: read-only access mode, allowed / blocked tables, allowed columns, row filters.</li>
-              <li>Per-call policy checks record authorization decisions in the audit trail.</li>
-              <li>Department projects (Marketing, R&amp;D, Data Analysis, C5 / C9, Global) run side-by-side in one deployment, visible as separate apps in the sidebar.</li>
-              <li>Live streams (dashboards over WebSocket, agent runs over SSE) are scoped to the tenant that owns them.</li>
-              <li>Additional isolation testing and database-level row-level security remain planned hardening work.</li>
             </ul>
           `,
         },
