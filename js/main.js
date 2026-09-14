@@ -225,7 +225,8 @@
   /* ---------- projects (home, filterable) ---------- */
 
   const filterBar = $("#filter-bar");
-  const projectsGrid = $("#projects-grid");
+  const researchGrid = $("#research-projects-grid");
+  const systemsGrid = $("#systems-projects-grid");
   const earlierProjectsGrid = $("#earlier-projects-grid");
   let activeFilter = null;
 
@@ -282,14 +283,19 @@
 
   function renderProjects() {
     const D = window.I18N.getData();
-    if (!projectsGrid || !D.projects) return;
+    if (!D.projects) return;
     // The first filter option is the "show all" choice (e.g. "All" / "全部") —
     // normalize it to null so every card matches instead of requiring p.category === "All".
     const allLabel = D.projectFilters ? D.projectFilters[0] : null;
     const filter = activeFilter === allLabel ? null : activeFilter;
-    // Featured Work section only shows featured projects (Zhanlu, EDIA, BepsBot).
+    // Featured Work section only shows featured projects, split into
+    // human-subjects research projects and research engineering systems.
+    const researchIds = ["bepsbot"];
     const featured = (D.projects || []).filter((p) => p.featured);
-    projectsGrid.innerHTML = featured.map((p) => projectCard(p, filter)).join("");
+    const research = featured.filter((p) => researchIds.includes(p.id));
+    const systems = featured.filter((p) => !researchIds.includes(p.id));
+    if (researchGrid) researchGrid.innerHTML = research.map((p) => projectCard(p, filter)).join("");
+    if (systemsGrid) systemsGrid.innerHTML = systems.map((p) => projectCard(p, filter)).join("");
     revealOnScroll();
   }
 
@@ -319,7 +325,7 @@
     const tbl = $("#rs-toolkit-table");
     if (tbl && D.profile.rsToolkit) {
       tbl.innerHTML =
-        `<thead><tr><th>Domain</th><th>Core Frameworks & Methodologies</th></tr></thead>` +
+        `<thead><tr><th>Area</th><th>Methods &amp; Tools</th></tr></thead>` +
         `<tbody>${D.profile.rsToolkit
           .map((r) => `<tr><td><strong>${esc(r.domain)}</strong></td><td>${esc(r.tools)}</td></tr>`)
           .join("")}</tbody>`;
@@ -330,12 +336,10 @@
     const D = window.I18N.getData();
     const pubsList = $("#publications-list");
     if (pubsList && D.publications) {
-      pubsList.innerHTML = D.publications
-        .map(
-          (p) => {
-            const type = p.type || (p.id && p.id.startsWith("PCC") ? "pcc" : "conf");
-            const typeLabel = type === "pcc" ? "PCC Oral" : "Conference Paper";
-            return `
+      const paperCard = (p) => {
+        const type = p.type || (p.id && p.id.startsWith("PCC") ? "pcc" : "conf");
+        const typeLabel = type === "pcc" ? "PCC Oral" : "Conference Paper";
+        return `
           <article class="paper paper-${type} reveal">
             <div class="paper-head">
               <span class="paper-id">${esc(p.id)}</span>
@@ -366,9 +370,16 @@
                 : ""}
             </div>
           </article>`;
-          }
-        )
-        .join("");
+      };
+      // Split exactly like the CV: peer-reviewed (has DOI/proceedings) vs
+      // presentations / non-archival work (PCC orals).
+      const reviewed = D.publications.filter((p) => p.type !== "pcc");
+      const presented = D.publications.filter((p) => p.type === "pcc");
+      pubsList.innerHTML = `
+        <h3 class="grid-subhead">${esc(t("pub.reviewedTitle"))}</h3>
+        ${reviewed.map(paperCard).join("")}
+        <h3 class="grid-subhead">${esc(t("pub.presentedTitle"))}</h3>
+        ${presented.map(paperCard).join("")}`;
     }
   }
 

@@ -7,8 +7,8 @@ window.PORTFOLIO = {
   profile: {
     name: "Minhazul Islam",
     monogram: "MI",
-    title: "AI Systems Researcher",
-    roleLine: "Trustworthy Agentic AI · Human-AI Interaction · Verifiable AI Systems",
+    title: "AI Researcher",
+    roleLine: "Trustworthy AI · Human–AI Interaction · LLM Agents",
     location: "Ningbo, Zhejiang, China",
     email: "minhaz1396@zju.edu.cn",
     phone: "+86 15990259205",
@@ -17,32 +17,29 @@ window.PORTFOLIO = {
     cv: "assets/Islam_Minhazul_CV.pdf",
     photo: "assets/profile.jpg",
     summary:
-      "AI Systems Researcher (M.Eng. candidate, Zhejiang University) working at the intersection of trustworthy agentic AI, grounded decision intelligence, and human-AI interaction. I build and study agentic systems that make complex decisions through structured planning, grounded tool use, verification, and human oversight — spanning enterprise decision intelligence and AI-mediated mental-health communication.",
+      "AI Researcher (M.Eng. candidate, Zhejiang University) studying how language-model and agentic AI systems can support people in high-stakes settings while remaining grounded, verifiable, and under meaningful human control. My work spans AI-mediated mental-health communication, trustworthy LLM agents, and human-centered decision support.",
     bio: [
       "I combine algorithmic capability with engineering rigor and user understanding to drive AI products through the full lifecycle — from model research to system deployment.",
       "My work spans multi-agent LLM orchestration for production decision-intelligence platforms, retrieval-augmented generation systems for mental-health support, Transformer fine-tuning for domain-specific scoring, and embedded AI prototypes for accessibility.",
       "I enjoy solving problems where the answer requires both deep technical work and a clear view of the user: grounding LLMs in evidence, making AI output verifiable, and shipping systems that perform under real load.",
     ],
     pillars: [
-      { title: "Human-AI Co-Decision & HCI", desc: "Empirical research on peer-support writing assistance in mental-health communities, biofeedback interventions, and affective computing — published at ICEC 2025 and HHME 2026 PCC." },
-      { title: "Multi-Agent Orchestration & Harness Runtime", desc: "State-machine execution (17-node LangGraph FSMs), plan-first turn planning, sub-agent delegation, and custom Harness Agent runtimes with Model Context Protocol (MCP) bridges." },
-      { title: "Context Engineering & Grounded RAG", desc: "Hybrid retrieval (ChromaDB vector search + structured SQL data grounding), context budget enforcement with payload spill management, and long-term semantic memory." },
-      { title: "Governance-First System Safety", desc: "Deterministic Python validation layers that pre-compute and lock business-critical data before LLM narration — eliminating a class of numerical hallucination by pre-rendering metrics." },
-      { title: "Sandboxed Execution & LLMOps", desc: "Docker-isolated skill execution (sandbox-python, sandbox-pptx), LLM-as-a-judge blocking quality gates, multi-provider model routing, and SSE streaming APIs." },
+      { title: "Human–AI Collaboration", desc: "AI-mediated communication, authorship, agency, trust, and decision support." },
+      { title: "Trustworthy LLMs & Agents", desc: "Grounded generation, agent evaluation, tool use, verification, reliability, and privacy." },
+      { title: "AI for Health & High-Stakes Decisions", desc: "Mental-health communication, digital health, longitudinal monitoring, and human-centered decision support." },
     ],
     rsToolkit: [
-      { domain: "Orchestration & Runtimes", tools: "LangGraph, Custom Synexia FSM, Harness Agent Runtimes, Model Context Protocol (MCP), ReAct / CoT Planning" },
-      { domain: "Context & Retrieval Infra", tools: "Hybrid Vector + SQL RAG, ChromaDB, BAAI/bge-m3, Context Budgeting, Context Compaction" },
-      { domain: "Validation & Evaluation", tools: "Deterministic Python Guardrails, Pre-rendering, LLM-as-a-Judge Audit Gates, Walk-Forward MAPE Backtesting" },
-      { domain: "Production LLMOps & Infra", tools: "Docker Microservices (14-service stacks), FastAPI, Redis, MinIO, SSE Streaming, Prometheus/Grafana" },
-      { domain: "Machine Learning & NLP", tools: "PyTorch, Hugging Face Transformers, PEFT/LoRA, STL + Time-Series Ensembles, RoBERTa / BERT Fine-Tuning" },
-      { domain: "Edge AI & Embedded HCI", tools: "Arduino, C/C++, ESP32-CAM, Sensor Fusion, Edge AI Prototyping" },
+      { domain: "Human-subject research", tools: "Controlled user studies, semi-structured interviews, thematic analysis, usability evaluation" },
+      { domain: "LLM & agent evaluation", tools: "Benchmarking, ablations, grounding evaluation, error analysis, LLM-as-judge evaluation, reliability testing" },
+      { domain: "NLP & information retrieval", tools: "Transformers, sentence embeddings, retrieval-augmented generation, contextual language modeling" },
+      { domain: "Machine learning", tools: "PyTorch, scikit-learn, XGBoost, time-series modeling" },
+      { domain: "Research engineering", tools: "Python, LangGraph, FastAPI, SQL/vector retrieval, Docker, Git/Linux" },
     ],
     stats: [
       { num: "0", label: "LLM-computed numbers reaching users (EDIA — LLM narrates, never calculates)" },
       { num: "17", label: "node LangGraph FSM orchestrator (EDIA)" },
       { num: "5m→30s", label: "end-to-end decision latency — 90–478s → 30–45s (EDIA)" },
-      { num: "2+2", label: "peer-reviewed papers + conference presentations (ICEC 2025, HHME 2026 PCC)" },
+      { num: "2+2", label: "peer-reviewed papers (ICEC 2025) + conference presentations (HHME 2026 PCC)" },
     ],
   },
 
@@ -1108,6 +1105,20 @@ def recommend_candidates(req):
             <p class="pd-lead">The study surfaced a non-obvious finding: evaluative feedback primarily functions as a <em>confirmation mechanism</em>, not a revision trigger. Most participants (66.7%) submitted comments identical to their pre-AI draft after using AS as a validation checkpoint. Five participants actively refused RE mode on identity grounds, arguing the suggestions felt "too robotic" or threatened their experiential authority. Rather than a failure, this represents a legitimate user position: <em>voice preservation</em>.</p>
             <div class="pd-callout"><b>Design implication:</b> AI writing support in mental-health communities should move beyond automation toward augmenting reflection and expression. Future systems should emphasize evaluative transparency, contextual sensitivity, and preservation of user authorship. The 12.8% Full-Replacement pattern shows that retrieval-based, non-contextual exemplars are occasionally perceived as contextually limited — motivating adaptive, context-aware generation as the next step.</div>
             <p class="pd-lead">Open limitations: 24 participants limits generalizability; 3 sessions captures only early-stage adaptation; RE relies on retrieval-based exemplars (not generative). Future work should also examine how support <em>recipients</em> perceive AI-assisted peer responses in terms of authenticity, trust, and emotional impact.</p>
+          `,
+        },
+        {
+          title: "Limitations & Next Research Questions",
+          body: `
+            <p class="pd-lead">Stated plainly: a successful prototype is not the same thing as a validated scientific conclusion.</p>
+            <h3 class="pd-subh">Limitations</h3>
+            <p>The current study evaluates provider-side adoption and usability in a controlled setting; it does not establish downstream benefit to support recipients, long-term safety, or whether semantic fidelity is consistently preserved. The sample (N=24, within-subjects, three writing tasks) captures early-stage adaptation rather than sustained use, and the evaluation measures adoption and usability — not recipient outcomes.</p>
+            <h3 class="pd-subh">Next research questions</h3>
+            <ul>
+              <li><b>Measurement:</b> How should semantic preservation be measured — and validated — when AI transforms a person's own draft?</li>
+              <li><b>Authenticity:</b> When does AI polishing reduce perceived authenticity, and how do recipients (not just authors) detect and value it?</li>
+              <li><b>Longitudinal evaluation:</b> How can recipient outcomes and safety be evaluated longitudinally in live peer-support communities, under appropriate ethical oversight?</li>
+            </ul>
           `,
         },
       ],

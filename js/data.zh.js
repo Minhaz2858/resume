@@ -9,8 +9,8 @@ window.PORTFOLIO_ZH = {
   profile: {
     name: "Minhazul Islam",
     monogram: "MI",
-    title: "AI 系统研究者",
-    roleLine: "可信智能体 AI · 人机交互 · 可验证 AI 系统",
+    title: "AI 研究者",
+    roleLine: "可信 AI · 人机交互 · 大模型智能体",
     location: "中国浙江宁波",
     email: "minhaz1396@zju.edu.cn",
     phone: "+86 15990259205",
@@ -19,32 +19,29 @@ window.PORTFOLIO_ZH = {
     cv: "assets/Islam_Minhazul_CV.pdf",
     photo: "assets/profile.jpg",
     summary:
-      "AI 系统研究者（浙江大学硕士在读），专注于可信智能体 AI、落地式决策智能与人机交互的交叉领域。我构建并研究通过结构化规划、工具使用落地、验证与人机监督来处理复杂决策的智能体系统——覆盖企业决策智能与 AI 介导的心理健康沟通。",
+      "AI 研究者（浙江大学硕士在读），研究语言模型与智能体系统如何在高风险场景中支持人类，同时保持有据可依、可验证、并处于有意义的人类控制之下。工作涵盖 AI 介导的心理健康沟通、可信大模型智能体与以人为本的决策支持。",
     bio: [
       "我将算法能力、工程严谨性与对用户的理解相结合，推动 AI 产品走完完整生命周期——从模型研究到系统部署。",
       "我的工作涵盖：面向生产级决策智能平台的多智能体 LLM 编排、面向心理健康支持的检索增强生成系统、面向领域打分的 Transformer 微调，以及面向无障碍场景的嵌入式 AI 原型。",
       "我乐于解决那些既需要深厚技术、又需要清晰用户视角的问题：让 LLM 扎根于证据、让 AI 输出可验证，并交付在真实负载下稳定运行的系统。",
     ],
     pillars: [
-      { title: "人机协同决策与 HCI", desc: "面向同伴支持写作辅助（心理健康社区）、生物反馈干预与情感计算的实证研究——发表于 ICEC 2025 与 HHME 2026 PCC。" },
-      { title: "多智能体编排与 Harness 运行时", desc: "状态机执行（17 节点 LangGraph FSM）、规划优先回合规划、子智能体委派，以及带 Model Context Protocol (MCP) 桥接的自研 Harness Agent 运行时。" },
-      { title: "上下文工程与落地式 RAG", desc: "混合检索（ChromaDB 向量搜索 + 结构化 SQL 数据落地）、上下文预算管理与负载溢出、长期语义记忆。" },
-      { title: "治理优先的系统安全", desc: "确定性 Python 校验层——在 LLM 叙述前预计算并锁定业务关键数据；通过预渲染指标消除一类数值幻觉。" },
-      { title: "沙箱执行与 LLMOps", desc: "Docker 隔离的技能执行（sandbox-python、sandbox-pptx）、LLM-as-judge 阻断式质量门禁、多供应商模型路由，以及 SSE 流式 API。" },
+      { title: "人机协同", desc: "AI 介导沟通、作者性、能动性、信任与决策支持。" },
+      { title: "可信大模型与智能体", desc: "有据生成、智能体评估、工具使用、验证、可靠性与隐私。" },
+      { title: "面向健康与高风险决策的 AI", desc: "心理健康沟通、数字健康、纵向监测与以人为本的决策支持。" },
     ],
     rsToolkit: [
-      { domain: "编排与运行时", tools: "LangGraph、自研 Synexia FSM、Harness Agent 运行时、Model Context Protocol (MCP)、ReAct / CoT 规划" },
-      { domain: "上下文与检索基础设施", tools: "混合向量 + SQL RAG、ChromaDB、BAAI/bge-m3、上下文预算管理、上下文压缩" },
-      { domain: "校验与评估", tools: "确定性 Python 护栏、预渲染、LLM-as-Judge 审计门禁、前推 MAPE 回测" },
-      { domain: "生产 LLMOps 与基础设施", tools: "Docker 微服务（14 服务栈）、FastAPI、Redis、MinIO、SSE 流式、Prometheus/Grafana" },
-      { domain: "机器学习与 NLP", tools: "PyTorch、Hugging Face Transformers、PEFT/LoRA、STL + 时间序列集成、RoBERTa / BERT 微调" },
-      { domain: "边缘 AI 与嵌入式 HCI", tools: "Arduino、C/C++、ESP32-CAM、传感器融合、边缘 AI 原型" },
+      { domain: "以人为被试的研究", tools: "受控用户研究、半结构化访谈、主题分析、可用性评估" },
+      { domain: "大模型与智能体评估", tools: "基准测试、消融实验、依据性评估、错误分析、LLM-as-judge 评估、可靠性测试" },
+      { domain: "NLP 与信息检索", tools: "Transformer、句向量、检索增强生成、上下文语言建模" },
+      { domain: "机器学习", tools: "PyTorch、scikit-learn、XGBoost、时间序列建模" },
+      { domain: "研究工程", tools: "Python、LangGraph、FastAPI、SQL/向量检索、Docker、Git/Linux" },
     ],
     stats: [
       { num: "0", label: "条 LLM 计算的数字触达用户（EDIA——LLM 只叙述、绝不计算）" },
       { num: "17", label: "节点 LangGraph FSM 编排器（EDIA）" },
       { num: "5m→30s", label: "端到端决策延迟——90–478s → 30–45s（EDIA）" },
-      { num: "2+2", label: "篇同行评审论文 + 会议报告（ICEC 2025, HHME 2026 PCC）" },
+      { num: "2+2", label: "篇同行评审论文（ICEC 2025）+ 会议报告（HHME 2026 PCC）" },
     ],
   },
 
@@ -693,6 +690,20 @@ def recommend_candidates(req):
             <p class="pd-lead">研究揭示了一个反直觉的发现：评估性反馈主要起到<em>确认机制</em>，而非修改触发器。多数被试（66.7%）在使用 AS 作为校验节点后，原样提交了 AI 介入前的草稿。5 名被试以身份认同为由主动拒绝 RE 模式，认为建议「过于机械」或威胁到自身经验权威。这并非系统失败，而是一种合理的用户立场：<em>声音保留</em>。</p>
             <div class="pd-callout"><b>设计启示：</b>面向心理健康社区的 AI 写作支持，应从自动化走向增强反思与表达。未来的系统应强调评估透明、情境敏感与对用户作者性的尊重。12.8% 的完全替换模式表明，基于检索的、非情境化的样例偶而被视为语境不足——这驱动我们下一步研究自适应的、情境感知的生成机制。</div>
             <p class="pd-lead">开放性局限：24 名被试限制了结论的可推广性；3 次会话仅捕捉到早期适应；RE 模式依赖基于检索的样例（而非生成式）。未来工作还应考察支持<em>接收方</em>如何看待 AI 协助的同伴回复——真实性、信任感与情感影响。</p>
+          `,
+        },
+        {
+          title: "局限与下一步研究问题",
+          body: `
+            <p class="pd-lead">直白地说：一个成功的原型，不等于一个经过验证的科学结论。</p>
+            <h3 class="pd-subh">局限</h3>
+            <p>本研究在受控环境中评估了提供者侧的采纳与可用性；它并未确立对接收方的下游收益、长期安全性，或语义保真是否得到一致保持。样本（N=24，被试内设计，3 次写作任务）捕捉的是早期适应而非持续使用，评估指标是采纳率与可用性——而非接收方结果。</p>
+            <h3 class="pd-subh">下一步研究问题</h3>
+            <ul>
+              <li><b>测量：</b>当 AI 改写一个人的草稿时，语义保留应如何测量与验证？</li>
+              <li><b>真实性：</b>AI 润色何时会降低感知真实性？接收方（而非作者）如何察觉并评价它？</li>
+              <li><b>纵向评估：</b>在合适的伦理监督下，如何在真实的同伴支持社区中纵向评估接收方结果与安全性？</li>
+            </ul>
           `,
         },
       ],
